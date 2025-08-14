@@ -1,0 +1,22 @@
+{
+  "name": "MINUCST XV - Modelo Internacional de Naciones Unidas",
+  "short_name": "MINUCST XV",
+  "description": "Educación por la Paz: Resiliencia y Cooperación para la Transformación Social",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#B91C1C",
+  "theme_color": "#B91C1C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "events", "social"],
+  "lang": "es",
+  "scope": "/",
+  "prefer_related_applications": false
+}
