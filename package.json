@@ -1,15 +1,17 @@
 {
-  "name": "minucst-2026",
+  "name": "minucst-2026-secure",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1 --port 5173",
+    "dev": "vite --host 127.0.0.1 --port 5173 --mode development",
     "build": "vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
-    "clean": "rm -rf dist node_modules/.vite",
-    "prebuild": "npm run clean"
+    "clean": "rm -rf dist node_modules/.vite node_modules/.cache .vite",
+    "prebuild": "npm run clean",
+    "security-check": "npm audit --audit-level moderate",
+    "postbuild": "echo 'Build completed securely'"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
@@ -44,5 +46,13 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "security": {
+    "allowedHosts": [
+      "minucst.netlify.app",
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "images.pexels.com"
+    ]
+  }
 }

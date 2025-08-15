@@ -27,14 +27,15 @@
     <meta name="twitter:title" content="MINUCST XV - Modelo Internacional de Naciones Unidas 2026" />
     <meta name="twitter:description" content="Educación por la Paz: Resiliencia y Cooperación para la Transformación Social" />
     
-    <!-- Enhanced Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://forms.gle;" />
+    <!-- ULTRA SECURITY HEADERS -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.pexels.com https://fonts.gstatic.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://forms.gle; block-all-mixed-content; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), encrypted-media=(), fullscreen=(), picture-in-picture=()" />
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload" />
+    <meta http-equiv="Feature-Policy" content="camera 'none'; microphone 'none'; geolocation 'none'; payment 'none'; usb 'none'" />
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://minucst.netlify.app" />
@@ -43,9 +44,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- DNS Prefetch -->
+    <!-- DNS Prefetch ONLY for trusted domains -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//images.pexels.com">
     
     <!-- Optimized Fonts with display=swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -117,36 +119,73 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Production Security Scripts -->
+    <!-- ULTRA SECURITY PROTECTION SCRIPT -->
     <script>
-      // Enhanced Security Measures
       (function() {
         'use strict';
         
-        // Prevent clickjacking
+        // BLOQUEAR COMPLETAMENTE CUALQUIER REFERENCIA A APIs PROBLEMÁTICAS
+        const blockedDomains = [
+          'webcontainer-api.io',
+          'api.io',
+          'localhost',
+          '127.0.0.1',
+          'stackblitz.com',
+          'codesandbox.io'
+        ];
+        
+        // Interceptar y bloquear fetch requests problemáticos
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+          const url = args[0];
+          if (typeof url === 'string') {
+            for (const domain of blockedDomains) {
+              if (url.includes(domain)) {
+                console.warn('Blocked suspicious request to:', url);
+                return Promise.reject(new Error('Blocked for security'));
+              }
+            }
+          }
+          return originalFetch.apply(this, args);
+        };
+        
+        // Bloquear WebSocket connections problemáticas
+        const originalWebSocket = window.WebSocket;
+        window.WebSocket = function(url, protocols) {
+          for (const domain of blockedDomains) {
+            if (url.includes(domain)) {
+              throw new Error('WebSocket connection blocked for security');
+            }
+          }
+          return new originalWebSocket(url, protocols);
+        };
+        
+        // Prevenir clickjacking
         if (window.top !== window.self) {
           window.top.location = window.self.location;
         }
         
-        // CSP Violation Reporting
-        if (typeof window !== 'undefined') {
-          window.addEventListener('securitypolicyviolation', function(e) {
-            // Log CSP violations for monitoring (production-safe)
-            if (console && console.warn) {
-              console.warn('CSP Violation detected');
+        // Limpiar cualquier storage corrupto
+        try {
+          const keys = Object.keys(localStorage);
+          keys.forEach(key => {
+            const value = localStorage.getItem(key);
+            if (value && blockedDomains.some(domain => value.includes(domain))) {
+              localStorage.removeItem(key);
+              console.warn('Removed corrupted localStorage item:', key);
             }
           });
+        } catch (e) {
+          // Ignore storage errors
         }
         
-        // Disable development tools in production
-        if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-          // Disable right-click context menu
+        // Bloquear herramientas de desarrollo en producción
+        if (window.location.hostname === 'minucst.netlify.app') {
           document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
           });
           
-          // Disable F12, Ctrl+Shift+I, Ctrl+U
           document.addEventListener('keydown', function(e) {
             if (e.key === 'F12' || 
                 (e.ctrlKey && e.shiftKey && e.key === 'I') ||
@@ -158,15 +197,18 @@
           });
         }
         
-        // Remove any development artifacts
-        if (window.location.href.includes('webcontainer') || 
-            window.location.href.includes('localhost') ||
-            window.location.href.includes('127.0.0.1')) {
-          // Redirect to production if accidentally on development
-          if (window.location.hostname !== 'minucst.netlify.app') {
-            window.location.href = 'https://minucst.netlify.app';
-          }
+        // Verificar integridad del dominio
+        if (window.location.hostname !== 'minucst.netlify.app' && 
+            window.location.hostname !== '127.0.0.1' &&
+            window.location.hostname !== 'localhost') {
+          console.warn('Unexpected hostname detected');
         }
+        
+        // Limpiar variables globales problemáticas
+        delete window.webcontainer;
+        delete window.stackblitz;
+        delete window.codesandbox;
+        
       })();
     </script>
   </body>
