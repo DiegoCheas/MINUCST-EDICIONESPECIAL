@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Users, Globe, MessageCircle, ExternalLink } from 'lucide-react';
+import { Users, Globe, MessageCircle } from 'lucide-react';
 import { COMMITTEES } from '../utils/constants';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -133,11 +133,9 @@ const Committees: React.FC = () => {
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => window.location.href = 'https://forms.gle/Yvhr4wpKbzsbbbw26'}
-                className="w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-4 rounded-xl transition-colors duration-200 text-sm flex items-center justify-center space-x-2"
+                className="w-full bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-4 rounded-xl transition-colors duration-200 text-sm"
               >
-                <span>Inscribirse</span>
-                <ExternalLink className="w-3 h-3" />
+                Aplicar a este Comité
               </motion.button>
             </motion.div>
           ))}

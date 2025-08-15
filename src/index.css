@@ -296,31 +296,6 @@
   }
 }
 
-/* Production-only optimizations */
-@media (prefers-reduced-data: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  .gpu-accelerated {
-    transform: none !important;
-    will-change: auto !important;
-  }
-}
-
-/* Enhanced security styles */
-.secure-content {
-  content-security-policy: default-src 'self';
-  x-frame-options: DENY;
-  x-content-type-options: nosniff;
-}
-
-/* Remove any development artifacts */
-[data-dev], [data-debug], .dev-only {
-  display: none !important;
-}
-
 /* Gentle floating animations */
 @keyframes floatGentle {
   0%, 100% {
