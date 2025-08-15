@@ -128,37 +128,52 @@ const Navigation: React.FC = () => {
               }}
               onClick={() => handleMenuClick('#home')}
             >
+              {/* Logo del MINUCST - Más grande y legible */}
               <motion.div 
-                className="bg-gradient-to-r from-yellow-400 to-amber-500 p-1.5 rounded-lg shadow-lg overflow-hidden"
-                whileHover={{ rotate: 5, scale: 1.03 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="bg-white/95 backdrop-blur-sm p-2 rounded-xl shadow-lg border border-white/20"
+                whileHover={{ 
+                  rotate: 2, 
+                  scale: 1.05,
+                  boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)"
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
                 <motion.img
                   src="/minucst_logo_resized.png"
                   alt="MINUCST Logo"
-                  className="w-8 h-8 object-contain"
+                  className="w-12 h-12 object-contain"
                   whileHover={{ 
-                    filter: 'brightness(1.1) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
+                    filter: 'brightness(1.05) contrast(1.1)'
                   }}
                   transition={{ duration: 0.3 }}
                 />
               </motion.div>
-              <div className="flex items-center">
+              
+              {/* Texto del header */}
+              <div className="flex flex-col">
                 <motion.h1 
-                  className="bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent font-bold text-xl tracking-tight optimize-text ml-2"
+                  className="text-white font-bold text-2xl tracking-tight leading-none"
                   style={{ 
                     fontFamily: 'Bebas Neue, -apple-system, BlinkMacSystemFont, sans-serif',
                     fontWeight: 600,
-                    letterSpacing: '0.02em'
+                    letterSpacing: '0.05em',
+                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'
                   }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))'
+                  }}
                 >
-                  MINUCST XV
+                  <span className="bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
+                    MINUCST
+                  </span>
+                  <span className="text-yellow-300 ml-1">XV</span>
                 </motion.h1>
                 <motion.p 
-                  className="text-yellow-200/80 text-xs ml-2 font-medium"
+                  className="text-yellow-200/90 text-sm font-medium leading-none mt-0.5"
                   style={{ 
-                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                    textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
                   }}
                 >
                   Colegio Santa Teresa
