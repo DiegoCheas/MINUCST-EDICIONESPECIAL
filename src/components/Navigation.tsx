@@ -133,15 +133,7 @@ const Navigation: React.FC = () => {
                 whileHover={{ rotate: 5, scale: 1.03 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <motion.img
-                  src="/minucst_logo_resized.png"
-                  alt="MINUCST Logo"
-                  className="w-6 h-6 object-contain"
-                  whileHover={{ 
-                    filter: 'brightness(1.1) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
+                <Globe className="w-8 h-8 text-white" />
               </motion.div>
               <div>
                 <motion.h1 
