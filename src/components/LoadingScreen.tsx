@@ -476,7 +476,7 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="text-yellow-200/95 text-xl font-light mb-6"
                 >
-                  <motion.span
+                {'Educación por la Paz: Resiliencia y Cooperación para la Transformación Social'.split(' ').map((word, index) => (
                     key={currentPhase}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
