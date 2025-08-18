@@ -1,5 +1,7 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
+import LoadingScreen from './components/LoadingScreen';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import WhoWeAre from './components/WhoWeAre';
@@ -14,6 +16,16 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />;
+  }
+
   return (
     <ThemeProvider>
       <div className="min-h-screen transition-colors duration-500">
