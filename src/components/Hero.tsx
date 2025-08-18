@@ -5,17 +5,7 @@ import CountdownTimer from './CountdownTimer';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Hero: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { isDark } = useTheme();
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const handleRegistration = () => {
     // Redirigir al Google Forms en la misma pestaña
@@ -43,41 +33,21 @@ const Hero: React.FC = () => {
         {/* Background Elements */}
         <div className="absolute inset-0">
           <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 8, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            className="absolute top-20 left-20 w-[400px] h-[400px] bg-yellow-500/20 rounded-full blur-3xl opacity-30"
+          />
+          <motion.div 
             className="absolute top-20 left-20 w-[400px] h-[400px] bg-yellow-500/20 rounded-full blur-3xl"
           />
           <motion.div 
-            animate={{ 
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{ 
-              duration: 10, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            className="absolute bottom-20 right-20 w-[300px] h-[300px] bg-amber-400/15 rounded-full blur-3xl opacity-20"
+          />
+          <motion.div 
             className="absolute bottom-20 right-20 w-[300px] h-[300px] bg-amber-400/15 rounded-full blur-3xl"
           />
           
           {/* Grid Pattern */}
-          <motion.div 
-            animate={{ 
-              opacity: [0.05, 0.15, 0.05]
-            }}
-            transition={{ 
-              duration: 12, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23fbbf24" fill-opacity="0.1"%3E%3Ccircle cx="7" cy="7" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"
+          <div 
+            className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23fbbf24" fill-opacity="0.1"%3E%3Ccircle cx="7" cy="7" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-10"
           />
         </div>
 
@@ -167,7 +137,7 @@ const Hero: React.FC = () => {
                   <motion.img
                     src="/minucst_logo_resized%201.png"
                     alt="MINUCST Logo"
-                    className="h-48 sm:h-56 lg:h-64 xl:h-72 w-auto object-contain"
+                    className="h-40 sm:h-48 lg:h-56 xl:h-64 w-auto object-contain"
                     loading="eager"
                   />
                 </motion.div>
@@ -762,35 +732,11 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Floating Elements */}
-        <motion.div 
-          animate={{ 
-            y: [0, -12, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-r from-yellow-400/20 to-amber-400/20 rounded-full blur-xl gpu-accelerated"
-          style={{
-            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`
-          }}
+        <div 
+          className="absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-r from-yellow-400/20 to-amber-400/20 rounded-full blur-xl"
         />
-        <motion.div 
-          animate={{ 
-            y: [0, -8, 0],
-            scale: [1, 1.08, 1]
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/3 right-10 w-12 h-12 bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-xl gpu-accelerated"
-          style={{
-            transform: `translate(${mousePosition.x * -0.02}px, ${mousePosition.y * 0.01}px)`
-          }}
+        <div 
+          className="absolute top-1/3 right-10 w-12 h-12 bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-xl"
         />
       </section>
     </>

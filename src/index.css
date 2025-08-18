@@ -176,12 +176,11 @@
 /* Optimización general */
 .performance-optimized {
   transform: translate3d(0, 0, 0);
-  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
+  will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   -webkit-backface-visibility: hidden;
-  contain: layout style paint;
-  transition: all 0.2s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 /* Header específico - Hermoso y elegante */
@@ -244,10 +243,8 @@
 
 /* Critical resource optimization */
 .performance-optimized {
-  contain: layout style paint;
-  content-visibility: auto;
-  contain-intrinsic-size: 0 400px;
-  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Image optimization for high DPI */
@@ -290,23 +287,15 @@ img[loading="lazy"].loaded {
 
 /* Desktop-specific performance optimizations */
 @media (min-width: 1024px) {
-  /* High refresh rate support with perfect timing */
-  * {
-    transition-property: transform, opacity, background-color, border-color, color, fill, stroke, box-shadow, filter;
-    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
   /* Hardware acceleration for all interactive elements */
   button, a, [role="button"], .interactive {
     transform: translateZ(0);
-    will-change: transform, opacity, filter;
+    will-change: transform, opacity;
     backface-visibility: hidden;
-    contain: layout style paint;
   }
 
   /* Optimize scrolling performance */
   .scroll-container {
-    contain: strict;
     overflow: auto;
     overscroll-behavior: contain;
   }
@@ -359,26 +348,19 @@ img[loading="lazy"].loaded {
   .mobile-optimized {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
-    user-select: none;
-    -webkit-user-select: none;
     transform: translateZ(0);
-    will-change: transform;
   }
 
   /* Smooth mobile animations */
   .mobile-smooth {
-    transition: all 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.2s ease-out;
     transform: translateZ(0);
-    will-change: transform, opacity;
-    contain: layout style paint;
   }
 
   /* Mobile menu specific */
   .mobile-menu-item {
     transform: translateZ(0);
-    will-change: transform, opacity;
     backface-visibility: hidden;
-    contain: layout style paint;
   }
 
   /* Mobile navigation optimization */
@@ -391,7 +373,6 @@ img[loading="lazy"].loaded {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transform: translateZ(0);
-    will-change: transform, opacity;
   }
 
   /* Mobile hero section optimization */
@@ -637,12 +618,11 @@ img[loading="lazy"].loaded {
 /* Enhanced glass morphism */
 .glass-morphism {
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
   transform: translateZ(0);
-  will-change: transform, opacity;
 }
 
 .dark .glass-morphism {
@@ -654,49 +634,11 @@ img[loading="lazy"].loaded {
 /* Extreme performance optimizations */
 .performance-beast {
   transform: translate3d(0, 0, 0);
-  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
+  will-change: transform, opacity;
   backface-visibility: hidden;
-  perspective: 1000px;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  contain: strict;
-  content-visibility: auto;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.3s ease-out;
 }
 
-/* Variable refresh rate support */
-@media (dynamic-range: high) {
-  .ultra-smooth-120hz {
-    transition-duration: 0.06s;
-    animation-duration: 0.2s;
-  }
-}
-
-/* High DPI optimizations */
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-  .ultra-smooth-120hz {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    transform: translateZ(0) scale(1.0001);
-  }
-}
-/* Variable refresh rate support */
-@media (dynamic-range: high) {
-  .ultra-smooth-120hz {
-    transition-duration: 0.06s;
-    animation-duration: 0.2s;
-  }
-}
-
-/* High DPI optimizations */
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-  .ultra-smooth-120hz {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    transform: translateZ(0) scale(1.0001);
-  }
-}
 /* Enhanced interactive elements */
 .desktop-interactive {
   position: relative;
@@ -715,12 +657,12 @@ img[loading="lazy"].loaded {
   background: rgba(255, 255, 255, 0.08);
   transform: translate(-50%, -50%);
   transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              height 0.3s ease-out;
 }
 
 .desktop-interactive:hover::after {
-  width: 250px;
-  height: 250px;
+  width: 150px;
+  height: 150px;
 }
 
 /* Optimized text rendering */

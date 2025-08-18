@@ -179,20 +179,6 @@ const CountdownTimer: React.FC = () => {
         variants={itemVariants}
         className="grid grid-cols-4 gap-3 lg:gap-6 relative"
       >
-        {/* Subtle pulsing border effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-amber-400/5 to-yellow-400/10 rounded-xl lg:rounded-2xl"
-          animate={{ 
-            opacity: [0.3, 0.6, 0.3],
-            scale: [1, 1.02, 1]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
         {timeUnits.map((unit, index) => (
           <motion.div
             key={unit.key}
@@ -207,42 +193,7 @@ const CountdownTimer: React.FC = () => {
             {/* Background glow */}
             <motion.div
               className={`absolute inset-0 bg-gradient-to-br ${unit.color} rounded-xl lg:rounded-2xl blur-lg opacity-15`}
-              animate={{ 
-                scale: [1, 1.08, 1],
-                opacity: [0.15, 0.3, 0.15]
-              }}
-              transition={{ 
-                duration: 3 + index * 0.4, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
             />
-
-            {/* Floating particles */}
-            <div className="absolute inset-0 overflow-hidden rounded-xl lg:rounded-2xl">
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white/20 rounded-full"
-                  style={{
-                    left: `${20 + Math.random() * 60}%`,
-                    top: `${20 + Math.random() * 60}%`,
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                    x: [0, Math.random() * 10 - 5, 0],
-                    opacity: [0.2, 0.6, 0.2],
-                    scale: [1, 1.2, 1]
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 2,
-                    repeat: Infinity,
-                    delay: Math.random() * 2,
-                    ease: "easeInOut"
-                  }}
-                />
-              ))}
-            </div>
 
             {/* Main container */}
             <motion.div
@@ -255,13 +206,6 @@ const CountdownTimer: React.FC = () => {
               {/* Shimmer effect */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ 
-                  duration: 2.5,
-                  repeat: Infinity,
-                  repeatDelay: 4,
-                  ease: "easeInOut"
-                }}
               />
 
               {/* Number display */}
@@ -306,15 +250,6 @@ const CountdownTimer: React.FC = () => {
               {/* Floating icon */}
               <motion.div
                 className="absolute top-1.5 right-1.5 opacity-15"
-                animate={{ 
-                  rotate: [0, 360],
-                  scale: [0.7, 1.1, 0.7]
-                }}
-                transition={{ 
-                  duration: 6 + index,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
               >
                 <Zap className="w-2 h-2 text-white" />
               </motion.div>
@@ -330,62 +265,23 @@ const CountdownTimer: React.FC = () => {
       >
         <motion.p 
           className="text-base lg:text-lg text-yellow-200/90 font-bold optimize-text"
-          animate={{ 
-            opacity: [0.7, 1, 0.7]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
         >
           ¡El futuro de la diplomacia comienza pronto!
         </motion.p>
         
         {/* Decorative elements */}
-        <motion.div
-          className="absolute -left-4 top-1/2 transform -translate-y-1/2"
-          animate={{ 
-            x: [0, 3, 0],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ 
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
+        <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
           <div className="w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
-        </motion.div>
+        </div>
         
-        <motion.div
-          className="absolute -right-4 top-1/2 transform -translate-y-1/2"
-          animate={{ 
-            x: [0, -3, 0],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ 
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5
-          }}
-        >
+        <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
           <div className="w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Ambient lighting effect */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-yellow-400/4 via-transparent to-amber-400/4 rounded-2xl lg:rounded-3xl pointer-events-none"
-        animate={{ 
-          opacity: [0.2, 0.4, 0.2]
-        }}
-        transition={{ 
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-yellow-400/4 via-transparent to-amber-400/4 rounded-2xl lg:rounded-3xl pointer-events-none opacity-30"
       />
     </motion.div>
   );
