@@ -85,9 +85,6 @@ const News: React.FC = () => {
                     alt={item.title}
                     className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
                     loading="lazy"
-                    onError={(e) => {
-                      e.currentTarget.src = 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop';
-                    }}
                   />
                   <div className="absolute top-4 left-4">
                     <motion.span 

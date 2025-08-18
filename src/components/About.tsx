@@ -66,13 +66,10 @@ const About: React.FC = () => {
           <motion.div variants={itemVariants}>
             <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
               <img 
-                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                 alt="Sesión de debate MINUCST"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.src = 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop';
-                }}
               />
             </div>
           </motion.div>

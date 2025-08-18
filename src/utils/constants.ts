@@ -123,7 +123,7 @@ export const NEWS_ITEMS = [
     title: 'Abierto el proceso de inscripciones para MINUCST 2026',
     summary: 'Ya está disponible el formulario oficial de inscripción para participar en nuestra edición especial.',
     date: '2024-01-15',
-    image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     category: 'Inscripciones'
   },
   {
@@ -131,7 +131,7 @@ export const NEWS_ITEMS = [
     title: 'Doce comités confirmados para la edición 2026',
     summary: 'Conoce los doce comités que estarán activos durante el evento y sus respectivos temas de debate.',
     date: '2024-01-10',
-    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     category: 'Comités'
   },
   {
@@ -139,7 +139,7 @@ export const NEWS_ITEMS = [
     title: 'Becas disponibles para delegados internacionales',
     summary: 'Programa especial de becas para estudiantes de América Latina y el Caribe.',
     date: '2024-01-05',
-    image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     category: 'Becas'
   }
 ];
@@ -184,7 +184,7 @@ export const TESTIMONIALS = [
     country: 'México',
     quote: 'MINUCST transformó mi perspectiva sobre la diplomacia internacional. Fue una experiencia única que me preparó para mi carrera en relaciones internacionales.',
     year: '2024',
-    image: 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=400'
+    image: 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
   },
   {
     id: '2',
@@ -192,7 +192,7 @@ export const TESTIMONIALS = [
     country: 'Colombia',
     quote: 'La calidad académica y el nivel de debate en MINUCST es excepcional. Cada sesión es una oportunidad de crecimiento personal y profesional.',
     year: '2024',
-    image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=400'
+    image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
   },
   {
     id: '3',
@@ -200,6 +200,6 @@ export const TESTIMONIALS = [
     country: 'Argentina',
     quote: 'MINUCST no solo es un modelo de Naciones Unidas, es una plataforma para formar líderes comprometidos con la paz mundial.',
     year: '2023',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=400'
+    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
   }
 ];

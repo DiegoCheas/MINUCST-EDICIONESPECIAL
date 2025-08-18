@@ -142,14 +142,10 @@ const Hero: React.FC = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <motion.img
-                  src="/minucst_logo_resized 1.png"
+                  src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"
                   alt="MINUCST Logo"
-                  className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain filter drop-shadow-lg"
+                  className="h-32 sm:h-40 lg:h-48 xl:h-56 w-32 sm:w-40 lg:w-48 xl:w-56 object-cover rounded-full filter drop-shadow-lg border-4 border-yellow-400"
                   loading="eager"
-                  onError={(e) => {
-                    console.log('Error loading logo:', e);
-                    e.currentTarget.style.display = 'none';
-                  }}
                 />
               </motion.div>
               

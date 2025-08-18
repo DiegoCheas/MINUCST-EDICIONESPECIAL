@@ -179,14 +179,14 @@ const Gallery: React.FC = () => {
                 >
                   <div className="relative overflow-hidden">
                     <img 
-                      src={`https://images.unsplash.com/photo-${
-                        index === 0 ? '1522202176988-66273c2fd55f' :
-                        index === 1 ? '1522202176988-66273c2fd55f' :
-                        index === 2 ? '1515187479132-8fdb7819f6b5' :
-                        index === 3 ? '1521737604893-d14cc237f11d' :
-                        index === 4 ? '1507003211169-0a1dd7ef0a50' :
-                        '1522071820677-1b726e50246a'
-                      }?w=800&h=400&fit=crop&crop=center`}
+                      src={[
+                        'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+                        'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+                        'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+                        'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+                        'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+                        'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop'
+                      ][index]}
                       alt={photo.caption}
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
@@ -236,9 +236,6 @@ const Gallery: React.FC = () => {
                       alt={`Testimonio de ${testimonial.name}`}
                       className="w-full h-48 object-cover rounded-lg"
                       loading="lazy"
-                      onError={(e) => {
-                        e.currentTarget.src = 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop';
-                      }}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
                       <motion.div 

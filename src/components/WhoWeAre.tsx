@@ -65,11 +65,11 @@ const WhoWeAre: React.FC = () => {
           className="grid lg:grid-cols-2 gap-16 items-center mb-20"
         >
           <motion.div variants={itemVariants}>
-            <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden bg-white dark:bg-gray-800 flex items-center justify-center p-4">
+            <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
               <img 
-                src="/image copy.png"
-                alt="Escudo Colegio Santa Teresa"
-                className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
+                src="https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                alt="Colegio Santa Teresa - Educación de Excelencia"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
             </div>
