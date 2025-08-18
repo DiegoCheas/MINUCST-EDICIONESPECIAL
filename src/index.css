@@ -185,6 +185,8 @@
   -webkit-perspective: 1000px;
   contain: layout style paint;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* 360Hz specific animations */
@@ -194,6 +196,12 @@
     animation-duration: 0.1s;
     animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
   }
+  
+  /* Hardware acceleration for 360Hz */
+  * {
+    transform: translateZ(0);
+    will-change: auto;
+  }
 }
 
 /* 240Hz support */
@@ -201,6 +209,10 @@
   .ultra-smooth-360hz {
     transition-duration: 0.04s;
     animation-duration: 0.15s;
+  }
+  
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0) scale(1.0001);
   }
 }
 
@@ -229,6 +241,12 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
+  
+  /* Mobile optimization */
+  .mobile-optimized {
+    contain: strict;
+    content-visibility: auto;
+  }
 }
 
 /* Fallback for 60Hz displays */
@@ -237,6 +255,52 @@
     transition-duration: 0.15s;
     animation-duration: 0.4s;
   }
+}
+
+/* Critical resource optimization */
+.performance-optimized {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+  will-change: auto;
+}
+
+/* Image optimization for high DPI */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* WebP/AVIF support detection */
+@supports (background-image: url('data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA')) {
+  .webp-support {
+    background-image: url('image.webp');
+  }
+}
+
+/* Lazy loading optimization */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Font loading optimization */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-display: swap;
+  font-weight: 400 700;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-display: swap;
+  font-weight: 300 700;
 }
 
 /* Desktop-specific performance optimizations */
@@ -261,6 +325,47 @@
     overflow: auto;
     overscroll-behavior: contain;
   }
+  
+  /* Desktop grid system */
+  .desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+}
+
+/* Elegant design details */
+.elegant-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.elegant-border {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.elegant-gradient {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* Minimal decorative elements */
+.minimal-decoration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+}
+
+.minimal-decoration::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
 }
 
 /* Mobile-specific optimizations */

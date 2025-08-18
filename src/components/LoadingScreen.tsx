@@ -4,18 +4,49 @@ import { motion, AnimatePresence } from 'framer-motion';
 const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const [resourcesLoaded, setResourcesLoaded] = useState(false);
 
   useEffect(() => {
-    // Precargar el logo
-    const img = new Image();
-    img.onload = () => setLogoLoaded(true);
-    img.src = '/minucst_logo_resized%201.png';
+    // Preload critical resources in parallel
+    const preloadResources = async () => {
+      const promises = [
+        // Preload logo with high priority
+        new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            setLogoLoaded(true);
+            resolve();
+          };
+          img.onerror = () => resolve(); // Fallback
+          img.src = '/minucst_logo_resized%201.png';
+        }),
+        
+        // Preload critical fonts
+        new Promise<void>((resolve) => {
+          if (document.fonts) {
+            document.fonts.load('600 48px "Bebas Neue"').then(() => resolve()).catch(() => resolve());
+          } else {
+            resolve();
+          }
+        }),
+        
+        // Simulate critical resource loading
+        new Promise<void>((resolve) => {
+          setTimeout(resolve, 100); // Minimal delay for smooth experience
+        })
+      ];
 
-    // Timer para la animación de salida
+      await Promise.all(promises);
+      setResourcesLoaded(true);
+    };
+
+    preloadResources();
+
+    // Optimized timer for smooth exit
     const timer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onComplete, 800); // Tiempo para completar la animación de salida
-    }, 2500);
+      setTimeout(onComplete, 400); // Match exit animation duration
+    }, 2200); // Reduced total time for better UX
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -29,95 +60,119 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
             opacity: 0, 
             y: -window.innerHeight,
             transition: { 
-              duration: 0.8, 
-              ease: [0.25, 0.46, 0.45, 0.94],
+              duration: 0.4, 
+              ease: [0.23, 1, 0.32, 1], // Optimized cubic-bezier
               type: "tween"
             }
           }}
-          className="fixed inset-0 z-[9999] bg-gradient-to-br from-red-950 via-red-900 to-red-800 flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[9999] bg-gradient-to-br from-red-950 via-red-900 to-red-800 flex items-center justify-center overflow-hidden gpu-accelerated performance-optimized"
           style={{
-            background: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 35%, #dc2626 100%)'
+            background: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 35%, #dc2626 100%)',
+            willChange: 'transform, opacity'
           }}
         >
-          {/* Elementos de fondo animados */}
-          <div className="absolute inset-0">
+          {/* Optimized background elements with reduced complexity */}
+          <div className="absolute inset-0 gpu-accelerated">
             <motion.div 
               animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.1, 0.3, 0.1],
+                scale: [1, 1.1, 1],
+                opacity: [0.08, 0.2, 0.08],
                 rotate: [0, 180, 360]
               }}
               transition={{ 
-                duration: 8, 
+                duration: 12, 
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute top-20 left-20 w-[400px] h-[400px] bg-yellow-500/20 rounded-full blur-3xl"
+              className="absolute top-20 left-20 w-[300px] h-[300px] bg-yellow-500/15 rounded-full blur-3xl gpu-accelerated"
             />
             <motion.div 
               animate={{ 
-                scale: [1.2, 1, 1.2],
-                opacity: [0.08, 0.25, 0.08],
+                scale: [1.1, 1, 1.1],
+                opacity: [0.06, 0.15, 0.06],
                 rotate: [360, 180, 0]
               }}
               transition={{ 
-                duration: 10, 
+                duration: 15, 
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute bottom-20 right-20 w-[350px] h-[350px] bg-amber-400/20 rounded-full blur-3xl"
+              className="absolute bottom-20 right-20 w-[250px] h-[250px] bg-amber-400/12 rounded-full blur-3xl gpu-accelerated"
             />
           </div>
 
-          {/* Contenido principal */}
-          <div className="relative z-10 text-center">
-            {/* Logo */}
+          {/* Minimal grid pattern */}
+          <motion.div 
+            className="absolute inset-0 opacity-3"
+            animate={{
+              backgroundPosition: ['0% 0%', '20% 20%'],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "linear"
+            }}
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='15' cy='15' r='0.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '30px 30px'
+            }}
+          />
+
+          {/* Main content with responsive scaling */}
+          <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            {/* Logo with high resolution and responsive sizing */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
               animate={{ 
                 opacity: logoLoaded ? 1 : 0, 
                 scale: logoLoaded ? 1 : 0.8, 
-                y: logoLoaded ? 0 : 20 
+                y: logoLoaded ? 0 : 30 
               }}
               transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
+                duration: 0.6, 
+                ease: [0.23, 1, 0.32, 1],
                 delay: 0.2
               }}
-              className="mb-8"
+              className="mb-12"
             >
               <motion.img
                 src="/minucst_logo_resized%201.png"
                 alt="MINUCST Logo"
-                className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto object-contain"
+                className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 mx-auto object-contain gpu-accelerated"
+                style={{
+                  imageRendering: '-webkit-optimize-contrast',
+                  imageRendering: 'crisp-edges'
+                }}
                 animate={{
                   filter: [
                     'brightness(1) drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))',
-                    'brightness(1.05) drop-shadow(0 0 30px rgba(251, 191, 36, 0.5))',
+                    'brightness(1.03) drop-shadow(0 0 25px rgba(251, 191, 36, 0.4))',
                     'brightness(1) drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))'
                   ]
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
             </motion.div>
 
-            {/* Título principal */}
+            {/* Responsive typography with scalable design */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.5
+                duration: 0.6, 
+                ease: [0.23, 1, 0.32, 1],
+                delay: 0.4
               }}
-              className="space-y-4"
+              className="space-y-6"
             >
+              {/* Main title with responsive scaling */}
               <motion.h1 
-                className="text-6xl sm:text-7xl lg:text-8xl font-light leading-[0.85]"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-light leading-[0.85] optimize-text"
                 style={{ 
                   fontFamily: 'Bebas Neue, -apple-system, BlinkMacSystemFont, sans-serif',
                   fontWeight: 600,
@@ -129,52 +184,30 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
                   animate={{
                     filter: [
                       'brightness(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))',
-                      'brightness(1.08) drop-shadow(0 0 15px rgba(251, 191, 36, 0.6))',
+                      'brightness(1.06) drop-shadow(0 0 12px rgba(251, 191, 36, 0.5))',
                       'brightness(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))'
                     ]
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 5,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 >
-                  MINUCST
-                </motion.span>
-                <motion.span 
-                  className="block bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 bg-clip-text text-transparent text-5xl sm:text-6xl lg:text-7xl leading-[0.8] mt-2"
-                  style={{ 
-                    fontFamily: 'Bebas Neue, -apple-system, BlinkMacSystemFont, sans-serif',
-                    fontWeight: 700,
-                    letterSpacing: '0.1em'
-                  }}
-                  animate={{
-                    textShadow: [
-                      '0 0 10px rgba(251, 191, 36, 0.5)',
-                      '0 0 20px rgba(251, 191, 36, 0.7)',
-                      '0 0 10px rgba(251, 191, 36, 0.5)'
-                    ]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  XV
+                  MINUCST XV
                 </motion.span>
               </motion.h1>
 
-              {/* Subtítulo */}
+              {/* Subtitle with responsive text */}
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
-                  duration: 0.6, 
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 0.8
+                  duration: 0.5, 
+                  ease: [0.23, 1, 0.32, 1],
+                  delay: 0.6
                 }}
-                className="text-lg sm:text-xl lg:text-2xl text-red-100 font-light leading-relaxed max-w-2xl mx-auto px-4"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-red-100 font-light leading-relaxed max-w-4xl mx-auto px-4"
                 style={{ 
                   fontFamily: 'Space Grotesk, -apple-system, BlinkMacSystemFont, sans-serif',
                   fontWeight: 300,
@@ -186,29 +219,29 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
                 del Colegio Santa Teresa
               </motion.p>
 
-              {/* Tema */}
+              {/* Theme with elegant styling */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
-                  duration: 0.6, 
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 1.1
+                  duration: 0.5, 
+                  ease: [0.23, 1, 0.32, 1],
+                  delay: 0.8
                 }}
                 className="mt-8"
               >
-                <div className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-6 max-w-3xl mx-auto">
+                <div className="bg-gradient-to-r from-white/8 to-white/4 backdrop-blur-xl border border-yellow-400/20 rounded-2xl p-6 md:p-8 max-w-4xl mx-auto">
                   <motion.h2 
-                    className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent mb-2"
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent mb-2"
                     animate={{
                       filter: [
                         'brightness(1) drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))',
-                        'brightness(1.05) drop-shadow(0 0 10px rgba(251, 191, 36, 0.5))',
+                        'brightness(1.04) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))',
                         'brightness(1) drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))'
                       ]
                     }}
                     transition={{
-                      duration: 3,
+                      duration: 4,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
@@ -219,46 +252,46 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
               </motion.div>
             </motion.div>
 
-            {/* Indicador de carga */}
+            {/* Optimized loading indicator */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.5 }}
-              className="mt-12"
+              animate={{ opacity: resourcesLoaded ? 1 : 0.7 }}
+              transition={{ delay: 1.2, duration: 0.3 }}
+              className="mt-16"
             >
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="w-8 h-8 border-2 border-yellow-400/30 border-t-yellow-400 rounded-full mx-auto"
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                className="w-6 h-6 border-2 border-yellow-400/30 border-t-yellow-400 rounded-full mx-auto"
               />
               <motion.p 
-                animate={{ opacity: [0.5, 1, 0.5] }}
+                animate={{ opacity: [0.6, 1, 0.6] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 className="text-yellow-200/80 text-sm mt-4 font-light"
               >
-                Cargando experiencia diplomática...
+                {resourcesLoaded ? 'Iniciando experiencia diplomática...' : 'Cargando recursos...'}
               </motion.p>
             </motion.div>
           </div>
 
-          {/* Partículas flotantes */}
+          {/* Minimal floating particles */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[...Array(12)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1 h-1 bg-yellow-400/30 rounded-full"
+                className="absolute w-0.5 h-0.5 bg-yellow-400/25 rounded-full"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
                 }}
                 animate={{
-                  y: [0, -30, 0],
-                  x: [0, Math.random() * 20 - 10, 0],
-                  opacity: [0.2, 0.6, 0.2],
-                  scale: [1, 1.5, 1]
+                  y: [0, -25, 0],
+                  x: [0, Math.random() * 15 - 7.5, 0],
+                  opacity: [0.15, 0.4, 0.15],
+                  scale: [1, 1.3, 1]
                 }}
                 transition={{
-                  duration: 4 + Math.random() * 2,
+                  duration: 5 + Math.random() * 2,
                   repeat: Infinity,
                   delay: Math.random() * 2,
                   ease: "easeInOut"

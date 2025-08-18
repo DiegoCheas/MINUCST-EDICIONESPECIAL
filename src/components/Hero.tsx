@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-20 left-20 w-[300px] h-[300px] bg-yellow-500/15 rounded-full blur-3xl gpu-accelerated"
+            className="absolute top-20 left-20 w-[300px] h-[300px] bg-yellow-500/15 rounded-full blur-3xl gpu-accelerated elegant-decoration"
             style={{
               transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`
             }}
@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-40 right-32 w-[350px] h-[350px] bg-amber-400/15 rounded-full blur-3xl gpu-accelerated"
+            className="absolute top-40 right-32 w-[350px] h-[350px] bg-amber-400/15 rounded-full blur-3xl gpu-accelerated elegant-decoration"
             style={{
               transform: `translate(${mousePosition.x * -0.015}px, ${mousePosition.y * 0.01}px)`
             }}
@@ -132,7 +132,7 @@ const Hero: React.FC = () => {
                 ease: "easeOut",
                 delay: 0.1
               }}
-              className="space-y-6 lg:space-y-8 order-2 lg:order-1 performance-optimized"
+              className="space-y-6 lg:space-y-8 order-2 lg:order-1 performance-optimized minimal-decoration"
             >
               <div className="space-y-4 lg:space-y-6">
                 <motion.div 
@@ -147,7 +147,7 @@ const Hero: React.FC = () => {
                     scale: 1.02,
                     filter: 'drop-shadow(0 8px 16px rgba(251, 191, 36, 0.2))'
                   }}
-                  className="inline-flex items-center bg-gradient-to-r from-yellow-500/15 to-amber-500/15 backdrop-blur-xl border border-yellow-400/25 rounded-full px-4 lg:px-8 py-2 lg:py-4 text-sm lg:text-base font-medium glass-morphism desktop-interactive"
+                  className="inline-flex items-center bg-gradient-to-r from-yellow-500/15 to-amber-500/15 backdrop-blur-xl border border-yellow-400/25 rounded-full px-4 lg:px-8 py-2 lg:py-4 text-sm lg:text-base font-medium glass-morphism desktop-interactive elegant-shadow"
                 >
                   <motion.div
                     className="inline-flex items-center space-x-2 lg:space-x-3"
