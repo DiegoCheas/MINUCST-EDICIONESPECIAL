@@ -411,11 +411,6 @@ const Hero: React.FC = () => {
                     className="group relative overflow-hidden bg-gradient-to-br from-red-600/15 via-red-500/10 to-yellow-500/15 backdrop-blur-xl border border-red-400/25 rounded-xl p-3 lg:p-4 transition-all duration-300 desktop-interactive glass-morphism"
                   >
                     {/* Animated background gradient */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-red-500/8 via-yellow-500/4 to-red-600/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      animate={{ background: backgroundGradients }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    />
                     
                     {/* Floating particles */}
                     <div className="absolute inset-0 overflow-hidden">
@@ -502,11 +497,6 @@ const Hero: React.FC = () => {
                     className="group relative overflow-hidden bg-gradient-to-br from-red-600/15 via-yellow-500/10 to-red-500/15 backdrop-blur-xl border border-red-400/25 rounded-xl p-3 lg:p-4 transition-all duration-300 desktop-interactive glass-morphism"
                   >
                     {/* Animated background gradient */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-red-500/8 via-yellow-500/4 to-red-600/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      animate={{ background: backgroundGradients2 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    />
                     
                     {/* Floating particles */}
                     <div className="absolute inset-0 overflow-hidden">
