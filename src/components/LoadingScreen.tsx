@@ -45,8 +45,8 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
     // Optimized timer for smooth exit
     const timer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onComplete, 400); // Match exit animation duration
-    }, 2200); // Reduced total time for better UX
+      setTimeout(onComplete, 800); // Match exit animation duration
+    }, 4500); // Extended to 4.5 seconds for resource loading
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -67,7 +67,7 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
           }}
           className="fixed inset-0 z-[9999] bg-gradient-to-br from-red-950 via-red-900 to-red-800 flex items-center justify-center overflow-hidden gpu-accelerated performance-optimized"
           style={{
-            background: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 35%, #dc2626 100%)',
+            background: 'linear-gradient(135deg, #7f1d1d 0%, #8b1538 25%, #991b1b 50%, #7f1d1d 75%, #6b1423 100%)',
             willChange: 'transform, opacity'
           }}
         >

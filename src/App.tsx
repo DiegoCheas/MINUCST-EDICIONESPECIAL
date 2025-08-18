@@ -18,6 +18,26 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
 
   const handleLoadingComplete = () => {
+    // Preload critical resources before showing main content
+    const preloadCriticalResources = () => {
+      // Preload hero images
+      const heroImages = [
+        '/minucst_logo_resized%201.png'
+      ];
+      
+      heroImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+      
+      // Ensure fonts are loaded
+      if (document.fonts) {
+        document.fonts.load('600 48px "Bebas Neue"');
+        document.fonts.load('400 16px "Space Grotesk"');
+      }
+    };
+    
+    preloadCriticalResources();
     setIsLoading(false);
   };
 

@@ -57,7 +57,7 @@ const Navigation: React.FC = () => {
           : 'bg-transparent'
       }`}
       style={{ 
-        height: '70px',
+        height: '80px',
         willChange: 'transform, opacity, background-color'
       }}
     >
@@ -68,7 +68,7 @@ const Navigation: React.FC = () => {
           : 'opacity-0'
       }`} />
       
-      <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8" style={{ paddingTop: '8px' }}>
         <div className="flex items-center justify-between h-full">
           
           {/* Logo y título - PROFESIONAL Y TÉCNICO */}
@@ -84,7 +84,7 @@ const Navigation: React.FC = () => {
               <motion.img 
                 src="/minucst_logo_resized%201.png" 
                 alt="MINUCST Logo" 
-                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain ultra-smooth-360hz"
+                className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 object-contain ultra-smooth-360hz"
                 style={{
                   imageRendering: '-webkit-optimize-contrast',
                   imageRendering: 'crisp-edges',
@@ -115,7 +115,7 @@ const Navigation: React.FC = () => {
                 transition={{ duration: 0.15 }}
               >
                 <motion.span 
-                  className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent text-2xl sm:text-3xl md:text-4xl"
+                  className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent text-3xl sm:text-4xl md:text-5xl"
                   animate={{
                     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                   }}
