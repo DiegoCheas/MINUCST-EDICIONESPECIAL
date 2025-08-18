@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Sistema de tokens CSS para diseño futurista */
+:root {
+  /* Colores institucionales */
+  --color-crimson: #dc2626;
+  --color-crimson-dark: #991b1b;
+  --color-carbon: #1f2937;
+  --color-carbon-light: #374151;
+  --color-metallic-gold: #fbbf24;
+  --color-metallic-silver: #e5e7eb;
+  
+  /* Espaciado futurista */
+  --spacing-micro: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  
+  /* Sombras suaves */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.16);
+  
+  /* Transiciones optimizadas */
+  --transition-micro: 120ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Tipografía variable */
+  --font-display: 'Bebas Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Modo oscuro */
+.dark {
+  --color-carbon: #111827;
+  --color-carbon-light: #1f2937;
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -11,7 +58,7 @@
   }
   
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior: none;
@@ -25,7 +72,7 @@
 
   /* Bebas Neue font class */
   .bebas-font {
-    font-family: 'Bebas Neue', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: 0.06em;
     text-rendering: optimizeLegibility;
@@ -35,7 +82,7 @@
 
   /* Space Grotesk font class */
   .space-grotesk-font {
-    font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-body);
     font-weight: 300;
     letter-spacing: 0.05em;
   }
@@ -54,6 +101,26 @@
   }
 }
 
+/* Microinteracciones futuristas */
+@layer components {
+  .micro-interaction {
+    transition: var(--transition-micro);
+    will-change: transform, opacity, filter;
+  }
+  
+  .micro-interaction:hover {
+    transform: translateY(-1px) scale(1.01);
+    filter: brightness(1.02);
+  }
+  
+  .futuristic-glow {
+    box-shadow: 
+      0 0 20px rgba(251, 191, 36, 0.2),
+      0 0 40px rgba(251, 191, 36, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
 @layer utilities {
   .text-shadow {
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -65,6 +132,11 @@
   
   .backdrop-blur-xs {
     backdrop-filter: blur(2px);
+  }
+  
+  /* Gradiente radial personalizado */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 
   /* ULTRA GPU acceleration for maximum performance */
@@ -83,6 +155,16 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
+  
+  /* Perspective para efectos 3D */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
 
   /* Desktop-specific optimizations */
   .desktop-optimized {
@@ -93,7 +175,7 @@
 
   /* ULTRA-smooth transitions with perfect easing */
   .ultra-smooth {
-    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all var(--transition-fast);
     will-change: transform, opacity, filter, box-shadow;
   }
 
@@ -106,7 +188,7 @@
 
   .hover-lift:hover {
     transform: translateY(-3px) translateZ(0) scale(1.005);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-medium);
     filter: brightness(1.01) saturate(1.01);
   }
 
@@ -129,6 +211,37 @@
   .touch-target {
     min-height: 44px;
     min-width: 44px;
+  }
+}
+
+/* Optimizaciones específicas para 360Hz */
+@media (min-refresh-rate: 360hz) {
+  * {
+    transition-duration: 0.03s;
+    animation-duration: 0.1s;
+  }
+  
+  .ultra-smooth-360hz {
+    transition-duration: 0.03s;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translate3d(0, 0, 0) scale(1.0001);
+    filter: brightness(1.0001);
+  }
+}
+
+/* Optimizaciones para 240Hz */
+@media (min-refresh-rate: 240hz) {
+  * {
+    transition-duration: 0.05s;
+    animation-duration: 0.15s;
+  }
+}
+
+/* Optimizaciones para 120Hz */
+@media (min-refresh-rate: 120hz) {
+  * {
+    transition-duration: 0.08s;
+    animation-duration: 0.2s;
   }
 }
 
