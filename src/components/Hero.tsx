@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Users, Award, ExternalLink, Star, Sparkles, Globe, Zap, ArrowUpRight } from 'lucide-react';
+import { MapPin, Users, Award, ExternalLink, Star, Sparkles, Globe, Zap, ArrowUpRight, MousePointer } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Hero: React.FC = () => {
   const { isDark } = useTheme();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const handleRegistration = () => {
     // Redirigir al Google Forms en la misma pestaña
@@ -34,8 +44,20 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0">
           <motion.div 
             className="absolute top-20 left-20 w-[400px] h-[400px] bg-yellow-500/20 rounded-full blur-3xl opacity-30"
+            animate={{
+              x: mousePosition.x * 0.02,
+              y: mousePosition.y * 0.02,
+            }}
+            transition={{ type: "spring", stiffness: 50, damping: 20 }}
           />
           <motion.div 
+            className="absolute bottom-20 right-20 w-[300px] h-[300px] bg-amber-400/15 rounded-full blur-3xl opacity-20"
+            animate={{
+              x: mousePosition.x * -0.01,
+              y: mousePosition.y * -0.01,
+            }}
+            transition={{ type: "spring", stiffness: 30, damping: 15 }}
+          />
             className="absolute top-20 left-20 w-[400px] h-[400px] bg-yellow-500/20 rounded-full blur-3xl"
           />
           <motion.div 
@@ -137,7 +159,7 @@ const Hero: React.FC = () => {
                   <motion.img
                     src="/minucst_logo_resized%201.png"
                     alt="MINUCST Logo"
-                    className="h-40 sm:h-48 lg:h-56 xl:h-64 w-auto object-contain"
+                    className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain"
                     loading="eager"
                   />
                 </motion.div>
