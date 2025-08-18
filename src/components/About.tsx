@@ -143,6 +143,16 @@ const About: React.FC = () => {
                     initial={{ scale: 0 }}
                     animate={inView ? { scale: 1 } : { scale: 0 }}
                     transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 200 }}
+                    className="text-3xl font-bold mb-2"
+                  >
+                    {stat.number}
+                  </motion.div>
+                  <div className="text-red-100 text-sm font-medium">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
       </div>
