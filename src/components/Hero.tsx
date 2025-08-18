@@ -8,6 +8,19 @@ const Hero: React.FC = () => {
   const { isDark } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
+  // Define gradient arrays outside JSX to avoid parser issues
+  const backgroundGradients = [
+    'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(185, 28, 28, 0.08))',
+    'linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(220, 38, 38, 0.04), rgba(251, 191, 36, 0.08))',
+    'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(185, 28, 28, 0.08))'
+  ];
+
+  const backgroundGradients2 = [
+    'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(220, 38, 38, 0.08))',
+    'linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(220, 38, 38, 0.04), rgba(251, 191, 36, 0.08))',
+    'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(220, 38, 38, 0.08))'
+  ];
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -400,13 +413,7 @@ const Hero: React.FC = () => {
                     {/* Animated background gradient */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-red-500/8 via-yellow-500/4 to-red-600/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      animate={{
-                        background: [
-                          'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(185, 28, 28, 0.08))',
-                          'linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(220, 38, 38, 0.04), rgba(251, 191, 36, 0.08))',
-                          'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(185, 28, 28, 0.08))'
-                        ]
-                      }}
+                      animate={{ background: backgroundGradients }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />
                     
@@ -497,13 +504,7 @@ const Hero: React.FC = () => {
                     {/* Animated background gradient */}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-red-500/8 via-yellow-500/4 to-red-600/8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      animate={{
-                        background: [
-                          'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(220, 38, 38, 0.08))',
-                          'linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(220, 38, 38, 0.04), rgba(251, 191, 36, 0.08))',
-                          'linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), rgba(220, 38, 38, 0.08))'
-                        ]
-                      }}
+                      animate={{ background: backgroundGradients2 }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />
                     
