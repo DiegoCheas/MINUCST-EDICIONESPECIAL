@@ -146,13 +146,14 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               scale: logoLoaded ? 1 : 0.3
             }}
             transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-            className="mb-12 perspective-1000 flex justify-end"
+            className="mb-12 perspective-1000 flex justify-center"
           >
             <div className="relative">
               <motion.img
                 src="/minucst_logo_resized%201.png"
                 alt="MINUCST Logo"
                 className="w-80 h-80 object-contain"
+                style={{ transform: 'scaleX(-1)' }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.5, delay: 1 }}
