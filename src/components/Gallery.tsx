@@ -179,7 +179,14 @@ const Gallery: React.FC = () => {
                 >
                   <div className="relative overflow-hidden">
                     <img 
-                      src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop"
+                      src={`https://images.unsplash.com/photo-${
+                        index === 0 ? '1522202176988-66273c2fd55f' :
+                        index === 1 ? '1522202176988-66273c2fd55f' :
+                        index === 2 ? '1515187479132-8fdb7819f6b5' :
+                        index === 3 ? '1521737604893-d14cc237f11d' :
+                        index === 4 ? '1507003211169-0a1dd7ef0a50' :
+                        '1522071820677-1b726e50246a'
+                      }?w=800&h=400&fit=crop&crop=center`}
                       alt={photo.caption}
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
@@ -225,7 +232,11 @@ const Gallery: React.FC = () => {
                 >
                   <div className="relative mb-4">
                     <img 
-                      src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop"
+                      src={`https://images.unsplash.com/photo-${
+                        index === 0 ? '1522202176988-66273c2fd55f' :
+                        index === 1 ? '1507003211169-0a1dd7ef0a50' :
+                        '1521737604893-d14cc237f11d'
+                      }?w=600&h=300&fit=crop&crop=center`}
                       alt={`Testimonio de ${testimonial.name}`}
                       className="w-full h-48 object-cover rounded-lg"
                       loading="lazy"

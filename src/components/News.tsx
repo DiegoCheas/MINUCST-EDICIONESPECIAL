@@ -86,13 +86,6 @@ const News: React.FC = () => {
                     className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
                     loading="lazy"
                   />
-                      index === 1 ? '1522202176988-66273c2fd55f' :
-                      '1515187479132-8fdb7819f6b5'
-                    }?w=800&h=${index === 0 ? '600' : '300'}&fit=crop&crop=center`}
-                    alt={item.title}
-                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
-                    loading="lazy"
-                  />
                   <div className="absolute top-4 left-4">
                     <motion.span 
                       whileHover={{ scale: 1.05 }}
