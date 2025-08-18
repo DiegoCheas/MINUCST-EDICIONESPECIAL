@@ -129,8 +129,27 @@ const CountdownTimer: React.FC = () => {
     >
       {/* Subtle background particles */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-4 left-4 w-2 h-2 bg-yellow-400/20 rounded-full" />
-        <div className="absolute bottom-4 right-4 w-1 h-1 bg-amber-400/15 rounded-full" />
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-yellow-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.1, 0.4, 0.1],
+              scale: [1, 1.3, 1]
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       {/* Header */}
@@ -206,7 +225,39 @@ const CountdownTimer: React.FC = () => {
               {/* Shimmer effect */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                  ease: "easeInOut"
+                }}
               />
+
+              {/* Floating particles inside each unit */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-0.5 h-0.5 bg-white/30 rounded-full"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      y: [0, -8, 0],
+                      opacity: [0.2, 0.6, 0.2],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                      duration: 2 + Math.random(),
+                      repeat: Infinity,
+                      delay: Math.random(),
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+              </div>
 
               {/* Number display */}
               <div className="relative h-8 lg:h-12 flex items-center justify-center overflow-hidden">
@@ -250,6 +301,15 @@ const CountdownTimer: React.FC = () => {
               {/* Floating icon */}
               <motion.div
                 className="absolute top-1.5 right-1.5 opacity-15"
+                animate={{ 
+                  rotate: [0, 180, 360],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
                 <Zap className="w-2 h-2 text-white" />
               </motion.div>
@@ -265,17 +325,33 @@ const CountdownTimer: React.FC = () => {
       >
         <motion.p 
           className="text-base lg:text-lg text-yellow-200/90 font-bold optimize-text"
+          animate={{
+            filter: [
+              'drop-shadow(0 0 4px rgba(251, 191, 36, 0.3))',
+              'drop-shadow(0 0 8px rgba(251, 191, 36, 0.5))',
+              'drop-shadow(0 0 4px rgba(251, 191, 36, 0.3))'
+            ]
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           ¡El futuro de la diplomacia comienza pronto!
         </motion.p>
         
         {/* Decorative elements */}
         <div className="absolute -left-4 top-1/2 transform -translate-y-1/2">
-          <div className="w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
+          <motion.div 
+            className="w-1.5 h-1.5 bg-yellow-400/50 rounded-full"
+            animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
         
         <div className="absolute -right-4 top-1/2 transform -translate-y-1/2">
-          <div className="w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
+          <motion.div 
+            className="w-1.5 h-1.5 bg-yellow-400/50 rounded-full"
+            animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
         </div>
       </motion.div>
 

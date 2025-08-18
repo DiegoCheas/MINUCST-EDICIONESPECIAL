@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
                   </motion.div>
                 </motion.div>
 
-                {/* MINUCST Logo - Make it much bigger */}
+                {/* MINUCST Logo - Tamaño original */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -745,7 +745,7 @@ const Hero: React.FC = () => {
                     <div className="text-red-100 font-medium text-xs lg:text-base">{stat.label}</div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
