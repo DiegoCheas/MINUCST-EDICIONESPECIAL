@@ -184,7 +184,7 @@
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000px;
   contain: layout style paint;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   
@@ -198,9 +198,9 @@
 /* 360Hz specific animations */
 @media (min-refresh-rate: 360hz) {
   .ultra-smooth-360hz {
-    transition-duration: 0.03s;
-    animation-duration: 0.1s;
-    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    transition-duration: 0.08s;
+    animation-duration: 0.2s;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     
     /* Hardware acceleration extremo para 360Hz */
     transform: translate3d(0, 0, 0) scale(1.0001);
@@ -217,8 +217,8 @@
 /* 240Hz support */
 @media (min-refresh-rate: 240hz) {
   .ultra-smooth-360hz {
-    transition-duration: 0.04s;
-    animation-duration: 0.15s;
+    transition-duration: 0.1s;
+    animation-duration: 0.25s;
     transform: translate3d(0, 0, 0) scale(1.0001);
   }
   
@@ -230,16 +230,16 @@
 /* 144Hz support */
 @media (min-refresh-rate: 144hz) {
   .ultra-smooth-360hz {
-    transition-duration: 0.06s;
-    animation-duration: 0.2s;
+    transition-duration: 0.12s;
+    animation-duration: 0.3s;
   }
 }
 
 /* 120Hz specific animations */
 @media (min-refresh-rate: 120hz) {
   .ultra-smooth-360hz, .ultra-smooth-120hz {
-    transition-duration: 0.08s;
-    animation-duration: 0.25s;
+    transition-duration: 0.15s;
+    animation-duration: 0.35s;
     animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
@@ -247,8 +247,8 @@
 /* Ultra-performance for all devices */
 @media (max-width: 768px) {
   .ultra-smooth-360hz, .ultra-smooth-120hz {
-    transition-duration: 0.1s;
-    animation-duration: 0.3s;
+    transition-duration: 0.2s;
+    animation-duration: 0.4s;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
@@ -270,8 +270,8 @@
 /* Fallback for 60Hz displays */
 @media (max-refresh-rate: 60hz) {
   .ultra-smooth-360hz {
-    transition-duration: 0.15s;
-    animation-duration: 0.4s;
+    transition-duration: 0.25s;
+    animation-duration: 0.5s;
   }
 }
 
