@@ -170,11 +170,10 @@ const WhoWeAre: React.FC = () => {
               <h4 className="text-xl font-bold mb-2">Equipo Académico</h4>
               <p className="text-emerald-400 font-medium mb-3">Coordinadores y Asesores</p>
               <p className="text-gray-300 text-sm">
-                Profesionales dedicados a la formación académica y el desarrollo 
-                de competencias en diplomacia y liderazgo estudiantil.
+                Profesionales y educadores especializados en relaciones internacionales y pedagogía.
               </p>
             </motion.div>
-          </motion.div>
+          </div>
         </motion.div>
 
         <motion.div 
