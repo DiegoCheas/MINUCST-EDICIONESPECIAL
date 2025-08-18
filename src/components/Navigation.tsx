@@ -83,9 +83,9 @@ const Navigation: React.FC = () => {
             {/* Logo TAMAÑO CORRECTO */}
             <div className="relative flex items-center">
               <motion.img 
-                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+                src="/minucst_logo_resized 1.png"
                 alt="MINUCST Logo" 
-                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-cover rounded-full border-2 border-yellow-400"
+                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
                 style={{
                   imageRendering: '-webkit-optimize-contrast',
                   filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))',
@@ -97,6 +97,9 @@ const Navigation: React.FC = () => {
                 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 loading="eager"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop";
+                }}
               />
             </div>
             
