@@ -14,7 +14,7 @@ const Navigation: React.FC = () => {
       setScrolled(currentScrollY > 20);
     };
 
-    // Optimized for 120Hz with passive listener
+    // Optimizado para 360Hz con passive listener
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -28,6 +28,7 @@ const Navigation: React.FC = () => {
     { name: 'Galería', href: '#gallery' },
     { name: 'Noticias', href: '#news' },
     { name: 'FAQ', href: '#faq' },
+    { name: 'Redes Sociales', href: '#social-media' },
     { name: 'Contacto', href: '#contact' }
   ];
 
@@ -51,54 +52,89 @@ const Navigation: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out ultra-smooth-120hz ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-100 ease-out ultra-smooth-360hz ${
         scrolled 
-          ? 'bg-white/98 dark:bg-gray-900/98 backdrop-blur-xl shadow-lg border-b border-gray-200/30 dark:border-gray-700/30' 
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-lg' 
           : 'bg-transparent'
       }`}
       style={{ height: '90px' }}
     >
-      {/* Marco minimalista fijo */}
-      <div className={`absolute inset-0 transition-all duration-200 ultra-smooth-120hz ${
+      {/* Separación minimalista sin marco */}
+      <div className={`absolute bottom-0 left-0 right-0 h-px transition-all duration-100 ultra-smooth-360hz ${
         scrolled 
-          ? 'border border-gray-200/20 dark:border-gray-700/20 rounded-none' 
-          : 'border-2 border-white/10 rounded-xl mx-4 mt-4 mb-4'
+          ? 'bg-gradient-to-r from-transparent via-gray-200/50 dark:via-gray-700/50 to-transparent' 
+          : 'bg-transparent'
       }`} />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
-          {/* Logo - Tamaño fijo sin encogimiento */}
+          {/* Logo y título sin contenedor */}
           <motion.div 
             whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="flex items-center space-x-4 cursor-pointer relative z-10 ultra-smooth-120hz"
+            transition={{ duration: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex items-center space-x-4 cursor-pointer relative z-10 ultra-smooth-360hz"
             onClick={() => handleNavClick('#home')}
           >
-            <div className="relative flex items-center w-16 h-16">
+            <div className="relative flex items-center">
               <img 
                 src="/minucst_logo_resized%201.png" 
                 alt="MINUCST Logo" 
-                className="w-full h-full object-contain ultra-smooth-120hz"
+                className="w-16 h-16 object-contain ultra-smooth-360hz"
               />
             </div>
             <div className="hidden sm:block">
               <motion.div 
-                className="font-bold bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent bebas-font flex items-center space-x-2 ultra-smooth-120hz"
+                className="font-bold flex items-center space-x-3 ultra-smooth-360hz"
                 style={{
-                  fontSize: '2rem',
-                  textShadow: '0 2px 8px rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2), 0 4px 16px rgba(251, 191, 36, 0.3)',
-                  letterSpacing: '0.05em',
+                  fontSize: '2.5rem',
+                  fontFamily: 'Bebas Neue, -apple-system, BlinkMacSystemFont, sans-serif',
                   fontWeight: 600,
-                  filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.3))'
+                  letterSpacing: '0.05em'
                 }}
               >
-                <span className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
+                <motion.span 
+                  className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent"
+                  whileHover={{ 
+                    scale: 1.02,
+                    filter: 'drop-shadow(0 0 12px rgba(251, 191, 36, 0.4))'
+                  }}
+                  animate={{
+                    filter: [
+                      'brightness(1) drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))',
+                      'brightness(1.05) drop-shadow(0 0 10px rgba(251, 191, 36, 0.4))',
+                      'brightness(1) drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))'
+                    ]
+                  }}
+                  transition={{
+                    filter: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 0.05 }
+                  }}
+                  style={{
+                    textShadow: '0 2px 8px rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2)',
+                    filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.3))'
+                  }}
+                >
                   MINUCST
-                </span>
+                </motion.span>
                 <motion.span 
                   className="bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 bg-clip-text text-transparent"
+                  whileHover={{ 
+                    scale: 1.05,
+                    filter: 'drop-shadow(0 0 15px rgba(251, 191, 36, 0.6))'
+                  }}
+                  animate={{
+                    textShadow: [
+                      '0 0 8px rgba(251, 191, 36, 0.4)',
+                      '0 0 15px rgba(251, 191, 36, 0.6)',
+                      '0 0 8px rgba(251, 191, 36, 0.4)'
+                    ]
+                  }}
+                  transition={{
+                    textShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                    scale: { duration: 0.05 }
+                  }}
                   style={{
-                    textShadow: '0 2px 6px rgba(251, 191, 36, 0.5), 0 0 15px rgba(251, 191, 36, 0.3), 0 4px 12px rgba(251, 191, 36, 0.4)',
+                    textShadow: '0 2px 6px rgba(251, 191, 36, 0.5), 0 0 15px rgba(251, 191, 36, 0.3)',
                     fontWeight: 700,
                     filter: 'drop-shadow(0 0 10px rgba(251, 191, 36, 0.4))'
                   }}
@@ -116,11 +152,11 @@ const Navigation: React.FC = () => {
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ delay: index * 0.02, duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleNavClick(item.href)}
-                className="transition-all duration-150 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 ultra-smooth-120hz"
+                className="transition-all duration-50 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 ultra-smooth-360hz"
               >
                 {item.name}
               </motion.button>
@@ -132,9 +168,9 @@ const Navigation: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-150 flex items-center justify-center w-12 h-12 ultra-smooth-120hz"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-50 flex items-center justify-center w-12 h-12 ultra-smooth-360hz"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </motion.button>
@@ -142,9 +178,9 @@ const Navigation: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-150 flex items-center justify-center w-12 h-12 ultra-smooth-120hz"
+              className="lg:hidden text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-50 flex items-center justify-center w-12 h-12 ultra-smooth-360hz"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>
@@ -159,8 +195,8 @@ const Navigation: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="lg:hidden bg-white/98 dark:bg-gray-900/98 backdrop-blur-xl border-t border-gray-200/20 dark:border-gray-700/20 shadow-lg ultra-smooth-120hz"
+            transition={{ duration: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="lg:hidden bg-white/98 dark:bg-gray-900/98 backdrop-blur-xl border-t border-gray-200/20 dark:border-gray-700/20 shadow-lg ultra-smooth-360hz"
           >
             <div className="px-4 py-4 space-y-2 max-h-96 overflow-y-auto">
               {navItems.map((item, index) => (
@@ -168,11 +204,11 @@ const Navigation: React.FC = () => {
                   key={item.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.03, duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ delay: index * 0.01, duration: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                   whileHover={{ scale: 1.02, x: 5 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-lg transition-all duration-150 ultra-smooth-120hz"
+                  className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 rounded-lg transition-all duration-50 ultra-smooth-360hz"
                 >
                   {item.name}
                 </motion.button>

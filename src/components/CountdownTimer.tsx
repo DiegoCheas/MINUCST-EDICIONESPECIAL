@@ -19,7 +19,7 @@ const CountdownTimer: React.FC = () => {
   const [pulseKey, setPulseKey] = useState(0);
 
   useEffect(() => {
-    const targetDate = new Date('2026-03-15T00:00:00').getTime();
+    const targetDate = new Date('2026-03-20T00:00:00').getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
