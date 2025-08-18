@@ -151,124 +151,37 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           >
             <motion.div
               animate={{
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
+                rotate: [0, 360]
               }}
               transition={{
-                rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                rotate: { duration: 12, repeat: Infinity, ease: "linear" }
               }}
-              className="transform-gpu"
-              style={{
-                filter: 'drop-shadow(0 20px 40px rgba(251, 191, 36, 0.5))'
-              }}
+              className="relative"
             >
               <motion.img
                 src="/minucst_logo_resized%201.png"
                 alt="MINUCST Logo"
                 className="w-80 h-80 mx-auto object-contain"
-                style={{
-                  filter: 'brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))'
-                }}
-                animate={{
-                  filter: [
-                    'brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))',
-                    'brightness(1.3) contrast(1.3) drop-shadow(0 0 50px rgba(251, 191, 36, 0.9))',
-                    'brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))'
-                  ]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
               />
               
-              {/* Anillo de energía principal */}
-              <motion.div
-                className="absolute inset-0 border-4 border-yellow-400/40 rounded-full"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.4, 0.8, 0.4],
-                  rotate: [0, 360]
-                }}
-                transition={{
-                  scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-                  opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 8, repeat: Infinity, ease: "linear" }
-                }}
-              />
-              
-              {/* Segundo anillo */}
-              <motion.div
-                className="absolute inset-4 border-2 border-amber-400/30 rounded-full"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                  rotate: [360, 0]
-                }}
-                transition={{
-                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 12, repeat: Infinity, ease: "linear" }
-                }}
-              />
-              
-              {/* Destello más imponente */}
+              {/* Destello suave */}
               <motion.div
                 className="absolute inset-0 rounded-full overflow-hidden"
-                animate={{
-                  rotate: [0, 360]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
               >
                 <motion.div
                   className="absolute inset-0"
                   style={{
-                    background: 'conic-gradient(from 0deg, transparent 0deg, rgba(255, 215, 0, 0.9) 30deg, rgba(255, 255, 255, 1) 60deg, rgba(255, 215, 0, 0.9) 90deg, transparent 120deg, transparent 360deg)',
-                    clipPath: 'polygon(47% 0%, 53% 0%, 53% 100%, 47% 100%)'
+                    background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+                    transform: 'translateX(-100%)'
                   }}
                   animate={{
-                    opacity: [0, 1, 0, 0, 1, 0]
+                    transform: ['translateX(-100%)', 'translateX(100%)']
                   }}
                   transition={{
                     duration: 3,
                     repeat: Infinity,
+                    repeatDelay: 2,
                     ease: "easeInOut"
-                  }}
-                />
-              </motion.div>
-              
-              {/* Destello secundario */}
-              <motion.div
-                className="absolute inset-3 rounded-full overflow-hidden"
-                animate={{
-                  rotate: [360, 0]
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              >
-                <motion.div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'conic-gradient(from 90deg, transparent 0deg, rgba(255, 215, 0, 0.7) 25deg, rgba(255, 255, 255, 0.8) 50deg, rgba(255, 215, 0, 0.7) 75deg, transparent 100deg, transparent 360deg)',
-                    clipPath: 'polygon(49% 0%, 51% 0%, 51% 100%, 49% 100%)'
-                  }}
-                  animate={{
-                    opacity: [0, 0.9, 0, 0, 0.9, 0]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1.5
                   }}
                 />
               </motion.div>
