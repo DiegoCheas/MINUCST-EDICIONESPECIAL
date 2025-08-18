@@ -152,20 +152,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             <motion.div
               animate={{
                 rotateY: [0, 360],
-                rotateX: [0, 15, -15, 0],
-                rotateZ: [0, 5, -5, 0],
+                rotateX: [0, 8, -8, 0],
                 scale: [1, 1.05, 1],
               }}
               transition={{
                 rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
-                rotateX: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-                rotateZ: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                rotateX: { duration: 4, repeat: Infinity, ease: "easeInOut" },
                 scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
               }}
-              className="transform-gpu preserve-3d"
+              className="transform-gpu"
               style={{
-                transformStyle: 'preserve-3d',
-                filter: 'drop-shadow(0 20px 40px rgba(251, 191, 36, 0.4))'
+                filter: 'drop-shadow(0 15px 30px rgba(251, 191, 36, 0.4))'
               }}
             >
               <motion.img
@@ -173,14 +170,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 alt="MINUCST Logo"
                 className="w-80 h-80 mx-auto object-contain"
                 style={{
-                  filter: 'brightness(1.1) contrast(1.1) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))',
-                  transform: 'translateZ(50px)'
+                  filter: 'brightness(1.1) contrast(1.1) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5))'
                 }}
                 animate={{
                   filter: [
-                    'brightness(1.1) contrast(1.1) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))',
-                    'brightness(1.3) contrast(1.2) drop-shadow(0 0 50px rgba(251, 191, 36, 0.8))',
-                    'brightness(1.1) contrast(1.1) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))'
+                    'brightness(1.1) contrast(1.1) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5))',
+                    'brightness(1.2) contrast(1.15) drop-shadow(0 0 35px rgba(251, 191, 36, 0.7))',
+                    'brightness(1.1) contrast(1.1) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5))'
                   ]
                 }}
                 transition={{
@@ -192,18 +188,32 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               
               {/* Anillo de energía alrededor del logo */}
               <motion.div
-                className="absolute inset-0 border-4 border-yellow-400/30 rounded-full"
+                className="absolute inset-0 border-3 border-yellow-400/25 rounded-full"
                 animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.7, 0.3],
+                  scale: [1, 1.15, 1],
+                  opacity: [0.2, 0.5, 0.2],
                   rotate: [0, 360]
+                }}
+                transition={{
+                  scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                  opacity: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 8, repeat: Infinity, ease: "linear" }
+                }}
+              />
+              
+              {/* Segundo anillo más sutil */}
+              <motion.div
+                className="absolute inset-4 border-2 border-amber-400/15 rounded-full"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.1, 0.3, 0.1],
+                  rotate: [360, 0]
                 }}
                 transition={{
                   scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                   opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 10, repeat: Infinity, ease: "linear" }
+                  rotate: { duration: 12, repeat: Infinity, ease: "linear" }
                 }}
-                style={{ transform: 'translateZ(20px)' }}
               />
             </motion.div>
           </motion.div>
