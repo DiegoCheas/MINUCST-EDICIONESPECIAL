@@ -374,3 +374,5 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 };
 
 export default LoadingScreen;
+
+export default LoadingScreen
