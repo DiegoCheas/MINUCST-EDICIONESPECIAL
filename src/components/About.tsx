@@ -64,12 +64,17 @@ const About: React.FC = () => {
           className="grid lg:grid-cols-2 gap-16 items-center mb-20"
         >
           <motion.div variants={itemVariants}>
-            <img 
-              src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-              alt="Sesión de debate MINUCST"
-              className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-              loading="lazy"
-            />
+            <div className="bg-gradient-to-br from-red-100 to-yellow-100 dark:from-red-900/20 dark:to-yellow-900/20 rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-red-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Sesión de Debate</h3>
+                <p className="text-gray-600 dark:text-gray-300">Delegados en acción durante MINUCST</p>
+              </div>
+            </div>
           </motion.div>
           <motion.div variants={itemVariants} className="space-y-6">
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white">

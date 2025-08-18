@@ -77,7 +77,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               className="w-80 h-80 object-contain"
               loading="eager"
               animate={{
-                rotate: [0, 360],
                 scale: [1, 1.08, 1],
                 filter: [
                   'drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))',
@@ -86,7 +85,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 ]
               }}
               transition={{
-                rotate: { duration: 12, repeat: Infinity, ease: "linear" },
                 scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
                 filter: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
               }}

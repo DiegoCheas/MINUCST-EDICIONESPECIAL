@@ -65,12 +65,17 @@ const WhoWeAre: React.FC = () => {
           className="grid lg:grid-cols-2 gap-16 items-center mb-20"
         >
           <motion.div variants={itemVariants}>
-            <img 
-              src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200" 
-              alt="Equipo organizador MINUCST"
-              className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-              loading="lazy"
-            />
+            <div className="bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Equipo Organizador</h3>
+                <p className="text-gray-600 dark:text-gray-300">Líderes comprometidos con la excelencia</p>
+              </div>
+            </div>
           </motion.div>
           <motion.div variants={itemVariants} className="space-y-6">
             <h3 className="text-3xl font-bold text-gray-900 dark:text-white">

@@ -178,18 +178,24 @@ const Gallery: React.FC = () => {
                   className="group cursor-pointer overflow-hidden rounded-xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                 >
                   <div className="relative overflow-hidden">
-                    <img 
-                      src={photo.url} 
-                      alt={photo.caption}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
+                    <div className="w-full h-64 bg-gradient-to-br from-red-600 to-yellow-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      <div className="text-center text-white">
+                        <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd"/>
+                          </svg>
+                        </div>
+                        <p className="text-sm font-medium">Galería MINUCST</p>
+                      </div>
+                    </div>
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <motion.div
                         whileHover={{ scale: 1.2 }}
                         className="bg-white/20 backdrop-blur-sm rounded-full p-3"
                       >
-                        <ImageIcon className="w-8 h-8 text-white" />
+                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd"/>
+                        </svg>
                       </motion.div>
                     </div>
                   </div>
@@ -222,17 +228,24 @@ const Gallery: React.FC = () => {
                   className="bg-gray-800 dark:bg-gray-700 rounded-xl p-6 hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-300 group cursor-pointer"
                 >
                   <div className="relative mb-4">
-                    <img 
-                      src={testimonial.videoThumbnail} 
-                      alt={testimonial.name}
-                      className="w-full h-48 object-cover rounded-lg"
-                    />
+                    <div className="w-full h-48 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
+                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
+                          </svg>
+                        </div>
+                        <p className="text-sm font-medium">Video Testimonio</p>
+                      </div>
+                    </div>
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
                       <motion.div 
                         whileHover={{ scale: 1.2 }}
                         className="bg-red-700 rounded-full p-3 group-hover:scale-110 transition-transform duration-200"
                       >
-                        <Play className="w-6 h-6 text-white" />
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                        </svg>
                       </motion.div>
                     </div>
                   </div>
