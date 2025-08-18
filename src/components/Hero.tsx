@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
   };
 
   const handleExternalLink = (url: string) => {
-    window.location.href = url;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
