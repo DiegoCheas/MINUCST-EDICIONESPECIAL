@@ -71,6 +71,7 @@ const Hero: React.FC = () => {
             }}
             transition={{ type: "spring", stiffness: 30, damping: 15 }}
           />
+        </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-8">
             {/* Left Content - Mobile Optimized */}
@@ -724,7 +725,7 @@ const Hero: React.FC = () => {
                     <div className="text-red-100 font-medium text-xs lg:text-base">{stat.label}</div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
