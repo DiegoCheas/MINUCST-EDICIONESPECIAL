@@ -17,16 +17,16 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
     let progressValue = 0;
     const interval = setInterval(() => {
-      progressValue += 10; // Mucho más rápido
+      progressValue += 8; // Progreso más rápido
       setProgress(Math.min(progressValue, 100));
 
       if (progressValue >= 100) {
         clearInterval(interval);
         setTimeout(() => {
           onComplete();
-        }, 200); // Reducido de 500ms a 200ms
+        }, 300);
       }
-    }, 50); // Reducido de 80ms a 50ms
+    }, 60); // Intervalo más rápido
 
     return () => clearInterval(interval);
   }, [onComplete]);
@@ -37,11 +37,11 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         initial={{ opacity: 1 }}
         exit={{ 
           opacity: 0,
-          transition: { duration: 0.3, ease: "easeOut" } // Reducido de 0.8s
+          transition: { duration: 0.5, ease: "easeOut" }
         }}
         className="fixed inset-0 z-[9999] bg-gradient-to-br from-red-950 via-red-900 to-red-800 flex items-center justify-center"
       >
-        {/* Efectos de fondo mínimos */}
+        {/* Efectos de fondo simplificados */}
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-[200px] h-[200px] bg-yellow-500/10 rounded-full blur-2xl opacity-50" />
           <div className="absolute bottom-10 right-10 w-[150px] h-[150px] bg-amber-400/8 rounded-full blur-2xl opacity-40" />
@@ -56,13 +56,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               opacity: logoLoaded ? 1 : 0, 
               scale: logoLoaded ? 1 : 0.8
             }}
-            transition={{ duration: 0.5, ease: "easeOut" }} // Reducido
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-6 flex justify-center"
           >
             <img
               src="/minucst_logo_resized%201.png"
               alt="MINUCST Logo"
-              className="w-48 h-48 object-contain" // Reducido de 256px
+              className="w-40 h-40 object-contain"
               loading="eager"
             />
           </motion.div>
@@ -71,7 +71,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }} // Reducido
+            transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
             className="mb-8"
           >
             <h1 
@@ -91,7 +91,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             </p>
           </motion.div>
 
-          {/* Barra de progreso simplificada */}
+          {/* Barra de progreso optimizada */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
