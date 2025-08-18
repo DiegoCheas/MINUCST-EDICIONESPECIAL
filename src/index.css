@@ -173,43 +173,15 @@
 }
 
 /* Optimizaciones específicas para 360Hz */
-@media (min-refresh-rate: 120hz) {
-  * {
-    transition-duration: 0.15s;
-    animation-duration: 0.3s;
-  }
-}
-
-@media (min-refresh-rate: 144hz) {
-  * {
-    transition-duration: 0.12s;
-    animation-duration: 0.25s;
-  }
-}
-
-@media (min-refresh-rate: 240hz) {
-  * {
-    transition-duration: 0.08s;
-    animation-duration: 0.2s;
-  }
-}
-
-@media (min-refresh-rate: 360hz) {
-  * {
-    transition-duration: 0.06s;
-    animation-duration: 0.15s;
-  }
-}
-
 /* Optimización general */
 .performance-optimized {
   transform: translate3d(0, 0, 0);
-  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
+  will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   contain: layout style paint;
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.2s ease-out;
 }
 
 /* Header específico - Hermoso y elegante */

@@ -10,9 +10,15 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   build: {
-    target: 'esnext',
+    target: 'es2020',
     minify: 'esbuild',
     cssMinify: true,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       output: {
         manualChunks: {
@@ -28,8 +34,8 @@ export default defineConfig({
     cssCodeSplit: false,
     sourcemap: false,
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 1000,
-    assetsInlineLimit: 8192
+    chunkSizeWarningLimit: 500,
+    assetsInlineLimit: 4096
   },
   server: {
     host: true,

@@ -8,18 +8,6 @@ const Hero: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { isDark } = useTheme();
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   const handleRegistration = () => {
     // Redirigir al Google Forms en la misma pestaña
     window.location.href = 'https://forms.gle/Yvhr4wpKbzsbbbw26';
@@ -45,81 +33,9 @@ const Hero: React.FC = () => {
       <section id="home" className="min-h-screen bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white relative overflow-hidden">
         {/* Optimized Background Elements */}
         <div className="absolute inset-0">
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.08, 0.25, 0.08],
-              rotate: [0, 45, 90]
-            }}
-            transition={{ 
-              duration: 15, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-20 left-20 w-[300px] h-[300px] bg-yellow-500/15 rounded-full blur-3xl"
-            style={{
-              transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`
-            }}
-          />
-          <motion.div 
-            animate={{ 
-              scale: [1.1, 1, 1.1],
-              opacity: [0.06, 0.2, 0.06],
-              rotate: [90, 45, 0]
-            }}
-            transition={{ 
-              duration: 18, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-40 right-32 w-[350px] h-[350px] bg-amber-400/15 rounded-full blur-3xl"
-            style={{
-              transform: `translate(${mousePosition.x * -0.015}px, ${mousePosition.y * 0.01}px)`
-            }}
-          />
-
-          {/* Reduced floating particles */}
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1.5 h-1.5 bg-yellow-400/20 rounded-full blur-sm gpu-accelerated"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                x: [0, Math.random() * 30 - 15],
-                y: [0, Math.random() * 30 - 15],
-                scale: [1, 1.1, 1],
-                opacity: [0.2, 0.4, 0.2]
-              }}
-              transition={{
-                duration: 6 + Math.random() * 2,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut"
-              }}
-            />
-          ))}
+          <div className="absolute top-20 left-20 w-[200px] h-[200px] bg-yellow-500/10 rounded-full blur-2xl opacity-30" />
+          <div className="absolute bottom-20 right-20 w-[150px] h-[150px] bg-amber-400/8 rounded-full blur-2xl opacity-25" />
         </div>
-
-        {/* Optimized Grid Pattern */}
-        <motion.div 
-          className="absolute inset-0 opacity-5"
-          animate={{
-            backgroundPosition: ['0% 0%', '25% 25%'],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear"
-          }}
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '40px 40px'
-          }}
-        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-8">
@@ -207,25 +123,8 @@ const Hero: React.FC = () => {
                   <motion.img
                     src="/minucst_logo_resized%201.png"
                     alt="MINUCST Logo"
-                    className="h-48 sm:h-56 lg:h-72 xl:h-80 w-auto object-contain"
-                    whileHover={{ 
-                      rotate: [0, 2, -2, 0],
-                      filter: 'brightness(1.05) drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))'
-                    }}
-                    transition={{ 
-                      rotate: { duration: 0.6, ease: "easeInOut" },
-                      filter: { duration: 0.3 }
-                    }}
-                    animate={{
-                      filter: [
-                        'brightness(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.2))',
-                        'brightness(1.02) drop-shadow(0 0 12px rgba(251, 191, 36, 0.3))',
-                        'brightness(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.2))'
-                      ]
-                    }}
-                    style={{
-                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                    }}
+                    className="h-40 sm:h-48 lg:h-56 xl:h-64 w-auto object-contain"
+                    loading="eager"
                   />
                 </motion.div>
                 

@@ -129,37 +129,9 @@ const CountdownTimer: React.FC = () => {
     >
       {/* Subtle background particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-yellow-400/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -15, 0],
-              opacity: [0.15, 0.4, 0.15],
-              scale: [1, 1.3, 1]
-            }}
-            transition={{
-              duration: 5 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+        <div className="absolute top-4 left-4 w-2 h-2 bg-yellow-400/20 rounded-full" />
+        <div className="absolute bottom-4 right-4 w-1 h-1 bg-amber-400/15 rounded-full" />
       </div>
-
-      {/* Subtle pulsing border effect */}
-      <motion.div
-        key={pulseKey}
-        className="absolute inset-0 border-2 border-yellow-400/30 rounded-2xl lg:rounded-3xl"
-        initial={{ scale: 1, opacity: 0.3 }}
-        animate={{ scale: 1.03, opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
 
       {/* Header */}
       <motion.div 
@@ -168,19 +140,12 @@ const CountdownTimer: React.FC = () => {
       >
         <motion.div
           animate={{ 
-            rotate: [0, 360]
+            rotate: [0, 180, 360]
           }}
-          transition={{ 
-            rotate: { duration: 15, repeat: Infinity, ease: "linear" }
-          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           className="relative"
         >
           <Clock className="w-6 lg:w-10 h-6 lg:h-10 text-yellow-400 mr-3" />
-          <motion.div
-            className="absolute inset-0 bg-yellow-400/15 rounded-full blur-lg"
-            animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.35, 0.15] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          />
         </motion.div>
         
         <motion.h3 
