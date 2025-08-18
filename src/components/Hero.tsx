@@ -132,7 +132,7 @@ const Hero: React.FC = () => {
                 ease: "easeOut",
                 delay: 0.1
               }}
-              className="space-y-6 lg:space-y-8 order-2 lg:order-1"
+              className="space-y-6 lg:space-y-8 order-2 lg:order-1 performance-optimized"
             >
               <div className="space-y-4 lg:space-y-6">
                 <motion.div 

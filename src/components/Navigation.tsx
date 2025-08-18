@@ -58,7 +58,7 @@ const Navigation: React.FC = () => {
           : 'bg-transparent'
       }`}
       style={{
-        height: scrolled ? '70px' : '80px',
+        height: scrolled ? '70px' : '90px',
       }}
     >
       {/* Marco minimalista */}
@@ -73,7 +73,7 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <motion.div 
             whileHover={{ scale: 1.02 }}
-            className="flex items-center space-x-3 cursor-pointer relative z-10"
+            className="flex items-center space-x-4 cursor-pointer relative z-10"
             onClick={() => handleNavClick('#home')}
             animate={{
               scale: scrolled ? 0.9 : 1,
@@ -83,8 +83,8 @@ const Navigation: React.FC = () => {
             <motion.div
               className="relative"
               animate={{
-                width: scrolled ? '32px' : '40px',
-                height: scrolled ? '32px' : '40px',
+                width: scrolled ? '48px' : '56px',
+                height: scrolled ? '48px' : '56px',
               }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
@@ -95,30 +95,31 @@ const Navigation: React.FC = () => {
               />
             </motion.div>
             <div className="hidden sm:block">
-              <motion.h1 
-                className="font-bold bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent bebas-font"
+              <motion.div 
+                className="font-bold bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent bebas-font flex items-baseline space-x-2"
                 animate={{
-                  fontSize: scrolled ? '1.25rem' : '1.5rem',
+                  fontSize: scrolled ? '1.5rem' : '1.875rem',
                 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 style={{
                   textShadow: '0 2px 4px rgba(251, 191, 36, 0.3)',
+                  letterSpacing: '0.05em'
                 }}
               >
-                MINUCST
-              </motion.h1>
-              <motion.p 
-                className="font-bold bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent"
-                animate={{
-                  fontSize: scrolled ? '0.75rem' : '0.875rem',
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                style={{
-                  textShadow: '0 1px 2px rgba(251, 191, 36, 0.3)',
-                }}
-              >
-                XV
-              </motion.p>
+                <span>MINUCST</span>
+                <motion.span 
+                  className="bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent"
+                  animate={{
+                    fontSize: scrolled ? '1.25rem' : '1.5rem',
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  style={{
+                    textShadow: '0 1px 2px rgba(251, 191, 36, 0.3)',
+                  }}
+                >
+                  XV
+                </motion.span>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -145,37 +146,37 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <motion.button
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className={`rounded-lg bg-gray-100/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 ${
-                scrolled ? 'p-1.5' : 'p-2'
+              className={`text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-200 flex items-center justify-center ${
+                scrolled ? 'w-10 h-10' : 'w-12 h-12'
               }`}
               animate={{
-                width: scrolled ? '36px' : '40px',
-                height: scrolled ? '36px' : '40px',
+                width: scrolled ? '40px' : '48px',
+                height: scrolled ? '40px' : '48px',
               }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </motion.button>
 
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden rounded-lg bg-gray-100/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 ${
-                scrolled ? 'p-1.5' : 'p-2'
+              className={`lg:hidden text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-200 flex items-center justify-center ${
+                scrolled ? 'w-10 h-10' : 'w-12 h-12'
               }`}
               animate={{
-                width: scrolled ? '36px' : '40px',
-                height: scrolled ? '36px' : '40px',
+                width: scrolled ? '40px' : '48px',
+                height: scrolled ? '40px' : '48px',
               }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>
           </div>
         </div>

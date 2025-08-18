@@ -581,6 +581,16 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
+
+  /* Mobile header optimization */
+  .mobile-header {
+    height: 70px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .mobile-header.scrolled {
+    height: 60px;
+  }
 }
 
 /* Enhanced special effects */
@@ -590,6 +600,29 @@
 
 .ultra-shadow {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Ultra-smooth header transitions */
+.header-smooth {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity, height, background-color;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Logo optimization */
+.logo-smooth {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, width, height;
+  transform: translateZ(0);
+}
+
+/* Button centering optimization */
+.button-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Hot reload optimization */
