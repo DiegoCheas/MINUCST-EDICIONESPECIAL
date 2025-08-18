@@ -24,19 +24,19 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   useEffect(() => {
     const stateMachine = {
       'initializing': () => {
-        setTimeout(() => setCurrentState('logo-spinning'), 800);
+        setTimeout(() => setCurrentState('logo-spinning'), 1200);
       },
       'logo-spinning': () => {
-        setTimeout(() => setCurrentState('logo-flash'), 2500);
+        setTimeout(() => setCurrentState('logo-flash'), 3000);
       },
       'logo-flash': () => {
-        setTimeout(() => setCurrentState('text-reveal'), 1000);
+        setTimeout(() => setCurrentState('text-reveal'), 1200);
       },
       'text-reveal': () => {
-        setTimeout(() => setCurrentState('page-reveal'), 4000);
+        setTimeout(() => setCurrentState('page-reveal'), 8000);
       },
       'page-reveal': () => {
-        setTimeout(() => setCurrentState('complete'), 2000);
+        setTimeout(() => setCurrentState('complete'), 2500);
       },
       'complete': () => {
         onComplete();
@@ -126,10 +126,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   // Progreso simulado
   useEffect(() => {
     const progressStates = {
-      'initializing': 10,
-      'logo-spinning': 30,
-      'logo-flash': 60,
-      'text-reveal': 85,
+      'initializing': 8,
+      'logo-spinning': 25,
+      'logo-flash': 45,
+      'text-reveal': 80,
       'page-reveal': 95,
       'complete': 100
     };
@@ -399,7 +399,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                     transition={{
                       duration: 0.6,
                       ease: [0.23, 1, 0.32, 1],
-                      delay: index * 0.1
+                      delay: index * 0.15
                     }}
                     className="inline-block bg-gradient-to-r from-white via-yellow-100 to-amber-200 bg-clip-text text-transparent"
                     style={{ 
@@ -451,7 +451,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                         }}
                         transition={{
                           duration: 0.6,
-                          delay: 3.0 + index * 0.05,
+                          delay: 3.5 + index * 0.08,
                           ease: [0.23, 1, 0.32, 1]
                         }}
                         className="inline-block mr-2"
@@ -469,7 +469,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 4, duration: 0.8 }}
+              transition={{ delay: 5, duration: 0.8 }}
               className="mt-16"
             >
               {/* Barra de progreso con efectos */}
@@ -499,11 +499,11 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 className="text-yellow-200/90 text-lg font-light mb-4"
               >
-                {currentState === 'initializing' && 'Inicializando sistema diplomático...'}
-                {currentState === 'logo-spinning' && 'Cargando identidad institucional...'}
-                {currentState === 'logo-flash' && 'Activando protocolos de paz...'}
-                {currentState === 'text-reveal' && 'Preparando experiencia transformadora...'}
-                {currentState === 'page-reveal' && 'Ingresando al mundo de la diplomacia...'}
+                {currentState === 'initializing' && 'Inicializando plataforma educativa de excelencia...'}
+                {currentState === 'logo-spinning' && 'Cargando identidad institucional del Colegio Santa Teresa...'}
+                {currentState === 'logo-flash' && 'Activando protocolos diplomáticos internacionales...'}
+                {currentState === 'text-reveal' && 'Desplegando tema oficial: Educación por la Paz...'}
+                {currentState === 'page-reveal' && 'Accediendo a la experiencia MINUCST de clase mundial...'}
               </motion.p>
 
               {/* Indicadores de carga */}

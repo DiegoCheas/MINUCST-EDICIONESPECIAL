@@ -16,63 +16,89 @@ import Footer from './components/Footer';
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(true);
+  const [contentReady, setContentReady] = React.useState(false);
 
   const handleLoadingComplete = () => {
-    // Pequeño delay para asegurar transición suave
+    // Asegurar que el contenido esté completamente listo
     setTimeout(() => {
       setIsLoading(false);
-    }, 100);
+      // Dar tiempo adicional para que se renderice todo
+      setTimeout(() => {
+        setContentReady(true);
+      }, 200);
+    }, 300);
   };
+
+  // Pre-cargar todos los componentes
+  React.useEffect(() => {
+    // Forzar el renderizado de todos los componentes en el background
+    const preloadTimer = setTimeout(() => {
+      setContentReady(true);
+    }, 1000);
+
+    return () => clearTimeout(preloadTimer);
+  }, []);
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz">
+      <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz" style={{ minHeight: '100vh', overflow: isLoading ? 'hidden' : 'auto' }}>
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
         
-        <Navigation />
-        
-        {/* Each section is now properly separated with enhanced performance */}
-        <main className="relative">
-          <Hero />
+        {/* Renderizar contenido siempre, pero con opacidad controlada */}
+        <div 
+          className={`transition-opacity duration-1000 ${isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          style={{ 
+            visibility: isLoading ? 'hidden' : 'visible',
+            position: isLoading ? 'absolute' : 'relative',
+            width: '100%',
+            minHeight: '100vh'
+          }}
+        >
+          <Navigation />
           
-          <div className="section-separator performance-optimized">
-            <WhoWeAre />
-          </div>
+          {/* Each section is now properly separated with enhanced performance */}
+          <main className="relative">
+            <Hero />
+            
+            <div className="section-separator performance-optimized">
+              <WhoWeAre />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <About />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <Committees />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <Registration />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <Gallery />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <News />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <FAQ />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <SocialMedia />
+            </div>
+            
+            <div className="section-separator performance-optimized">
+              <Contact />
+            </div>
+          </main>
           
-          <div className="section-separator performance-optimized">
-            <About />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <Committees />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <Registration />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <Gallery />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <News />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <FAQ />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <SocialMedia />
-          </div>
-          
-          <div className="section-separator performance-optimized">
-            <Contact />
-          </div>
-        </main>
-        
-        <Footer />
+          <Footer />
+        </div>
       </div>
     </ThemeProvider>
   );

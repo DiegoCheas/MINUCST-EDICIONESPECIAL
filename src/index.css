@@ -55,6 +55,7 @@
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
+    min-height: 100vh;
   }
   
   body {
@@ -64,10 +65,19 @@
     overscroll-behavior: none;
     touch-action: manipulation;
     overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
   * {
     box-sizing: border-box;
+  }
+
+  /* Asegurar que el contenido principal tenga altura completa */
+  #root {
+    min-height: 100vh;
+    width: 100%;
   }
 
   /* Bebas Neue font class */
