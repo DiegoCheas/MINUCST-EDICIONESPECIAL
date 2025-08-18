@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Upload, X, Check } from 'lucide-react';
+import { Upload, X, Check, AlertCircle } from 'lucide-react';
+import { useSupabaseImages } from '../hooks/useSupabaseImages';
 
 interface AdminImageUploadProps {
   imageKey: string;
@@ -17,8 +18,10 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  const { saveImage, loading } = useSupabaseImages();
 
   // Solo mostrar si hay una query string específica de admin
   React.useEffect(() => {
@@ -28,31 +31,22 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
 
   if (!isVisible) return null;
 
-  const handleFileUpload = (file: File) => {
+  const handleFileUpload = async (file: File) => {
     if (file && file.type.startsWith('image/')) {
-      setIsUploading(true);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result as string;
+      try {
+        setError(null);
+        const newImageUrl = await saveImage(imageKey, file);
+        onImageChange(newImageUrl);
         
-        // Guardar en localStorage
-        const savedImages = JSON.parse(localStorage.getItem('minucst-admin-images') || '{}');
-        savedImages[imageKey] = result;
-        localStorage.setItem('minucst-admin-images', JSON.stringify(savedImages));
-        
-        // Actualizar la imagen
-        onImageChange(result);
-        
-        setIsUploading(false);
         setUploadSuccess(true);
         setTimeout(() => setUploadSuccess(false), 2000);
-        
-        // Forzar actualización de la página
-        window.dispatchEvent(new CustomEvent('admin-image-updated', { 
-          detail: { key: imageKey, url: result } 
-        }));
-      };
-      reader.readAsDataURL(file);
+      } catch (err) {
+        setError('Error al subir la imagen');
+        setTimeout(() => setError(null), 3000);
+      }
+    } else {
+      setError('Por favor selecciona una imagen válida');
+      setTimeout(() => setError(null), 3000);
     }
   };
 
@@ -85,6 +79,7 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
         className={`relative bg-black/80 backdrop-blur-sm rounded-lg p-2 border-2 transition-all duration-200 ${
           isDragging ? 'border-yellow-400 bg-yellow-400/20' : 
           uploadSuccess ? 'border-green-400 bg-green-400/20' :
+          error ? 'border-red-400 bg-red-400/20' :
           'border-gray-600'
         }`}
         onDrop={handleDrop}
@@ -99,8 +94,9 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
             if (file) handleFileUpload(file);
           }}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          disabled={loading}
         />
-        {isUploading ? (
+        {loading ? (
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -109,6 +105,8 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
           </motion.div>
         ) : uploadSuccess ? (
           <Check className="w-5 h-5 text-green-400" />
+        ) : error ? (
+          <AlertCircle className="w-5 h-5 text-red-400" />
         ) : (
           <Upload className="w-5 h-5 text-yellow-400" />
         )}
@@ -116,7 +114,10 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
       
       {/* Tooltip */}
       <div className="absolute top-full right-0 mt-1 bg-black/90 text-white text-xs px-2 py-1 rounded opacity-0 hover:opacity-100 transition-opacity whitespace-nowrap">
-        Arrastra o haz clic para subir imagen
+        {loading ? 'Subiendo...' : 
+         error ? error :
+         uploadSuccess ? '¡Subido!' :
+         'Arrastra o haz clic para subir imagen'}
       </div>
     </motion.div>
   );

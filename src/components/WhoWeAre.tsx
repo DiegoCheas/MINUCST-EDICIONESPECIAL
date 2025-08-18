@@ -4,13 +4,13 @@ import { useInView } from 'react-intersection-observer';
 import { Users, Globe2, Award, BookOpen, Handshake } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import AdminImageUpload from './AdminImageUpload';
-import { useImageStorage } from '../hooks/useImageStorage';
+import { useSupabaseImages } from '../hooks/useSupabaseImages';
 
 const WhoWeAre: React.FC = () => {
   const { isDark } = useTheme();
-  const { saveImage, getImage } = useImageStorage();
+  const { getImage } = useSupabaseImages();
   const [collegeImage, setCollegeImage] = React.useState(() => 
-    getImage('who-we-are-college', 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')
+    'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   );
   
   const [ref, inView] = useInView({
@@ -26,15 +26,18 @@ const WhoWeAre: React.FC = () => {
       }
     };
     
-    window.addEventListener('admin-image-updated', handleImageUpdate as EventListener);
-    return () => window.removeEventListener('admin-image-updated', handleImageUpdate as EventListener);
+    window.addEventListener('supabase-image-updated', handleImageUpdate as EventListener);
+    return () => window.removeEventListener('supabase-image-updated', handleImageUpdate as EventListener);
   }, []);
 
   // Cargar imagen guardada al montar
   React.useEffect(() => {
-    const savedImage = getImage('who-we-are-college', 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
-    setCollegeImage(savedImage);
-  }, [getImage]);
+    const loadImage = async () => {
+      const savedImage = await getImage('who-we-are-college', 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+      setCollegeImage(savedImage);
+    };
+    loadImage();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -94,10 +97,7 @@ const WhoWeAre: React.FC = () => {
               <AdminImageUpload
                 imageKey="who-we-are-college"
                 currentImage={collegeImage}
-                onImageChange={(newUrl) => {
-                  saveImage('who-we-are-college', newUrl);
-                  setCollegeImage(newUrl);
-                }}
+                onImageChange={setCollegeImage}
               />
               <img 
                 src={collegeImage}

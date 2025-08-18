@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTheme } from '../contexts/ThemeContext';
 import AdminImageUpload from './AdminImageUpload';
-import { useImageStorage } from '../hooks/useImageStorage';
+import { useSupabaseImages } from '../hooks/useSupabaseImages';
 
 const About: React.FC = () => {
   const { isDark } = useTheme();
-  const { saveImage, getImage } = useImageStorage();
+  const { getImage } = useSupabaseImages();
   const [debateImage, setDebateImage] = React.useState(() => 
-    getImage('about-debate', 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')
+    'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   );
   
   const [ref, inView] = useInView({
@@ -25,15 +25,18 @@ const About: React.FC = () => {
       }
     };
     
-    window.addEventListener('admin-image-updated', handleImageUpdate as EventListener);
-    return () => window.removeEventListener('admin-image-updated', handleImageUpdate as EventListener);
+    window.addEventListener('supabase-image-updated', handleImageUpdate as EventListener);
+    return () => window.removeEventListener('supabase-image-updated', handleImageUpdate as EventListener);
   }, []);
 
   // Cargar imagen guardada al montar
   React.useEffect(() => {
-    const savedImage = getImage('about-debate', 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
-    setDebateImage(savedImage);
-  }, [getImage]);
+    const loadImage = async () => {
+      const savedImage = await getImage('about-debate', 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+      setDebateImage(savedImage);
+    };
+    loadImage();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -93,10 +96,7 @@ const About: React.FC = () => {
               <AdminImageUpload
                 imageKey="about-debate"
                 currentImage={debateImage}
-                onImageChange={(newUrl) => {
-                  saveImage('about-debate', newUrl);
-                  setDebateImage(newUrl);
-                }}
+                onImageChange={setDebateImage}
               />
               <img 
                 src={debateImage}
