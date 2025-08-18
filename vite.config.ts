@@ -12,31 +12,24 @@ export default defineConfig({
   build: {
     target: 'esnext',
     minify: 'esbuild',
-    cssMinify: 'esbuild',
+    cssMinify: true,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           animations: ['framer-motion'],
-          utils: ['lucide-react'],
-          intersection: ['react-intersection-observer']
+          utils: ['lucide-react', 'react-intersection-observer']
         },
-        // Optimize chunk sizes for better loading
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
-    cssCodeSplit: true,
+    cssCodeSplit: false,
     sourcemap: false,
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 800,
-    // Enable compression
-    assetsInlineLimit: 4096,
-    // Optimize for modern browsers
-    modulePreload: {
-      polyfill: false
-    }
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 8192
   },
   server: {
     host: true,
