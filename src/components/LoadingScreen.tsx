@@ -72,7 +72,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             className="mb-12 flex justify-center"
           >
             <motion.img
-              src="/minucst_logo_resized%201.png"
+              src="/minucst_logo_resized 1.png"
               alt="MINUCST Logo"
               className="w-80 h-80 object-contain"
               loading="eager"

@@ -67,7 +67,7 @@ const WhoWeAre: React.FC = () => {
           <motion.div variants={itemVariants}>
             <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden bg-white dark:bg-gray-800 flex items-center justify-center p-4">
               <img 
-                src="/image%20copy.png"
+                src="/image copy.png"
                 alt="Escudo Colegio Santa Teresa"
                 className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300"
                 loading="lazy"
