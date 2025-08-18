@@ -1198,20 +1198,10 @@ a:focus-visible,
   }
 }
 
-/* 3D perspective utilities */
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-}
-
 .transform-gpu {
-  transform-style: preserve-3d;
   will-change: transform;
   backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Advanced 3D text effects */
