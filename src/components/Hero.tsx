@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Users, Award, ExternalLink, Star, Sparkles, Globe, Zap, ArrowUpRight, MousePointer } from 'lucide-react';
+import { MapPin, Users, Award, ExternalLink, Star, Sparkles, Globe, Zap, ArrowUpRight } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -58,20 +58,15 @@ const Hero: React.FC = () => {
             }}
             transition={{ type: "spring", stiffness: 30, damping: 15 }}
           />
-            className="absolute top-20 left-20 w-[400px] h-[400px] bg-yellow-500/20 rounded-full blur-3xl"
-          />
-          <motion.div 
-            className="absolute bottom-20 right-20 w-[300px] h-[300px] bg-amber-400/15 rounded-full blur-3xl opacity-20"
-          />
-          <motion.div 
-            className="absolute bottom-20 right-20 w-[300px] h-[300px] bg-amber-400/15 rounded-full blur-3xl"
-          />
           
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-10">
-            <div className="w-full h-full" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }} />
+            <div 
+              className="w-full h-full" 
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fbbf24' fill-opacity='0.1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+              }} 
+            />
           </div>
         </div>
 
@@ -756,12 +751,8 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Floating Elements */}
-        <div 
-          className="absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-r from-yellow-400/20 to-amber-400/20 rounded-full blur-xl"
-        />
-        <div 
-          className="absolute top-1/3 right-10 w-12 h-12 bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-xl"
-        />
+        <div className="absolute bottom-10 left-10 w-16 h-16 bg-gradient-to-r from-yellow-400/20 to-amber-400/20 rounded-full blur-xl" />
+        <div className="absolute top-1/3 right-10 w-12 h-12 bg-gradient-to-r from-amber-400/20 to-yellow-500/20 rounded-full blur-xl" />
       </section>
     </>
   );

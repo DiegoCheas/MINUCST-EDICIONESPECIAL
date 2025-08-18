@@ -149,7 +149,6 @@
     background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 
-
   .smooth-scroll {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -164,22 +163,13 @@
     transform-style: preserve-3d;
     backface-visibility: hidden;
   }
-
-
-
-
-
-
 }
 
-/* Optimizaciones específicas para 360Hz */
 /* Optimización general */
 .performance-optimized {
   transform: translate3d(0, 0, 0);
   will-change: transform, opacity;
   backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
   transition: all 0.3s ease-out;
 }
 
@@ -552,14 +542,6 @@ img[loading="lazy"].loaded {
   background: linear-gradient(45deg, rgba(239, 68, 68, 0.7), rgba(248, 113, 113, 0.9));
 }
 
-/* Ultra-performance optimizations */
-.performance-optimized {
-  transform: translate3d(0, 0, 0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  transition: all 0.3s ease-out;
-}
-
 /* Enhanced intersection observer optimizations */
 .fade-in-section {
   opacity: 0;
@@ -583,7 +565,6 @@ img[loading="lazy"].loaded {
   transform: translateZ(0);
   transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform, opacity, filter, box-shadow;
-  contain: layout style paint;
 }
 
 .button-ultra-smooth::before {
@@ -607,15 +588,6 @@ img[loading="lazy"].loaded {
   filter: brightness(1.02) saturate(1.02);
 }
 
-/* Ultra-smooth header transitions */
-.header-ultra-smooth {
-  transition: all 0.1s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform, opacity, background-color, border-color, box-shadow;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  contain: layout style paint;
-}
-
 /* Enhanced glass morphism */
 .glass-morphism {
   background: rgba(255, 255, 255, 0.08);
@@ -630,14 +602,6 @@ img[loading="lazy"].loaded {
   background: rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
-}
-
-/* Extreme performance optimizations */
-.performance-beast {
-  transform: translate3d(0, 0, 0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  transition: all 0.3s ease-out;
 }
 
 /* Enhanced interactive elements */
@@ -787,37 +751,6 @@ img[loading="lazy"].loaded {
 
 .ultra-shadow {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-}
-
-/* Ultra-smooth header transitions */
-.header-smooth {
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform, opacity, height, background-color;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Logo optimization */
-.logo-smooth {
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform, width, height;
-  transform: translateZ(0);
-}
-
-/* Button centering optimization */
-.button-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Hot reload optimization */
-@media (prefers-reduced-motion: no-preference) {
-  .hot-reload-optimized {
-    transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform, opacity, filter;
-  }
 }
 
 /* Beautiful link card animations */
