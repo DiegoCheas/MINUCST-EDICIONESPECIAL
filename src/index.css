@@ -1053,6 +1053,88 @@ a:focus-visible,
   background-size: 200% 100%;
 }
 
+/* Professional gradient utilities */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Professional loading animations */
+@keyframes professionalFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes professionalSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes professionalGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.6));
+  }
+}
+
+/* Professional text rendering */
+.professional-text {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1;
+  font-variant-ligatures: common-ligatures;
+}
+
+/* Professional loading screen optimizations */
+.professional-loading {
+  background: linear-gradient(135deg, 
+    #7f1d1d 0%, 
+    #991b1b 25%, 
+    #b91c1c 50%, 
+    #dc2626 75%, 
+    #ef4444 100%);
+  background-size: 400% 400%;
+  animation: professionalGradientShift 15s ease infinite;
+}
+
+@keyframes professionalGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Professional blur effects */
+.professional-blur-exit {
+  filter: blur(0px);
+  transition: filter 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.professional-blur-exit.exiting {
+  filter: blur(8px);
+}
+
 /* Critical performance optimizations */
 @media (prefers-reduced-data: reduce) {
   * {
