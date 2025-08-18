@@ -14,7 +14,6 @@ const Navigation: React.FC = () => {
       setScrolled(currentScrollY > 20);
     };
 
-    // Optimized for 360Hz with passive listener
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -59,77 +58,79 @@ const Navigation: React.FC = () => {
       }`}
       style={{ 
         height: '100px',
-        padding: '0 clamp(1rem, 5vw, 3rem)', // Dynamic responsive padding
         willChange: 'transform, opacity, background-color'
       }}
     >
-      {/* Elegant separator line - only visible when scrolled */}
+      {/* Línea separadora elegante - solo visible cuando scrolled */}
       <div className={`absolute bottom-0 left-0 right-0 h-px transition-all duration-300 ultra-smooth-360hz ${
         scrolled 
           ? 'bg-gradient-to-r from-transparent via-gray-200/40 dark:via-gray-700/40 to-transparent opacity-100' 
           : 'opacity-0'
       }`} />
       
-      <div className="max-w-7xl mx-auto h-full">
-        <div className="flex items-center justify-between h-full" style={{ gap: 'clamp(1rem, 3vw, 2rem)' }}>
+      <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-full">
           
-          {/* Logo and title with proportional spacing */}
+          {/* Logo y título - TODO EN UNA LÍNEA HERMOSA */}
           <motion.div 
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             className="flex items-center cursor-pointer relative z-10 ultra-smooth-360hz"
             onClick={() => handleNavClick('#home')}
             style={{ 
-              gap: 'clamp(0.75rem, 2vw, 1.5rem)', // Dynamic spacing
-              padding: 'clamp(0.5rem, 1vw, 1rem) 0' // Vertical padding
+              gap: '1.5rem'
             }}
           >
-            {/* Logo with high resolution */}
+            {/* Logo MÁS GRANDE */}
             <div className="relative flex items-center">
-              <img 
+              <motion.img 
                 src="/minucst_logo_resized%201.png" 
                 alt="MINUCST Logo" 
-                className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 object-contain ultra-smooth-360hz"
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-contain ultra-smooth-360hz"
                 style={{
                   imageRendering: '-webkit-optimize-contrast',
                   imageRendering: 'crisp-edges',
-                  filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))'
+                  filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15))'
                 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  filter: 'drop-shadow(0 6px 16px rgba(251, 191, 36, 0.3))'
+                }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
               />
             </div>
             
-            {/* Title without container - directly on background */}
+            {/* Título MINUCST XV - TODO EN UNA LÍNEA ELEGANTE */}
             <div className="hidden sm:block">
               <motion.div 
                 className="font-bold flex items-center ultra-smooth-360hz"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3rem)', // Responsive scaling
                   fontFamily: 'Bebas Neue, -apple-system, BlinkMacSystemFont, sans-serif',
                   fontWeight: 600,
-                  letterSpacing: '0.05em',
+                  letterSpacing: '0.08em',
                   lineHeight: 1
                 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  filter: 'drop-shadow(0 0 15px rgba(251, 191, 36, 0.4))'
+                }}
+                transition={{ duration: 0.2 }}
               >
                 <motion.span 
-                  className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent"
-                  whileHover={{ 
-                    scale: 1.02,
-                    filter: 'drop-shadow(0 0 12px rgba(251, 191, 36, 0.4))'
-                  }}
+                  className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl"
                   animate={{
                     filter: [
-                      'brightness(1) drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))',
-                      'brightness(1.04) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))',
-                      'brightness(1) drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))'
+                      'brightness(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))',
+                      'brightness(1.06) drop-shadow(0 0 12px rgba(251, 191, 36, 0.5))',
+                      'brightness(1) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))'
                     ]
                   }}
                   transition={{
-                    filter: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-                    scale: { duration: 0.2 }
+                    filter: { duration: 4, repeat: Infinity, ease: "easeInOut" }
                   }}
                   style={{
-                    textShadow: '0 2px 8px rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2)',
-                    filter: 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.3))'
+                    textShadow: '0 4px 12px rgba(251, 191, 36, 0.5), 0 0 25px rgba(251, 191, 36, 0.3)',
+                    WebkitTextStroke: '1px rgba(251, 191, 36, 0.1)'
                   }}
                 >
                   MINUCST XV
@@ -138,21 +139,28 @@ const Navigation: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Desktop Navigation with fluid grid */}
-          <div className="hidden lg:flex items-center" style={{ gap: 'clamp(0.25rem, 0.5vw, 0.5rem)' }}>
+          {/* Navegación Desktop - HERMOSA Y ALINEADA */}
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.name}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.02, duration: 0.15, ease: [0.23, 1, 0.32, 1] }}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -2,
+                  backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                  color: '#dc2626'
+                }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleNavClick(item.href)}
-                className="transition-all duration-200 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 ultra-smooth-360hz"
+                className="transition-all duration-200 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 ultra-smooth-360hz"
                 style={{
-                  padding: 'clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem)', // Dynamic padding
-                  minHeight: '44px' // Touch target
+                  minHeight: '44px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 {item.name}
@@ -160,19 +168,14 @@ const Navigation: React.FC = () => {
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu - Centered without containers */}
-          <div className="flex items-center" style={{ gap: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
+          {/* Controles - Theme Toggle & Mobile Menu - PERFECTAMENTE ALINEADOS */}
+          <div className="flex items-center space-x-3">
             <motion.button
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
               onClick={toggleTheme}
-              className="text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-200 flex items-center justify-center ultra-smooth-360hz"
-              style={{
-                width: 'clamp(44px, 8vw, 48px)',
-                height: 'clamp(44px, 8vw, 48px)',
-                borderRadius: '50%'
-              }}
+              className="text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-200 flex items-center justify-center ultra-smooth-360hz w-11 h-11 rounded-full hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </motion.button>
@@ -182,12 +185,7 @@ const Navigation: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-200 flex items-center justify-center ultra-smooth-360hz"
-              style={{
-                width: 'clamp(44px, 8vw, 48px)',
-                height: 'clamp(44px, 8vw, 48px)',
-                borderRadius: '50%'
-              }}
+              className="lg:hidden text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 transition-all duration-200 flex items-center justify-center ultra-smooth-360hz w-11 h-11 rounded-full hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>
@@ -195,7 +193,7 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation with optimized animations */}
+      {/* Mobile Navigation - ELEGANTE Y FLUIDO */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
