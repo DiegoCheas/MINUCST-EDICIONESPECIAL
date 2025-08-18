@@ -554,9 +554,10 @@ img[loading="lazy"].loaded {
 
 /* Ultra-performance optimizations */
 .performance-optimized {
-  contain: layout style paint;
-  content-visibility: auto;
-  contain-intrinsic-size: 0 400px;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transition: all 0.3s ease-out;
 }
 
 /* Enhanced intersection observer optimizations */

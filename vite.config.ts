@@ -10,7 +10,7 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   build: {
-    target: 'es2020',
+    target: 'esnext',
     minify: 'esbuild',
     cssMinify: true,
     rollupOptions: {
@@ -25,11 +25,11 @@ export default defineConfig({
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
-    cssCodeSplit: false,
+    cssCodeSplit: true,
     sourcemap: false,
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 500,
-    assetsInlineLimit: 4096
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 8192
   },
   server: {
     host: true,
