@@ -167,11 +167,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  style={{
-                    transform: 'translateX(-100%)'
-                  }}
+                  initial={{ x: '-100%' }}
                   animate={{
-                    transform: ['translateX(-100%)', 'translateX(100%)'],
+                    x: ['-100%', '100%'],
                     opacity: [0, 1, 0]
                   }}
                   transition={{
