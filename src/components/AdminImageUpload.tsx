@@ -3,12 +3,14 @@ import { motion } from 'framer-motion';
 import { Upload, X, Check } from 'lucide-react';
 
 interface AdminImageUploadProps {
+  imageKey: string;
   currentImage: string;
   onImageChange: (newImageUrl: string) => void;
   className?: string;
 }
 
 const AdminImageUpload: React.FC<AdminImageUploadProps> = ({ 
+  imageKey,
   currentImage, 
   onImageChange, 
   className = "" 
@@ -32,10 +34,23 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
       const reader = new FileReader();
       reader.onload = (e) => {
         const result = e.target?.result as string;
+        
+        // Guardar en localStorage
+        const savedImages = JSON.parse(localStorage.getItem('minucst-admin-images') || '{}');
+        savedImages[imageKey] = result;
+        localStorage.setItem('minucst-admin-images', JSON.stringify(savedImages));
+        
+        // Actualizar la imagen
         onImageChange(result);
+        
         setIsUploading(false);
         setUploadSuccess(true);
         setTimeout(() => setUploadSuccess(false), 2000);
+        
+        // Forzar actualización de la página
+        window.dispatchEvent(new CustomEvent('admin-image-updated', { 
+          detail: { key: imageKey, url: result } 
+        }));
       };
       reader.readAsDataURL(file);
     }

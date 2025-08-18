@@ -4,14 +4,37 @@ import { useInView } from 'react-intersection-observer';
 import { Users, Globe2, Award, BookOpen, Handshake } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import AdminImageUpload from './AdminImageUpload';
+import { useImageStorage } from '../hooks/useImageStorage';
 
 const WhoWeAre: React.FC = () => {
   const { isDark } = useTheme();
-  const [collegeImage, setCollegeImage] = React.useState('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+  const { saveImage, getImage } = useImageStorage();
+  const [collegeImage, setCollegeImage] = React.useState(() => 
+    getImage('who-we-are-college', 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')
+  );
+  
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  // Escuchar cambios de imágenes
+  React.useEffect(() => {
+    const handleImageUpdate = (event: CustomEvent) => {
+      if (event.detail.key === 'who-we-are-college') {
+        setCollegeImage(event.detail.url);
+      }
+    };
+    
+    window.addEventListener('admin-image-updated', handleImageUpdate as EventListener);
+    return () => window.removeEventListener('admin-image-updated', handleImageUpdate as EventListener);
+  }, []);
+
+  // Cargar imagen guardada al montar
+  React.useEffect(() => {
+    const savedImage = getImage('who-we-are-college', 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+    setCollegeImage(savedImage);
+  }, [getImage]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -69,8 +92,12 @@ const WhoWeAre: React.FC = () => {
           <motion.div variants={itemVariants}>
             <div className="relative rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
               <AdminImageUpload
+                imageKey="who-we-are-college"
                 currentImage={collegeImage}
-                onImageChange={setCollegeImage}
+                onImageChange={(newUrl) => {
+                  saveImage('who-we-are-college', newUrl);
+                  setCollegeImage(newUrl);
+                }}
               />
               <img 
                 src={collegeImage}

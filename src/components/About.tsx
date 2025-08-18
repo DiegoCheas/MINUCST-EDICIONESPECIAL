@@ -3,14 +3,37 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTheme } from '../contexts/ThemeContext';
 import AdminImageUpload from './AdminImageUpload';
+import { useImageStorage } from '../hooks/useImageStorage';
 
 const About: React.FC = () => {
   const { isDark } = useTheme();
-  const [debateImage, setDebateImage] = React.useState('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+  const { saveImage, getImage } = useImageStorage();
+  const [debateImage, setDebateImage] = React.useState(() => 
+    getImage('about-debate', 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')
+  );
+  
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  // Escuchar cambios de imágenes
+  React.useEffect(() => {
+    const handleImageUpdate = (event: CustomEvent) => {
+      if (event.detail.key === 'about-debate') {
+        setDebateImage(event.detail.url);
+      }
+    };
+    
+    window.addEventListener('admin-image-updated', handleImageUpdate as EventListener);
+    return () => window.removeEventListener('admin-image-updated', handleImageUpdate as EventListener);
+  }, []);
+
+  // Cargar imagen guardada al montar
+  React.useEffect(() => {
+    const savedImage = getImage('about-debate', 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+    setDebateImage(savedImage);
+  }, [getImage]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -68,8 +91,12 @@ const About: React.FC = () => {
           <motion.div variants={itemVariants}>
             <div className="relative rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
               <AdminImageUpload
+                imageKey="about-debate"
                 currentImage={debateImage}
-                onImageChange={setDebateImage}
+                onImageChange={(newUrl) => {
+                  saveImage('about-debate', newUrl);
+                  setDebateImage(newUrl);
+                }}
               />
               <img 
                 src={debateImage}
