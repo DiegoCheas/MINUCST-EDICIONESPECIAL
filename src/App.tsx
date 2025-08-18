@@ -9,6 +9,7 @@ import Registration from './components/Registration';
 import Gallery from './components/Gallery';
 import News from './components/News';
 import FAQ from './components/FAQ';
+import SocialMedia from './components/SocialMedia';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -48,6 +49,10 @@ function App() {
           
           <div className="section-separator performance-optimized">
             <FAQ />
+          </div>
+          
+          <div className="section-separator performance-optimized">
+            <SocialMedia />
           </div>
           
           <div className="section-separator performance-optimized">

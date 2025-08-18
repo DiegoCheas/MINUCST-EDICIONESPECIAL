@@ -26,10 +26,11 @@
   /* Bebas Neue font class */
   .bebas-font {
     font-family: 'Bebas Neue', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: "liga" 1, "kern" 1;
   }
 
   /* Space Grotesk font class */
