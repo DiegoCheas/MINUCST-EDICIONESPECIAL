@@ -24,19 +24,19 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   useEffect(() => {
     const stateMachine = {
       'initializing': () => {
-        setTimeout(() => setCurrentState('logo-spinning'), 500);
+        setTimeout(() => setCurrentState('logo-spinning'), 800);
       },
       'logo-spinning': () => {
-        setTimeout(() => setCurrentState('logo-flash'), 2000);
+        setTimeout(() => setCurrentState('logo-flash'), 2500);
       },
       'logo-flash': () => {
-        setTimeout(() => setCurrentState('text-reveal'), 800);
+        setTimeout(() => setCurrentState('text-reveal'), 1000);
       },
       'text-reveal': () => {
-        setTimeout(() => setCurrentState('page-reveal'), 3000);
+        setTimeout(() => setCurrentState('page-reveal'), 4000);
       },
       'page-reveal': () => {
-        setTimeout(() => setCurrentState('complete'), 1500);
+        setTimeout(() => setCurrentState('complete'), 2000);
       },
       'complete': () => {
         onComplete();

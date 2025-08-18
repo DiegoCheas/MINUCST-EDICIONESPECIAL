@@ -58,7 +58,8 @@ const Navigation: React.FC = () => {
       }`}
       style={{ 
         height: '80px',
-        willChange: 'transform, opacity, background-color'
+        willChange: 'transform, opacity, background-color',
+        zIndex: 40
       }}
     >
       {/* Línea separadora elegante - solo visible cuando scrolled */}

@@ -18,35 +18,17 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(true);
 
   const handleLoadingComplete = () => {
-    // Preload critical resources before showing main content
-    const preloadCriticalResources = () => {
-      // Preload hero images
-      const heroImages = [
-        '/minucst_logo_resized%201.png'
-      ];
-      
-      heroImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-      });
-      
-      // Ensure fonts are loaded
-      if (document.fonts) {
-        document.fonts.load('600 48px "Bebas Neue"');
-        document.fonts.load('400 16px "Space Grotesk"');
-      }
-    };
-    
-    preloadCriticalResources();
-    setIsLoading(false);
+    // Pequeño delay para asegurar transición suave
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
   };
 
   return (
     <ThemeProvider>
-      {isLoading ? (
-        <LoadingScreen onComplete={handleLoadingComplete} />
-      ) : (
-        <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz">
+      <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz">
+        {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+        
         <Navigation />
         
         {/* Each section is now properly separated with enhanced performance */}
@@ -92,7 +74,6 @@ function App() {
         
         <Footer />
       </div>
-      )}
     </ThemeProvider>
   );
 }
