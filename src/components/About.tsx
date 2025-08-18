@@ -68,6 +68,7 @@ const About: React.FC = () => {
               src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800" 
               alt="Sesión de debate MINUCST"
               className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+              loading="lazy"
             />
           </motion.div>
           <motion.div variants={itemVariants} className="space-y-6">
