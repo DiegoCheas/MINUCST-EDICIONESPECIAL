@@ -249,19 +249,23 @@ const Hero: React.FC = () => {
                       className="bg-gradient-to-r from-white via-yellow-200 to-amber-300 bg-clip-text text-transparent block"
                       whileHover={{ 
                         scale: 1.01,
-                        filter: 'drop-shadow(0 0 10px rgba(251, 191, 36, 0.3))'
+                        filter: 'drop-shadow(0 0 12px rgba(251, 191, 36, 0.4))'
                       }}
                       animate={{
                         filter: [
-                          'brightness(1) drop-shadow(0 0 3px rgba(251, 191, 36, 0.2))',
-                          'brightness(1.04) drop-shadow(0 0 8px rgba(251, 191, 36, 0.3))',
-                          'brightness(1) drop-shadow(0 0 3px rgba(251, 191, 36, 0.2))'
+                          'brightness(1) drop-shadow(0 0 4px rgba(251, 191, 36, 0.3))',
+                          'brightness(1.05) drop-shadow(0 0 10px rgba(251, 191, 36, 0.4))',
+                          'brightness(1) drop-shadow(0 0 4px rgba(251, 191, 36, 0.3))'
                         ]
                       }}
                       transition={{
-                        duration: 4,
+                        duration: 6,
                         repeat: Infinity,
                         ease: "easeInOut"
+                      }}
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        transition: 'var(--transition-fast)'
                       }}
                     >
                       MINUCST
@@ -276,25 +280,26 @@ const Hero: React.FC = () => {
                       }}
                       whileHover={{ 
                         scale: 1.03,
-                        filter: 'drop-shadow(0 0 15px rgba(251, 191, 36, 0.5))'
+                        filter: 'drop-shadow(0 0 18px rgba(251, 191, 36, 0.6))'
                       }}
                       className="block bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 bg-clip-text text-transparent text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[0.8]"
                       style={{ 
-                        fontFamily: 'Bebas Neue, -apple-system, BlinkMacSystemFont, sans-serif',
+                        fontFamily: 'var(--font-display)',
                         fontWeight: 400,
-                        letterSpacing: '0.1em'
+                        letterSpacing: '0.1em',
+                        transition: 'var(--transition-fast)'
                       }}
                     >
                       <motion.span
                         animate={{
                           textShadow: [
-                            '0 0 5px rgba(251, 191, 36, 0.3)',
-                            '0 0 10px rgba(251, 191, 36, 0.4)',
-                            '0 0 5px rgba(251, 191, 36, 0.3)'
+                            '0 0 6px rgba(251, 191, 36, 0.4)',
+                            '0 0 12px rgba(251, 191, 36, 0.5)',
+                            '0 0 6px rgba(251, 191, 36, 0.4)'
                           ]
                         }}
                         transition={{
-                          duration: 3,
+                          duration: 4,
                           repeat: Infinity,
                           ease: "easeInOut"
                         }}
@@ -313,9 +318,10 @@ const Hero: React.FC = () => {
                     }}
                     className="text-base sm:text-lg lg:text-xl text-red-100 font-light leading-relaxed"
                     style={{ 
-                      fontFamily: 'Space Grotesk, -apple-system, BlinkMacSystemFont, sans-serif',
+                      fontFamily: 'var(--font-body)',
                       fontWeight: 300,
-                      letterSpacing: '0.02em'
+                      letterSpacing: '0.02em',
+                      transition: 'var(--transition-normal)'
                     }}
                   >
                     Modelo Internacional de las Naciones Unidas del Colegio Santa Teresa
