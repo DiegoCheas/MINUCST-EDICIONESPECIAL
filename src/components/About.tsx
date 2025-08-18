@@ -69,6 +69,11 @@ const About: React.FC = () => {
                 src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop&crop=center"
                 alt="Sesión de debate MINUCST"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop"
+                alt="Sesión de debate MINUCST"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
             </div>

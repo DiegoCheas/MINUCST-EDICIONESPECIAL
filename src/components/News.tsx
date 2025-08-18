@@ -81,8 +81,11 @@ const News: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
                   <img 
-                    src={`https://images.unsplash.com/photo-${
-                      index === 0 ? '1517048676732-d65bc937f952' :
+                    src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                    alt={item.title}
+                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
+                    loading="lazy"
+                  />
                       index === 1 ? '1522202176988-66273c2fd55f' :
                       '1515187479132-8fdb7819f6b5'
                     }?w=800&h=${index === 0 ? '600' : '300'}&fit=crop&crop=center`}
