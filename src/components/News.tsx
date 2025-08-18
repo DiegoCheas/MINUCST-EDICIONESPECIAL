@@ -4,9 +4,15 @@ import { useInView } from 'react-intersection-observer';
 import { Calendar, Tag, ArrowRight, Newspaper } from 'lucide-react';
 import { NEWS_ITEMS } from '../utils/constants';
 import { useTheme } from '../contexts/ThemeContext';
+import AdminImageUpload from './AdminImageUpload';
 
 const News: React.FC = () => {
   const { isDark } = useTheme();
+  const [newsImages, setNewsImages] = React.useState([
+    'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+    'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
+    'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
+  ]);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -80,8 +86,16 @@ const News: React.FC = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
+                  <AdminImageUpload
+                    currentImage={newsImages[index]}
+                    onImageChange={(newUrl) => {
+                      const newImages = [...newsImages];
+                      newImages[index] = newUrl;
+                      setNewsImages(newImages);
+                    }}
+                  />
                   <img 
-                    src={item.image}
+                    src={newsImages[index]}
                     alt={item.title}
                     className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
                     loading="lazy"

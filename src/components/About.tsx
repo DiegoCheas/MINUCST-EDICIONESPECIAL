@@ -2,9 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTheme } from '../contexts/ThemeContext';
+import AdminImageUpload from './AdminImageUpload';
 
 const About: React.FC = () => {
   const { isDark } = useTheme();
+  const [debateImage, setDebateImage] = React.useState('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -64,9 +66,13 @@ const About: React.FC = () => {
           className="grid lg:grid-cols-2 gap-16 items-center mb-20"
         >
           <motion.div variants={itemVariants}>
-            <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
+            <div className="relative rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
+              <AdminImageUpload
+                currentImage={debateImage}
+                onImageChange={setDebateImage}
+              />
               <img 
-                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                src={debateImage}
                 alt="Sesión de debate MINUCST"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"

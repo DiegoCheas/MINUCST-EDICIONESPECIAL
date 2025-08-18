@@ -3,10 +3,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Play, Image as ImageIcon, Users, Award } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import AdminImageUpload from './AdminImageUpload';
 
 const Gallery: React.FC = () => {
   const [activeTab, setActiveTab] = useState('photos');
   const { isDark } = useTheme();
+  const [galleryImages, setGalleryImages] = useState([
+    'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+    'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+    'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+    'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+    'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
+    'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop'
+  ]);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -178,15 +187,16 @@ const Gallery: React.FC = () => {
                   className="group cursor-pointer overflow-hidden rounded-xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                 >
                   <div className="relative overflow-hidden">
+                    <AdminImageUpload
+                      currentImage={galleryImages[index]}
+                      onImageChange={(newUrl) => {
+                        const newImages = [...galleryImages];
+                        newImages[index] = newUrl;
+                        setGalleryImages(newImages);
+                      }}
+                    />
                     <img 
-                      src={[
-                        'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
-                        'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
-                        'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
-                        'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
-                        'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop',
-                        'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop'
-                      ][index]}
+                      src={galleryImages[index]}
                       alt={photo.caption}
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"

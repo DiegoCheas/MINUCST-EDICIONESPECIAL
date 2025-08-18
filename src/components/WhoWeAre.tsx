@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Users, Globe2, Award, BookOpen, Handshake } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
+import AdminImageUpload from './AdminImageUpload';
 
 const WhoWeAre: React.FC = () => {
   const { isDark } = useTheme();
+  const [collegeImage, setCollegeImage] = React.useState('https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -65,9 +67,13 @@ const WhoWeAre: React.FC = () => {
           className="grid lg:grid-cols-2 gap-16 items-center mb-20"
         >
           <motion.div variants={itemVariants}>
-            <div className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
+            <div className="relative rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
+              <AdminImageUpload
+                currentImage={collegeImage}
+                onImageChange={setCollegeImage}
+              />
               <img 
-                src="https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                src={collegeImage}
                 alt="Colegio Santa Teresa - Educación de Excelencia"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"
