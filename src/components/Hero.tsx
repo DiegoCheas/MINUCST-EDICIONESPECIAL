@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
 
   return (
     <>
-      <section id="home" className="min-h-screen bg-gradient-to-br from-red-950 via-red-900 to-red-800 dark:from-red-950 dark:via-red-900 dark:to-black text-white relative overflow-hidden performance-optimized">
+      <section id="home" className="min-h-screen bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white relative overflow-hidden">
         {/* Optimized Background Elements */}
         <div className="absolute inset-0">
           <motion.div 
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-20 left-20 w-[300px] h-[300px] bg-yellow-500/15 rounded-full blur-3xl gpu-accelerated elegant-decoration"
+            className="absolute top-20 left-20 w-[300px] h-[300px] bg-yellow-500/15 rounded-full blur-3xl"
             style={{
               transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`
             }}
@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="absolute top-40 right-32 w-[350px] h-[350px] bg-amber-400/15 rounded-full blur-3xl gpu-accelerated elegant-decoration"
+            className="absolute top-40 right-32 w-[350px] h-[350px] bg-amber-400/15 rounded-full blur-3xl"
             style={{
               transform: `translate(${mousePosition.x * -0.015}px, ${mousePosition.y * 0.01}px)`
             }}

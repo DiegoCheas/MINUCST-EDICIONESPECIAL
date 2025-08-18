@@ -149,17 +149,6 @@
     background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 
-  /* ULTRA GPU acceleration for maximum performance */
-  .gpu-accelerated {
-    transform: translate3d(0, 0, 0);
-    will-change: transform, opacity, filter;
-    backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    contain: layout style paint;
-  }
 
   .smooth-scroll {
     scroll-behavior: smooth;
@@ -176,52 +165,11 @@
     backface-visibility: hidden;
   }
 
-  /* Desktop-specific optimizations */
-  .desktop-optimized {
-    contain: layout style paint;
-    content-visibility: auto;
-    contain-intrinsic-size: 0 500px;
-  }
 
-  /* ULTRA-smooth transitions with perfect easing */
-  .ultra-smooth {
-    transition: all var(--transition-fast);
-    will-change: transform, opacity, filter, box-shadow;
-  }
 
-  /* Enhanced hover effects with perfect timing */
-  .hover-lift {
-    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                filter 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
 
-  .hover-lift:hover {
-    transform: translateY(-3px) translateZ(0) scale(1.005);
-    box-shadow: var(--shadow-medium);
-    filter: brightness(1.01) saturate(1.01);
-  }
 
-  /* Parallax optimization */
-  .parallax-element {
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
-    backface-visibility: hidden;
-  }
 
-  /* Mobile menu optimizations */
-  .mobile-menu {
-    transform: translateZ(0);
-    will-change: transform, opacity, height;
-    backface-visibility: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Touch-friendly targets */
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
-  }
 }
 
 /* Optimizaciones específicas para 360Hz */

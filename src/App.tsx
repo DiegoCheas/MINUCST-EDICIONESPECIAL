@@ -16,65 +16,38 @@ import Footer from './components/Footer';
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [contentReady, setContentReady] = React.useState(false);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
-    setContentReady(true);
   };
+
+  if (isLoading) {
+    return (
+      <ThemeProvider>
+        <LoadingScreen onComplete={handleLoadingComplete} />
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz" style={{ minHeight: '100vh' }}>
-        {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <div className="min-h-screen transition-colors duration-500">
+        <Navigation />
         
-        {!isLoading && (
-        <div className="w-full min-h-screen">
-          <Navigation />
-          
-          <main className="relative">
-            <Hero />
-            
-            <div className="section-separator performance-optimized">
-              <WhoWeAre />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <About />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <Committees />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <Registration />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <Gallery />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <News />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <FAQ />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <SocialMedia />
-            </div>
-            
-            <div className="section-separator performance-optimized">
-              <Contact />
-            </div>
-          </main>
-          
-          <Footer />
-        </div>
-        )}
+        <main className="relative">
+          <Hero />
+          <WhoWeAre />
+          <About />
+          <Committees />
+          <Registration />
+          <Gallery />
+          <News />
+          <FAQ />
+          <SocialMedia />
+          <Contact />
+        </main>
+        
+        <Footer />
       </div>
     </ThemeProvider>
   );
