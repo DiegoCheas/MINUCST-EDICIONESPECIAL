@@ -155,6 +155,11 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     }
   }, [currentState, progress]);
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    setContentReady(true);
+  };
+
   return (
     <AnimatePresence>
       <motion.div

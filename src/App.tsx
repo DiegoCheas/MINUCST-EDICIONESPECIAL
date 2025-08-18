@@ -19,44 +19,19 @@ function App() {
   const [contentReady, setContentReady] = React.useState(false);
 
   const handleLoadingComplete = () => {
-    // Asegurar que el contenido esté completamente listo
-    setTimeout(() => {
-      setIsLoading(false);
-      // Dar tiempo adicional para que se renderice todo
-      setTimeout(() => {
-        setContentReady(true);
-      }, 200);
-    }, 300);
+    setIsLoading(false);
+    setContentReady(true);
   };
-
-  // Pre-cargar todos los componentes
-  React.useEffect(() => {
-    // Forzar el renderizado de todos los componentes en el background
-    const preloadTimer = setTimeout(() => {
-      setContentReady(true);
-    }, 1000);
-
-    return () => clearTimeout(preloadTimer);
-  }, []);
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz" style={{ minHeight: '100vh', overflow: isLoading ? 'hidden' : 'auto' }}>
+      <div className="min-h-screen transition-colors duration-500 gpu-accelerated performance-optimized ultra-smooth-360hz" style={{ minHeight: '100vh' }}>
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
         
-        {/* Renderizar contenido siempre, pero con opacidad controlada */}
-        <div 
-          className={`transition-opacity duration-1000 ${isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-          style={{ 
-            visibility: isLoading ? 'hidden' : 'visible',
-            position: isLoading ? 'absolute' : 'relative',
-            width: '100%',
-            minHeight: '100vh'
-          }}
-        >
+        {!isLoading && (
+        <div className="w-full min-h-screen">
           <Navigation />
           
-          {/* Each section is now properly separated with enhanced performance */}
           <main className="relative">
             <Hero />
             
@@ -99,6 +74,7 @@ function App() {
           
           <Footer />
         </div>
+        )}
       </div>
     </ThemeProvider>
   );
