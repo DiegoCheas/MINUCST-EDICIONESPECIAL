@@ -13,20 +13,20 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     // Precargar el logo
     const img = new Image();
     img.onload = () => setLogoLoaded(true);
-    img.src = "/minucst_logo_resized%201.png";
+    img.src = "/minucst_logo_resized 1.png";
 
     let progressValue = 0;
     const interval = setInterval(() => {
-      progressValue += 5; // Progreso original
+      progressValue += 2.5; // Progreso más lento para 4.2 segundos
       setProgress(Math.min(progressValue, 100));
 
       if (progressValue >= 100) {
         clearInterval(interval);
         setTimeout(() => {
           onComplete();
-        }, 500);
+        }, 200);
       }
-    }, 80); // Intervalo original
+    }, 100); // Intervalo ajustado para 4.2 segundos total
 
     return () => clearInterval(interval);
   }, [onComplete]);
@@ -63,33 +63,32 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         <div className="relative z-10 text-center max-w-2xl mx-auto px-4">
           {/* Logo tamaño original */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateY: -180 }}
+            initial={{ opacity: 0, scale: 0.5 }}
             animate={{ 
               opacity: logoLoaded ? 1 : 0, 
-              scale: logoLoaded ? 1 : 0.8,
-              rotateY: logoLoaded ? 0 : -180
+              scale: logoLoaded ? 1 : 0.5
             }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="mb-8 flex justify-center perspective-1000"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-12 flex justify-center"
           >
             <motion.img
-              src="/minucst_logo_resized%201.png"
+              src="/minucst_logo_resized 1.png"
               alt="MINUCST Logo"
-              className="w-64 h-64 object-contain preserve-3d"
+              className="w-80 h-80 object-contain"
               loading="eager"
               animate={{
-                rotateY: [0, 360],
-                scale: [1, 1.05, 1],
+                rotate: [0, 360],
+                scale: [1, 1.08, 1],
                 filter: [
                   'drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))',
-                  'drop-shadow(0 0 40px rgba(251, 191, 36, 0.6))',
+                  'drop-shadow(0 0 60px rgba(251, 191, 36, 0.8))',
                   'drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))'
                 ]
               }}
               transition={{
-                rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
-                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-                filter: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                rotate: { duration: 12, repeat: Infinity, ease: "linear" },
+                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                filter: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
               }}
             />
           </motion.div>
@@ -98,40 +97,40 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-            className="mb-12"
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+            className="mb-16"
           >
             <motion.h1 
-              className="text-6xl md:text-8xl font-bold leading-tight mb-4"
+              className="text-7xl md:text-9xl lg:text-[10rem] font-bold leading-tight mb-6"
               style={{ fontFamily: 'Bebas Neue, sans-serif' }}
               animate={{
                 textShadow: [
-                  '0 0 20px rgba(251, 191, 36, 0.5)',
-                  '0 0 40px rgba(251, 191, 36, 0.8)',
-                  '0 0 20px rgba(251, 191, 36, 0.5)'
+                  '0 0 30px rgba(251, 191, 36, 0.6)',
+                  '0 0 60px rgba(251, 191, 36, 1)',
+                  '0 0 30px rgba(251, 191, 36, 0.6)'
                 ]
               }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <motion.span 
-                className="block bg-gradient-to-r from-white via-yellow-200 to-amber-300 bg-clip-text text-transparent"
+                className="block bg-gradient-to-r from-white via-yellow-100 to-amber-200 bg-clip-text text-transparent"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 style={{ backgroundSize: '200% 200%' }}
               >
                 MINUCST
               </motion.span>
               <motion.span 
-                className="block bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 bg-clip-text text-transparent text-5xl md:text-7xl mt-2"
+                className="block bg-gradient-to-r from-yellow-300 via-amber-300 to-yellow-400 bg-clip-text text-transparent text-6xl md:text-8xl lg:text-[8rem] mt-4"
                 animate={{
                   backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  scale: [1, 1.05, 1]
+                  scale: [1, 1.08, 1]
                 }}
                 transition={{ 
-                  backgroundPosition: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  backgroundPosition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                  scale: { duration: 2.2, repeat: Infinity, ease: "easeInOut" }
                 }}
                 style={{ backgroundSize: '200% 200%' }}
               >
@@ -140,17 +139,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             </motion.h1>
             
             <motion.p 
-              className="text-xl md:text-2xl text-yellow-200 font-light"
+              className="text-2xl md:text-3xl text-yellow-100 font-light mb-4"
               animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
             >
               Modelo Internacional de las Naciones Unidas
             </motion.p>
             
             <motion.p 
-              className="text-lg text-red-100 mt-2"
+              className="text-xl text-red-100"
               animate={{ opacity: [0.5, 0.8, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             >
               Colegio Santa Teresa • Santo Domingo Este
             </motion.p>
@@ -160,45 +159,45 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="mb-6"
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="mb-8"
           >
-            <div className="w-80 h-3 bg-white/20 rounded-full mx-auto mb-4 overflow-hidden backdrop-blur-sm border border-white/30">
+            <div className="w-96 h-4 bg-white/20 rounded-full mx-auto mb-6 overflow-hidden backdrop-blur-sm border border-white/30">
               <motion.div
                 className="h-full bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 rounded-full relative overflow-hidden"
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                   animate={{ x: ['-100%', '100%'] }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
                 />
               </motion.div>
             </div>
             
             <motion.div 
-              className="text-yellow-300 text-2xl font-bold mb-2"
+              className="text-yellow-200 text-3xl font-bold mb-4"
               animate={{ 
                 scale: [1, 1.1, 1],
                 filter: [
-                  'drop-shadow(0 0 10px rgba(251, 191, 36, 0.5))',
-                  'drop-shadow(0 0 20px rgba(251, 191, 36, 0.8))',
-                  'drop-shadow(0 0 10px rgba(251, 191, 36, 0.5))'
+                  'drop-shadow(0 0 15px rgba(251, 191, 36, 0.6))',
+                  'drop-shadow(0 0 30px rgba(251, 191, 36, 1))',
+                  'drop-shadow(0 0 15px rgba(251, 191, 36, 0.6))'
                 ]
               }}
-              transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
               {Math.round(progress)}%
             </motion.div>
             
             <motion.p 
-              className="text-red-100 text-sm"
+              className="text-red-100 text-lg font-medium"
               animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-              Preparando la experiencia diplomática...
+              Preparando la experiencia diplomática más importante del Caribe...
             </motion.p>
           </motion.div>
 

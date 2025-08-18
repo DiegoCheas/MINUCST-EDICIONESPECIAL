@@ -15,37 +15,37 @@ const Gallery: React.FC = () => {
   const photos = [
     {
       id: '1',
-      url: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200',
       caption: 'Sesión plenaria de apertura MINUCST 2024',
       category: 'sessions'
     },
     {
       id: '2',
-      url: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200',
       caption: 'Debate intenso en el Consejo de Seguridad',
       category: 'debates'
     },
     {
       id: '3',
-      url: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1200',
       caption: 'Trabajo colaborativo en comités',
       category: 'committees'
     },
     {
       id: '4',
-      url: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1200',
       caption: 'Delegados durante la pausa para almuerzo',
       category: 'social'
     },
     {
       id: '5',
-      url: 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=1200',
       caption: 'Ceremonia de clausura y premiación',
       category: 'ceremony'
     },
     {
       id: '6',
-      url: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+      url: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200',
       caption: 'Networking entre delegados internacionales',
       category: 'social'
     }
@@ -57,21 +57,21 @@ const Gallery: React.FC = () => {
       name: 'María González',
       country: 'México',
       quote: 'MINUCST transformó mi perspectiva sobre la diplomacia internacional.',
-      videoThumbnail: 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=400'
+      videoThumbnail: 'https://images.pexels.com/photos/3184611/pexels-photo-3184611.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
       id: '2',
       name: 'Carlos Mendez',
       country: 'Colombia',
       quote: 'La calidad académica y el nivel de debate es excepcional.',
-      videoThumbnail: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=400'
+      videoThumbnail: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
       id: '3',
       name: 'Ana Rodríguez',
       country: 'Argentina',
       quote: 'Una plataforma para formar líderes comprometidos con la paz.',
-      videoThumbnail: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=400'
+      videoThumbnail: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800'
     }
   ];
 
