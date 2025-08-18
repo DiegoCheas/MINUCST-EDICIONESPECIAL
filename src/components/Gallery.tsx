@@ -178,16 +178,19 @@ const Gallery: React.FC = () => {
                   className="group cursor-pointer overflow-hidden rounded-xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                 >
                   <div className="relative overflow-hidden">
-                    <div className="w-full h-64 bg-gradient-to-br from-red-600 to-yellow-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                      <div className="text-center text-white">
-                        <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
-                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd"/>
-                          </svg>
-                        </div>
-                        <p className="text-sm font-medium">Galería MINUCST</p>
-                      </div>
-                    </div>
+                    <img 
+                      src={`https://images.unsplash.com/photo-${
+                        index === 0 ? '1517048676732-d65bc937f952' :
+                        index === 1 ? '1522202176988-66273c2fd55f' :
+                        index === 2 ? '1515187479132-8fdb7819f6b5' :
+                        index === 3 ? '1521737604893-d14cc237f11d' :
+                        index === 4 ? '1507003211169-0a1dd7ef0a50' :
+                        '1522071820677-1b726e50246a'
+                      }?w=800&h=400&fit=crop&crop=center`}
+                      alt={photo.caption}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <motion.div
                         whileHover={{ scale: 1.2 }}
@@ -228,16 +231,16 @@ const Gallery: React.FC = () => {
                   className="bg-gray-800 dark:bg-gray-700 rounded-xl p-6 hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-300 group cursor-pointer"
                 >
                   <div className="relative mb-4">
-                    <div className="w-full h-48 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <div className="w-12 h-12 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center">
-                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                          </svg>
-                        </div>
-                        <p className="text-sm font-medium">Video Testimonio</p>
-                      </div>
-                    </div>
+                    <img 
+                      src={`https://images.unsplash.com/photo-${
+                        index === 0 ? '1494790108755-74612f64eac4' :
+                        index === 1 ? '1507003211169-0a1dd7ef0a50' :
+                        '1521737604893-d14cc237f11d'
+                      }?w=600&h=300&fit=crop&crop=center`}
+                      alt={`Testimonio de ${testimonial.name}`}
+                      className="w-full h-48 object-cover rounded-lg"
+                      loading="lazy"
+                    />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
                       <motion.div 
                         whileHover={{ scale: 1.2 }}

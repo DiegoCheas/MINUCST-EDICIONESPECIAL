@@ -80,18 +80,16 @@ const News: React.FC = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
-                  <div className={`w-full h-full bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
-                    <div className="text-center text-white">
-                      <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clipRule="evenodd"/>
-                          <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V9a1 1 0 00-1-1h-1v3a2 2 0 01-2 2H5a2 2 0 01-2-2V9a1 1 0 00-1 1v5.5a1.5 1.5 0 01-3 0V9a2 2 0 012-2h1V6a2 2 0 012-2h8a2 2 0 012 2v1z"/>
-                        </svg>
-                      </div>
-                      <p className="text-lg font-bold">Noticias MINUCST</p>
-                      <p className="text-sm opacity-80">{item.category}</p>
-                    </div>
-                  </div>
+                  <img 
+                    src={`https://images.unsplash.com/photo-${
+                      index === 0 ? '1517048676732-d65bc937f952' :
+                      index === 1 ? '1522202176988-66273c2fd55f' :
+                      '1515187479132-8fdb7819f6b5'
+                    }?w=800&h=${index === 0 ? '600' : '300'}&fit=crop&crop=center`}
+                    alt={item.title}
+                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
+                    loading="lazy"
+                  />
                   <div className="absolute top-4 left-4">
                     <motion.span 
                       whileHover={{ scale: 1.05 }}
