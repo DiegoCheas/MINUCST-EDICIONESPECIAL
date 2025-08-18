@@ -6,7 +6,7 @@ import AdminImageUpload from './AdminImageUpload';
 
 const About: React.FC = () => {
   const { isDark } = useTheme();
-  const [debateImage, setDebateImage] = React.useState('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+  const [debateImage, setDebateImage] = React.useState('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1

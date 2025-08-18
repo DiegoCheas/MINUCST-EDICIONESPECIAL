@@ -7,7 +7,7 @@ import AdminImageUpload from './AdminImageUpload';
 
 const WhoWeAre: React.FC = () => {
   const { isDark } = useTheme();
-  const [collegeImage, setCollegeImage] = React.useState('https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+  const [collegeImage, setCollegeImage] = React.useState('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
