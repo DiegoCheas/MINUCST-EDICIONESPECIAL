@@ -117,18 +117,13 @@ const Navigation: React.FC = () => {
                 <motion.span 
                   className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent text-2xl sm:text-3xl md:text-4xl"
                   animate={{
-                    filter: [
-                      'brightness(1) drop-shadow(0 0 6px rgba(251, 191, 36, 0.3))',
-                      'brightness(1.04) drop-shadow(0 0 10px rgba(251, 191, 36, 0.4))',
-                      'brightness(1) drop-shadow(0 0 6px rgba(251, 191, 36, 0.3))'
-                    ]
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
                   }}
                   transition={{
-                    filter: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    backgroundPosition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
                   }}
                   style={{
-                    textShadow: '0 2px 8px rgba(251, 191, 36, 0.4), 0 0 20px rgba(251, 191, 36, 0.2)',
-                    WebkitTextStroke: '0.5px rgba(251, 191, 36, 0.1)'
+                    backgroundSize: '200% 100%'
                   }}
                 >
                   MINUCST XV
