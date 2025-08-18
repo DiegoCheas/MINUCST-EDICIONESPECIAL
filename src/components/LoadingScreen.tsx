@@ -130,29 +130,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 src="/minucst_logo_resized%201.png"
                 alt="MINUCST Logo"
                 className="w-64 h-64 object-contain"
-                style={{ transform: 'scaleX(-1)' }}
                 loading="eager"
               />
-              
-              {/* Destello optimizado */}
-              <motion.div
-                className="absolute inset-0 overflow-hidden"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1.5 }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                  initial={{ x: '-100%' }}
-                  animate={{ x: ['-100%', '100%'] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatDelay: 3,
-                    ease: "easeInOut"
-                  }}
-                />
-              </motion.div>
             </div>
           </motion.div>
           
