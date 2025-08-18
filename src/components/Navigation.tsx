@@ -115,7 +115,7 @@ const Navigation: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div 
-              className="flex items-center space-x-3 cursor-pointer desktop-interactive"
+              className="bg-white/95 backdrop-blur-sm p-2 rounded-xl shadow-lg overflow-hidden border border-white/20"
               whileHover={{ 
                 scale: 1.03,
                 filter: 'drop-shadow(0 0 10px rgba(251, 191, 36, 0.3))'
@@ -147,7 +147,11 @@ const Navigation: React.FC = () => {
                 >
                   MINUCST XV
                 </motion.h1>
-              </div>
+              <img 
+                src="/minucst_logo_resized 1.png" 
+                alt="MINUCST Logo" 
+                className="w-8 h-8 object-contain"
+              />
             </motion.div>
 
             {/* Desktop Menu */}

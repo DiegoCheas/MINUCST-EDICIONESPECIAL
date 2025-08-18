@@ -199,13 +199,13 @@ const Hero: React.FC = () => {
                     ease: "easeOut"
                   }}
                   whileHover={{ 
-                    scale: 2.00,
+                    scale: 1.05,
                     filter: 'drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2))'
                   }}
-                  className="flex justify-center lg:justify-more center"
+                  className="flex justify-center lg:justify-start"
                 >
                   <motion.img
-                    src="/minucst_logo_resized.png"
+                    src="/minucst_logo_resized 1.png"
                     alt="MINUCST Logo"
                     className="h-48 sm:h-56 lg:h-72 xl:h-80 w-auto object-contain"
                     whileHover={{ 
