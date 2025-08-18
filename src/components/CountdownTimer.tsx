@@ -9,12 +9,6 @@ const CountdownTimer: React.FC = () => {
     minutes: 0,
     seconds: 0
   });
-  const [previousTime, setPreviousTime] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
   const [isLoaded, setIsLoaded] = useState(false);
   const [pulseKey, setPulseKey] = useState(0);
 
@@ -33,7 +27,6 @@ const CountdownTimer: React.FC = () => {
           seconds: Math.floor((difference % (1000 * 60)) / 1000)
         };
 
-        setPreviousTime(timeLeft);
         setTimeLeft(newTime);
         
         // Trigger pulse animation when seconds change
@@ -50,7 +43,7 @@ const CountdownTimer: React.FC = () => {
     const interval = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(interval);
-  }, [timeLeft]);
+  }, [timeLeft.seconds]);
 
   const timeUnits = [
     { key: 'days', value: timeLeft.days, label: 'Días', color: 'from-red-500 to-red-600', glow: 'rgba(239, 68, 68, 0.3)' },

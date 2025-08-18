@@ -85,18 +85,18 @@ const Navigation: React.FC = () => {
               <motion.img 
                 src="/minucst_logo_resized%201.png" 
                 alt="MINUCST Logo" 
-                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain ultra-smooth-360hz micro-interaction"
+                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
                 style={{
                   imageRendering: '-webkit-optimize-contrast',
-                  imageRendering: 'crisp-edges',
                   filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))',
-                  transition: 'var(--transition-micro)'
+                  transition: 'all 0.2s ease'
                 }}
                 whileHover={{ 
                   scale: 1.05,
                   filter: 'drop-shadow(0 4px 12px rgba(251, 191, 36, 0.3))'
                 }}
-                transition={{ duration: 0.12, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                loading="eager"
               />
             </div>
             

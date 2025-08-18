@@ -173,177 +173,43 @@
 }
 
 /* Optimizaciones específicas para 360Hz */
-@media (min-refresh-rate: 360hz) {
-  * {
-    transition-duration: 0.03s;
-    animation-duration: 0.1s;
-  }
-  
-  .ultra-smooth-360hz {
-    transition-duration: 0.03s;
-    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    transform: translate3d(0, 0, 0) scale(1.0001);
-    filter: brightness(1.0001);
-  }
-}
-
-/* Optimizaciones para 240Hz */
-@media (min-refresh-rate: 240hz) {
-  * {
-    transition-duration: 0.05s;
-    animation-duration: 0.15s;
-  }
-}
-
-/* Optimizaciones para 120Hz */
 @media (min-refresh-rate: 120hz) {
-  * {
-    transition-duration: 0.08s;
-    animation-duration: 0.2s;
-  }
-}
-
-/* Refresh rate specific optimizations */
-@media (min-refresh-rate: 120hz) {
-  * {
-    transition-duration: 0.08s;
-    animation-duration: 0.25s;
-  }
-}
-
-@media (min-refresh-rate: 144hz) {
-  * {
-    transition-duration: 0.06s;
-    animation-duration: 0.2s;
-  }
-}
-
-@media (min-refresh-rate: 240hz) {
-  * {
-    transition-duration: 0.04s;
-    animation-duration: 0.15s;
-  }
-}
-
-@media (min-refresh-rate: 60hz) {
   * {
     transition-duration: 0.15s;
-    animation-duration: 0.4s;
-  }
-}
-
-/* Ultra-smooth 120Hz optimizations */
-.ultra-smooth-120hz {
-  transform: translate3d(0, 0, 0);
-  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
-  backface-visibility: hidden;
-  perspective: 1000px;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  contain: layout style paint;
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Ultra-smooth 360Hz optimizations */
-.ultra-smooth-360hz {
-  transform: translate3d(0, 0, 0);
-  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
-  backface-visibility: hidden;
-  perspective: 1000px;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  contain: layout style paint;
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  
-  /* Optimización específica para header hermoso */
-  font-feature-settings: "liga" 1, "kern" 1;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 360Hz specific animations */
-@media (min-refresh-rate: 360hz) {
-  .ultra-smooth-360hz {
-    transition-duration: 0.08s;
-    animation-duration: 0.2s;
-    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    
-    /* Hardware acceleration extremo para 360Hz */
-    transform: translate3d(0, 0, 0) scale(1.0001);
-    filter: brightness(1.0001);
-  }
-  
-  /* Hardware acceleration for 360Hz */
-  * {
-    transform: translateZ(0);
-    will-change: auto;
-  }
-}
-
-/* 240Hz support */
-@media (min-refresh-rate: 240hz) {
-  .ultra-smooth-360hz {
-    transition-duration: 0.1s;
-    animation-duration: 0.25s;
-    transform: translate3d(0, 0, 0) scale(1.0001);
-  }
-  
-  .gpu-accelerated {
-    transform: translate3d(0, 0, 0) scale(1.0001);
-  }
-}
-
-/* 144Hz support */
-@media (min-refresh-rate: 144hz) {
-  .ultra-smooth-360hz {
-    transition-duration: 0.12s;
     animation-duration: 0.3s;
   }
 }
 
-/* 120Hz specific animations */
-@media (min-refresh-rate: 120hz) {
-  .ultra-smooth-360hz, .ultra-smooth-120hz {
-    transition-duration: 0.15s;
-    animation-duration: 0.35s;
-    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+@media (min-refresh-rate: 144hz) {
+  * {
+    transition-duration: 0.12s;
+    animation-duration: 0.25s;
   }
 }
 
-/* Ultra-performance for all devices */
-@media (max-width: 768px) {
-  .ultra-smooth-360hz, .ultra-smooth-120hz {
-    transition-duration: 0.2s;
-    animation-duration: 0.4s;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  
-  /* Mobile optimization */
-  .mobile-optimized {
-    contain: strict;
-    content-visibility: auto;
-  }
-  
-  /* Header móvil optimizado */
-  .mobile-header-optimized {
-    transform: translate3d(0, 0, 0);
-    will-change: transform, opacity;
-    contain: layout style paint;
+@media (min-refresh-rate: 240hz) {
+  * {
+    transition-duration: 0.08s;
+    animation-duration: 0.2s;
   }
 }
 
-/* Fallback for 60Hz displays */
-@media (max-refresh-rate: 60hz) {
-  .ultra-smooth-360hz {
-    transition-duration: 0.25s;
-    animation-duration: 0.5s;
+@media (min-refresh-rate: 360hz) {
+  * {
+    transition-duration: 0.06s;
+    animation-duration: 0.15s;
   }
+}
+
+/* Optimización general */
+.performance-optimized {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  contain: layout style paint;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Header específico - Hermoso y elegante */
