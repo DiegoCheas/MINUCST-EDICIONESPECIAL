@@ -6,12 +6,14 @@ import { useTheme } from '../contexts/ThemeContext';
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      setScrolled(currentScrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -40,7 +42,7 @@ const Navigation: React.FC = () => {
 
     const element = document.querySelector(href);
     if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
+      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - (scrolled ? 70 : 80);
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
     }
   };
@@ -50,34 +52,73 @@ const Navigation: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         scrolled 
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
+          ? 'bg-white/98 dark:bg-gray-900/98 backdrop-blur-xl shadow-lg border-b border-gray-200/30 dark:border-gray-700/30' 
           : 'bg-transparent'
       }`}
+      style={{
+        height: scrolled ? '70px' : '80px',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      {/* Marco minimalista */}
+      <div className={`absolute inset-0 transition-all duration-500 ${
+        scrolled 
+          ? 'border border-gray-200/20 dark:border-gray-700/20 rounded-none' 
+          : 'border-2 border-white/10 rounded-xl mx-4 mt-4'
+      }`} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3 cursor-pointer"
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center space-x-3 cursor-pointer relative z-10"
             onClick={() => handleNavClick('#home')}
+            animate={{
+              scale: scrolled ? 0.9 : 1,
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <div className="bg-white/90 backdrop-blur-sm p-2 rounded-xl shadow-lg border border-gray-200/30">
+            <motion.div
+              className="relative"
+              animate={{
+                width: scrolled ? '32px' : '40px',
+                height: scrolled ? '32px' : '40px',
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
               <img 
                 src="/minucst_logo_resized%201.png" 
                 alt="MINUCST Logo" 
-                className="w-8 h-8 object-contain"
+                className="w-full h-full object-contain"
               />
-            </div>
+            </motion.div>
             <div className="hidden sm:block">
-              <h1 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white bebas-font">
+              <motion.h1 
+                className="font-bold bg-gradient-to-r from-yellow-500 via-yellow-400 to-amber-500 bg-clip-text text-transparent bebas-font"
+                animate={{
+                  fontSize: scrolled ? '1.25rem' : '1.5rem',
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                style={{
+                  textShadow: '0 2px 4px rgba(251, 191, 36, 0.3)',
+                }}
+              >
                 MINUCST
-              </h1>
-              <p className="text-xs text-yellow-600 dark:text-yellow-400 font-medium">
+              </motion.h1>
+              <motion.p 
+                className="font-bold bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent"
+                animate={{
+                  fontSize: scrolled ? '0.75rem' : '0.875rem',
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                style={{
+                  textShadow: '0 1px 2px rgba(251, 191, 36, 0.3)',
+                }}
+              >
                 XV
-              </p>
+              </motion.p>
             </div>
           </motion.div>
 
@@ -92,7 +133,11 @@ const Navigation: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleNavClick(item.href)}
-                className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 rounded-lg hover:bg-gray-100/50 dark:hover:bg-gray-800/50 transition-all duration-200"
+                className={`transition-all duration-300 rounded-lg ${
+                  scrolled 
+                    ? 'px-2 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50' 
+                    : 'px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50'
+                }`}
               >
                 {item.name}
               </motion.button>
@@ -105,18 +150,32 @@ const Navigation: React.FC = () => {
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200"
+              className={`rounded-lg bg-gray-100/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 ${
+                scrolled ? 'p-1.5' : 'p-2'
+              }`}
+              animate={{
+                width: scrolled ? '36px' : '40px',
+                height: scrolled ? '36px' : '40px',
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </motion.button>
 
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200"
+              className={`lg:hidden rounded-lg bg-gray-100/50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-all duration-200 ${
+                scrolled ? 'p-1.5' : 'p-2'
+              }`}
+              animate={{
+                width: scrolled ? '36px' : '40px',
+                height: scrolled ? '36px' : '40px',
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </motion.button>
           </div>
         </div>
@@ -130,9 +189,9 @@ const Navigation: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-t border-gray-200/20 dark:border-gray-700/20 shadow-lg"
+            className="lg:hidden bg-white/98 dark:bg-gray-900/98 backdrop-blur-xl border-t border-gray-200/20 dark:border-gray-700/20 shadow-lg"
           >
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-4 space-y-2 max-h-96 overflow-y-auto">
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.name}
