@@ -177,8 +177,22 @@ const CountdownTimer: React.FC = () => {
       {/* Countdown grid */}
       <motion.div 
         variants={itemVariants}
-        className="grid grid-cols-4 gap-3 lg:gap-6"
+        className="grid grid-cols-4 gap-3 lg:gap-6 relative"
       >
+        {/* Subtle pulsing border effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 via-amber-400/5 to-yellow-400/10 rounded-xl lg:rounded-2xl"
+          animate={{ 
+            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
         {timeUnits.map((unit, index) => (
           <motion.div
             key={unit.key}
@@ -203,6 +217,32 @@ const CountdownTimer: React.FC = () => {
                 ease: "easeInOut"
               }}
             />
+
+            {/* Floating particles */}
+            <div className="absolute inset-0 overflow-hidden rounded-xl lg:rounded-2xl">
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white/20 rounded-full"
+                  style={{
+                    left: `${20 + Math.random() * 60}%`,
+                    top: `${20 + Math.random() * 60}%`,
+                  }}
+                  animate={{
+                    y: [0, -10, 0],
+                    x: [0, Math.random() * 10 - 5, 0],
+                    opacity: [0.2, 0.6, 0.2],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
 
             {/* Main container */}
             <motion.div
