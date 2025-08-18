@@ -153,16 +153,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               animate={{
                 rotateY: [0, 360],
                 rotateX: [0, 8, -8, 0],
-                scale: [1, 1.05, 1],
+                scale: [1, 1.05, 1]
               }}
               transition={{
                 rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
                 rotateX: { duration: 4, repeat: Infinity, ease: "easeInOut" },
                 scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
               }}
-              className="transform-gpu"
+              className="transform-gpu perspective-1000"
               style={{
-                filter: 'drop-shadow(0 15px 30px rgba(251, 191, 36, 0.4))'
+                filter: 'drop-shadow(0 20px 40px rgba(251, 191, 36, 0.5))',
+                transformStyle: 'preserve-3d'
               }}
             >
               <motion.img
@@ -170,13 +171,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 alt="MINUCST Logo"
                 className="w-80 h-80 mx-auto object-contain"
                 style={{
-                  filter: 'brightness(1.1) contrast(1.1) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5))'
+                  filter: 'brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))'
                 }}
                 animate={{
                   filter: [
-                    'brightness(1.1) contrast(1.1) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5))',
-                    'brightness(1.2) contrast(1.15) drop-shadow(0 0 35px rgba(251, 191, 36, 0.7))',
-                    'brightness(1.1) contrast(1.1) drop-shadow(0 0 25px rgba(251, 191, 36, 0.5))'
+                    'brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))',
+                    'brightness(1.3) contrast(1.3) drop-shadow(0 0 50px rgba(251, 191, 36, 0.9))',
+                    'brightness(1.15) contrast(1.2) drop-shadow(0 0 30px rgba(251, 191, 36, 0.6))'
                   ]
                 }}
                 transition={{
@@ -188,10 +189,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               
               {/* Anillo de energía alrededor del logo */}
               <motion.div
-                className="absolute inset-0 border-3 border-yellow-400/25 rounded-full"
+                className="absolute inset-0 border-4 border-yellow-400/30 rounded-full"
                 animate={{
                   scale: [1, 1.15, 1],
-                  opacity: [0.2, 0.5, 0.2],
+                  opacity: [0.3, 0.7, 0.3],
                   rotate: [0, 360]
                 }}
                 transition={{
@@ -203,10 +204,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               
               {/* Segundo anillo más sutil */}
               <motion.div
-                className="absolute inset-4 border-2 border-amber-400/15 rounded-full"
+                className="absolute inset-4 border-3 border-amber-400/20 rounded-full"
                 animate={{
                   scale: [1, 1.1, 1],
-                  opacity: [0.1, 0.3, 0.1],
+                  opacity: [0.2, 0.5, 0.2],
                   rotate: [360, 0]
                 }}
                 transition={{
@@ -215,6 +216,65 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                   rotate: { duration: 12, repeat: Infinity, ease: "linear" }
                 }}
               />
+              
+              {/* Destello imponente y bonito */}
+              <motion.div
+                className="absolute inset-0 rounded-full overflow-hidden"
+                animate={{
+                  rotate: [0, 360]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                  style={{
+                    background: 'conic-gradient(from 0deg, transparent 0deg, rgba(251, 191, 36, 0.8) 45deg, rgba(255, 255, 255, 0.9) 90deg, rgba(251, 191, 36, 0.8) 135deg, transparent 180deg, transparent 360deg)',
+                    clipPath: 'polygon(45% 0%, 55% 0%, 55% 100%, 45% 100%)'
+                  }}
+                  animate={{
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
+              
+              {/* Destello secundario más sutil */}
+              <motion.div
+                className="absolute inset-2 rounded-full overflow-hidden"
+                animate={{
+                  rotate: [360, 0]
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                <motion.div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'conic-gradient(from 90deg, transparent 0deg, rgba(255, 215, 0, 0.6) 30deg, rgba(255, 255, 255, 0.7) 60deg, rgba(255, 215, 0, 0.6) 90deg, transparent 120deg, transparent 360deg)',
+                    clipPath: 'polygon(48% 0%, 52% 0%, 52% 100%, 48% 100%)'
+                  }}
+                  animate={{
+                    opacity: [0, 0.8, 0]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
           
