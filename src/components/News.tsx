@@ -81,10 +81,13 @@ const News: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
                   <img 
-                    src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                    src={item.image}
                     alt={item.title}
                     className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop';
+                    }}
                   />
                   <div className="absolute top-4 left-4">
                     <motion.span 

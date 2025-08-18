@@ -232,14 +232,13 @@ const Gallery: React.FC = () => {
                 >
                   <div className="relative mb-4">
                     <img 
-                      src={`https://images.unsplash.com/photo-${
-                        index === 0 ? '1522202176988-66273c2fd55f' :
-                        index === 1 ? '1507003211169-0a1dd7ef0a50' :
-                        '1521737604893-d14cc237f11d'
-                      }?w=600&h=300&fit=crop&crop=center`}
+                      src={testimonial.videoThumbnail}
                       alt={`Testimonio de ${testimonial.name}`}
                       className="w-full h-48 object-cover rounded-lg"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop';
+                      }}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
                       <motion.div 

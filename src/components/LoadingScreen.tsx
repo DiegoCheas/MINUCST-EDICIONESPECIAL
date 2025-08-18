@@ -72,10 +72,13 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             className="mb-12 flex justify-center"
           >
             <motion.img
-              src="/minucst_logo_resized 1.png"
+              src="/minucst_logo_resized%201.png"
               alt="MINUCST Logo"
               className="w-80 h-80 object-contain"
               loading="eager"
+              onError={(e) => {
+                console.log('Error loading logo in loading screen:', e);
+              }}
               animate={{
                 scale: [1, 1.08, 1],
                 filter: [

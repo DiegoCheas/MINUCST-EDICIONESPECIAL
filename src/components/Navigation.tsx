@@ -83,7 +83,7 @@ const Navigation: React.FC = () => {
             {/* Logo TAMAÑO CORRECTO */}
             <div className="relative flex items-center">
               <motion.img 
-                src="/minucst_logo_resized%201.png" 
+                src="/minucst_logo_resized%201.png"
                 alt="MINUCST Logo" 
                 className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
                 style={{
@@ -97,6 +97,9 @@ const Navigation: React.FC = () => {
                 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 loading="eager"
+                onError={(e) => {
+                  console.log('Error loading navigation logo:', e);
+                }}
               />
             </div>
             

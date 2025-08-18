@@ -144,8 +144,12 @@ const Hero: React.FC = () => {
                 <motion.img
                   src="/minucst_logo_resized%201.png"
                   alt="MINUCST Logo"
-                  className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain"
+                  className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain filter drop-shadow-lg"
                   loading="eager"
+                  onError={(e) => {
+                    console.log('Error loading logo:', e);
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               </motion.div>
               
