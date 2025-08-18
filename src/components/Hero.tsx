@@ -205,7 +205,7 @@ const Hero: React.FC = () => {
                   className="flex justify-center lg:justify-start"
                 >
                   <motion.img
-                    src="/minucst_logo_resized 1.png"
+                    src="/minucst_logo_resized%201.png"
                     alt="MINUCST Logo"
                     className="h-48 sm:h-56 lg:h-72 xl:h-80 w-auto object-contain"
                     whileHover={{ 

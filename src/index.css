@@ -36,6 +36,19 @@
     font-weight: 300;
     letter-spacing: 0.05em;
   }
+
+  /* Image loading optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Fix for logo display */
+  img[alt*="Logo"] {
+    object-fit: contain;
+    object-position: center;
+  }
 }
 
 @layer utilities {
