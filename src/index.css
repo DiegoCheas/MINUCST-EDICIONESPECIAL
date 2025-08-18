@@ -133,31 +133,63 @@
 }
 
 /* Refresh rate specific optimizations */
-@media (min-refresh-rate: 60hz) {
-  * {
-    transition-duration: 0.2s;
-    animation-duration: 0.6s;
-  }
-}
-
 @media (min-refresh-rate: 120hz) {
   * {
-    transition-duration: 0.15s;
-    animation-duration: 0.5s;
+    transition-duration: 0.08s;
+    animation-duration: 0.25s;
   }
 }
 
 @media (min-refresh-rate: 144hz) {
   * {
-    transition-duration: 0.12s;
-    animation-duration: 0.4s;
+    transition-duration: 0.06s;
+    animation-duration: 0.2s;
   }
 }
 
 @media (min-refresh-rate: 240hz) {
   * {
+    transition-duration: 0.04s;
+    animation-duration: 0.15s;
+  }
+}
+
+@media (min-refresh-rate: 60hz) {
+  * {
+    transition-duration: 0.15s;
+    animation-duration: 0.4s;
+  }
+}
+
+/* Ultra-smooth 120Hz optimizations */
+.ultra-smooth-120hz {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  contain: layout style paint;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 120Hz specific animations */
+@media (min-refresh-rate: 120hz) {
+  .ultra-smooth-120hz {
     transition-duration: 0.08s;
+    animation-duration: 0.25s;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* Ultra-performance for all devices */
+@media (max-width: 768px) {
+  .ultra-smooth-120hz {
+    transition-duration: 0.1s;
     animation-duration: 0.3s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 }
 
@@ -166,14 +198,15 @@
   /* High refresh rate support with perfect timing */
   * {
     transition-property: transform, opacity, background-color, border-color, color, fill, stroke, box-shadow, filter;
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   /* Hardware acceleration for all interactive elements */
   button, a, [role="button"], .interactive {
     transform: translateZ(0);
-    will-change: transform;
+    will-change: transform, opacity, filter;
     backface-visibility: hidden;
+    contain: layout style paint;
   }
 
   /* Optimize scrolling performance */
@@ -192,13 +225,16 @@
     touch-action: manipulation;
     user-select: none;
     -webkit-user-select: none;
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   /* Smooth mobile animations */
   .mobile-smooth {
-    transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.1s cubic-bezier(0.23, 1, 0.32, 1);
     transform: translateZ(0);
-    will-change: transform;
+    will-change: transform, opacity;
+    contain: layout style paint;
   }
 
   /* Mobile menu specific */
@@ -206,6 +242,7 @@
     transform: translateZ(0);
     will-change: transform, opacity;
     backface-visibility: hidden;
+    contain: layout style paint;
   }
 
   /* Mobile navigation optimization */
@@ -217,6 +254,8 @@
     z-index: 50;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    transform: translateZ(0);
+    will-change: transform, opacity;
   }
 
   /* Mobile hero section optimization */
@@ -424,7 +463,9 @@
   position: relative;
   overflow: hidden;
   transform: translateZ(0);
-  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity, filter, box-shadow;
+  contain: layout style paint;
 }
 
 .button-ultra-smooth::before {
@@ -435,7 +476,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: left 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .button-ultra-smooth:hover::before {
@@ -443,9 +484,18 @@
 }
 
 .button-ultra-smooth:hover {
-  transform: translateY(-1.5px) translateZ(0) scale(1.003);
+  transform: translateY(-1px) translateZ(0) scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   filter: brightness(1.02) saturate(1.02);
+}
+
+/* Ultra-smooth header transitions */
+.header-ultra-smooth {
+  transition: all 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity, background-color, border-color, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 /* Enhanced glass morphism */
@@ -455,6 +505,8 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 .dark .glass-morphism {
@@ -463,6 +515,36 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
 }
 
+/* Extreme performance optimizations */
+.performance-beast {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity, filter, background-color, border-color, color, box-shadow;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  contain: strict;
+  content-visibility: auto;
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Variable refresh rate support */
+@media (dynamic-range: high) {
+  .ultra-smooth-120hz {
+    transition-duration: 0.06s;
+    animation-duration: 0.2s;
+  }
+}
+
+/* High DPI optimizations */
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+  .ultra-smooth-120hz {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0) scale(1.0001);
+  }
+}
 /* Enhanced interactive elements */
 .desktop-interactive {
   position: relative;
