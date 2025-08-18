@@ -475,10 +475,10 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="text-yellow-200/95 text-xl font-light mb-6"
-                {'Educación por la Paz: Resiliencia y Cooperación para la Transformación Social'.split(' ').map((word, index) => (
+                >
                   <motion.span
                     key={currentPhase}
-                      delay: 2.8 + index * 0.08,
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.5 }}
@@ -489,14 +489,13 @@ const LoadingScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => 
 
                 {/* Professional loading dots with wave animation */}
                 <div className="flex justify-center space-x-3">
-                    {'Forjando Líderes Globales para un Futuro de Paz y Cooperación Internacional'.split(' ').map((word, index) => (
+                  {[...Array(5)].map((_, i) => (
                     <motion.div
                       key={i}
                       className="w-3 h-3 bg-yellow-400/70 rounded-full"
                       animate={{
                         scale: [1, 1.8, 1],
                         opacity: [0.4, 1, 0.4],
-                          delay: 4.0 + index * 0.06,
                       }}
                       transition={{
                         duration: 2,
