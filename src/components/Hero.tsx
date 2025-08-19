@@ -384,7 +384,7 @@ const Hero: React.FC = () => {
                     filter: 'drop-shadow(0 12px 24px rgba(220, 38, 38, 0.3))'
                   }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => handleExternalLink('https://minucststaffweb.netlify.app')}
+                  onClick={() => handleExternalLink('https://minucstinside.com/')}
                   className="group relative overflow-hidden bg-gradient-to-br from-red-600/15 via-red-500/10 to-yellow-500/15 backdrop-blur-xl border border-red-400/25 rounded-xl p-3 lg:p-4 transition-all duration-300"
                 >
                   <div className="relative z-10 flex items-center space-x-2 lg:space-x-3">
