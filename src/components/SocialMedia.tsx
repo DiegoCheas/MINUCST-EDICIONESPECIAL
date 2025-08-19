@@ -23,7 +23,7 @@ const SocialMedia: React.FC = () => {
     {
       name: 'Instagram',
       icon: Instagram,
-      url: '#',
+      url: 'https://www.instagram.com/minucst/',
       color: 'from-pink-500 to-purple-600',
       hoverColor: 'hover:from-pink-400 hover:to-purple-500',
       description: 'Fotos y momentos especiales del evento'
@@ -47,7 +47,7 @@ const SocialMedia: React.FC = () => {
     {
       name: 'YouTube',
       icon: Youtube,
-      url: '#',
+      url: 'https://www.youtube.com/@minucst2026',
       color: 'from-red-600 to-red-700',
       hoverColor: 'hover:from-red-500 hover:to-red-600',
       description: 'Videos, conferencias y contenido educativo'
