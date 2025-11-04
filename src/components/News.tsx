@@ -9,7 +9,6 @@ import { useImageStorage } from '../hooks/useImageStorage';
 
 const News: React.FC = () => {
   const { isDark } = useTheme();
-  const { saveImage, getImage } = useImageStorage();
   
   const defaultNewsImages = [
     'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
@@ -17,40 +16,12 @@ const News: React.FC = () => {
     'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   ];
   
-  const [newsImages, setNewsImages] = React.useState(() => 
-    defaultNewsImages.map((img, index) => getImage(`news-${index}`, img))
-  );
+  const [newsImages, setNewsImages] = React.useState(defaultNewsImages);
   
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
-
-  // Escuchar cambios de imágenes
-  React.useEffect(() => {
-    const handleImageUpdate = (event: CustomEvent) => {
-      const key = event.detail.key;
-      if (key.startsWith('news-')) {
-        const index = parseInt(key.replace('news-', ''));
-        setNewsImages(prev => {
-          const newImages = [...prev];
-          newImages[index] = event.detail.url;
-          return newImages;
-        });
-      }
-    };
-    
-    window.addEventListener('admin-image-updated', handleImageUpdate as EventListener);
-    return () => window.removeEventListener('admin-image-updated', handleImageUpdate as EventListener);
-  }, []);
-
-  // Cargar imágenes guardadas al montar
-  React.useEffect(() => {
-    const savedImages = defaultNewsImages.map((img, index) => 
-      getImage(`news-${index}`, img)
-    );
-    setNewsImages(savedImages);
-  }, [getImage]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -120,18 +91,6 @@ const News: React.FC = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
-                  <AdminImageUpload
-                    imageKey={`news-${index}`}
-                    currentImage={newsImages[index]}
-                    onImageChange={(newUrl) => {
-                      saveImage(`news-${index}`, newUrl);
-                      setNewsImages(prev => {
-                        const newImages = [...prev];
-                        newImages[index] = newUrl;
-                        return newImages;
-                      });
-                    }}
-                  />
                   <img 
                     src={newsImages[index]}
                     alt={item.title}

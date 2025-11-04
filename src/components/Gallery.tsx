@@ -9,7 +9,6 @@ import { useImageStorage } from '../hooks/useImageStorage';
 const Gallery: React.FC = () => {
   const [activeTab, setActiveTab] = useState('photos');
   const { isDark } = useTheme();
-  const { saveImage, getImage } = useImageStorage();
   
   const defaultImages = [
     'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
@@ -20,40 +19,12 @@ const Gallery: React.FC = () => {
     'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   ];
   
-  const [galleryImages, setGalleryImages] = useState(() => 
-    defaultImages.map((img, index) => getImage(`gallery-${index}`, img))
-  );
+  const [galleryImages, setGalleryImages] = useState(defaultImages);
   
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
-
-  // Escuchar cambios de imágenes
-  React.useEffect(() => {
-    const handleImageUpdate = (event: CustomEvent) => {
-      const key = event.detail.key;
-      if (key.startsWith('gallery-')) {
-        const index = parseInt(key.replace('gallery-', ''));
-        setGalleryImages(prev => {
-          const newImages = [...prev];
-          newImages[index] = event.detail.url;
-          return newImages;
-        });
-      }
-    };
-    
-    window.addEventListener('admin-image-updated', handleImageUpdate as EventListener);
-    return () => window.removeEventListener('admin-image-updated', handleImageUpdate as EventListener);
-  }, []);
-
-  // Cargar imágenes guardadas al montar
-  React.useEffect(() => {
-    const savedImages = defaultImages.map((img, index) => 
-      getImage(`gallery-${index}`, img)
-    );
-    setGalleryImages(savedImages);
-  }, [getImage]);
 
   const photos = [
     {
@@ -221,18 +192,6 @@ const Gallery: React.FC = () => {
                   className="group cursor-pointer overflow-hidden rounded-xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                 >
                   <div className="relative overflow-hidden">
-                    <AdminImageUpload
-                      imageKey={`gallery-${index}`}
-                      currentImage={galleryImages[index]}
-                      onImageChange={(newUrl) => {
-                        saveImage(`gallery-${index}`, newUrl);
-                        setGalleryImages(prev => {
-                          const newImages = [...prev];
-                          newImages[index] = newUrl;
-                          return newImages;
-                        });
-                      }}
-                    />
                     <img 
                       src={galleryImages[index]}
                       alt={photo.caption}

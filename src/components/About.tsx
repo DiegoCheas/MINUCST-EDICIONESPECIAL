@@ -7,36 +7,12 @@ import { useSupabaseImages } from '../hooks/useSupabaseImages';
 
 const About: React.FC = () => {
   const { isDark } = useTheme();
-  const { getImage } = useSupabaseImages();
-  const [debateImage, setDebateImage] = React.useState(() => 
-    'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
-  );
+  const [debateImage, setDebateImage] = React.useState('https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
   
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
-
-  // Escuchar cambios de imágenes
-  React.useEffect(() => {
-    const handleImageUpdate = (event: CustomEvent) => {
-      if (event.detail.key === 'about-debate') {
-        setDebateImage(event.detail.url);
-      }
-    };
-    
-    window.addEventListener('supabase-image-updated', handleImageUpdate as EventListener);
-    return () => window.removeEventListener('supabase-image-updated', handleImageUpdate as EventListener);
-  }, []);
-
-  // Cargar imagen guardada al montar
-  React.useEffect(() => {
-    const loadImage = async () => {
-      const savedImage = await getImage('about-debate', 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
-      setDebateImage(savedImage);
-    };
-    loadImage();
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -93,11 +69,6 @@ const About: React.FC = () => {
         >
           <motion.div variants={itemVariants}>
             <div className="relative rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
-              <AdminImageUpload
-                imageKey="about-debate"
-                currentImage={debateImage}
-                onImageChange={setDebateImage}
-              />
               <img 
                 src={debateImage}
                 alt="Sesión de debate MINUCST"
