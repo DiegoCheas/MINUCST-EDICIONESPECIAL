@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getImageUrl, saveImageUrl, uploadImage } from '../lib/supabase';
+import { getImageUrl, saveImageUrl, uploadImage, supabase } from '../lib/supabase';
 
 export const useSupabaseImages = () => {
   const [images, setImages] = useState<Record<string, string>>({});
@@ -13,12 +13,16 @@ export const useSupabaseImages = () => {
       setImages(prev => ({ ...prev, [key]: url }));
       return url;
     } catch (error) {
-      console.error('Error getting image:', error);
+      // Silently return default URL if Supabase is not configured
       return defaultUrl;
     }
   };
 
   const saveImage = async (key: string, file: File): Promise<string> => {
+    if (!supabase) {
+      throw new Error('Supabase not configured. Please set up your Supabase credentials.');
+    }
+    
     setLoading(true);
     try {
       // Subir imagen a Supabase Storage

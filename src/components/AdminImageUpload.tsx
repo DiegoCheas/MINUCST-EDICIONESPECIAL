@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, X, Check, AlertCircle } from 'lucide-react';
 import { useSupabaseImages } from '../hooks/useSupabaseImages';
+import { supabase } from '../lib/supabase';
 
 interface AdminImageUploadProps {
   imageKey: string;
@@ -26,7 +27,10 @@ const AdminImageUpload: React.FC<AdminImageUploadProps> = ({
   // Solo mostrar si hay una query string específica de admin
   React.useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    setIsVisible(urlParams.get('admin') === 'true');
+    // Only show admin controls if Supabase is configured AND admin=true
+    const isAdmin = urlParams.get('admin') === 'true';
+    const hasSupabase = Boolean(supabase);
+    setIsVisible(isAdmin && hasSupabase);
   }, []);
 
   if (!isVisible) return null;

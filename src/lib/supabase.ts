@@ -1,12 +1,19 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://your-project.supabase.co'
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Only create Supabase client if credentials are provided
+export const supabase = supabaseUrl && supabaseAnonKey && supabaseUrl !== 'your_supabase_project_url' 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null
 
 // Función para subir imagen
 export const uploadImage = async (file: File, path: string) => {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+  
   try {
     const fileExt = file.name.split('.').pop()
     const fileName = `${path}-${Date.now()}.${fileExt}`
@@ -30,6 +37,10 @@ export const uploadImage = async (file: File, path: string) => {
 
 // Función para guardar URL de imagen en la base de datos
 export const saveImageUrl = async (key: string, url: string) => {
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+  
   try {
     const { data, error } = await supabase
       .from('site_images')
@@ -45,6 +56,10 @@ export const saveImageUrl = async (key: string, url: string) => {
 
 // Función para obtener URL de imagen
 export const getImageUrl = async (key: string, defaultUrl: string) => {
+  if (!supabase) {
+    return defaultUrl
+  }
+  
   try {
     const { data, error } = await supabase
       .from('site_images')
@@ -62,6 +77,10 @@ export const getImageUrl = async (key: string, defaultUrl: string) => {
 
 // Función para obtener todas las imágenes
 export const getAllImages = async () => {
+  if (!supabase) {
+    return []
+  }
+  
   try {
     const { data, error } = await supabase
       .from('site_images')
