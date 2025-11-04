@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Users, Globe2, Award, BookOpen, Handshake } from 'lucide-react';
+import { Users, Globe as Globe2, Award, BookOpen, Handshake } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import AdminImageUpload from './AdminImageUpload';
 import { useSupabaseImages } from '../hooks/useSupabaseImages';
