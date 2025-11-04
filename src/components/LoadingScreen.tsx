@@ -13,7 +13,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     // Precargar el logo
     const img = new Image();
     img.onload = () => setLogoLoaded(true);
-    img.src = "/minucst_logo_resized 1.png";
+    img.src = "/minucst_logo_resized 1 copy.png";
 
     let progressValue = 0;
     const interval = setInterval(() => {
@@ -72,7 +72,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             className="mb-12 flex justify-center"
           >
             <motion.img
-              src="/minucst_logo_resized 1.png"
+              src="/minucst_logo_resized 1 copy.png"
               alt="MINUCST Logo"
               className="w-80 h-auto object-contain filter drop-shadow-2xl"
               loading="eager"
