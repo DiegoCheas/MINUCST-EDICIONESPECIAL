@@ -1,0 +1,21 @@
+{
+  "name": "MINUCST XV - Edición Especial 2026",
+  "short_name": "MINUCST XV",
+  "description": "Modelo Internacional de las Naciones Unidas del Colegio Santa Teresa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#991b1b",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/minucst_logo_resized 1 copy.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "social"],
+  "lang": "es",
+  "dir": "ltr"
+}
