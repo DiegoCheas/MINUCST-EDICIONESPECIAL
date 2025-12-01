@@ -4,19 +4,16 @@ import { useInView } from 'react-intersection-observer';
 import { Calendar, Tag, ArrowRight, Newspaper } from 'lucide-react';
 import { NEWS_ITEMS } from '../utils/constants';
 import { useTheme } from '../contexts/ThemeContext';
-import AdminImageUpload from './AdminImageUpload';
-import { useImageStorage } from '../hooks/useImageStorage';
+import LazyImage from './LazyImage';
 
 const News: React.FC = () => {
   const { isDark } = useTheme();
   
-  const defaultNewsImages = [
+  const newsImages = [
     'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     'https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   ];
-  
-  const [newsImages, setNewsImages] = React.useState(defaultNewsImages);
   
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -46,7 +43,7 @@ const News: React.FC = () => {
   };
 
   return (
-    <section id="news" className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <section id="news" className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 transition-colors duration-300 performance-critical">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -91,11 +88,13 @@ const News: React.FC = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
-                  <img 
+                  <LazyImage
                     src={newsImages[index]}
                     alt={item.title}
-                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300`}
-                    loading="lazy"
+                    className="group-hover:scale-105 transition-transform duration-300"
+                    width={800}
+                    height={index === 0 ? 800 : 400}
+                    quality={85}
                   />
                   <div className="absolute top-4 left-4">
                     <motion.span 

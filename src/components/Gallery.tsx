@@ -3,14 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Play, Image as ImageIcon, Users, Award } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import AdminImageUpload from './AdminImageUpload';
-import { useImageStorage } from '../hooks/useImageStorage';
+import LazyImage from './LazyImage';
+import { useImagePreloader } from '../hooks/useImageOptimization';
 
 const Gallery: React.FC = () => {
   const [activeTab, setActiveTab] = useState('photos');
   const { isDark } = useTheme();
   
-  const defaultImages = [
+  const galleryImages = [
     'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
     'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
@@ -19,8 +19,7 @@ const Gallery: React.FC = () => {
     'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   ];
   
-  const [galleryImages, setGalleryImages] = useState(defaultImages);
-  
+  const { loadedImages } = useImagePreloader(galleryImages);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -112,7 +111,7 @@ const Gallery: React.FC = () => {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-gray-900 dark:bg-black text-white transition-colors duration-300">
+    <section id="gallery" className="py-20 bg-gray-900 dark:bg-black text-white transition-colors duration-300 performance-critical">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -192,11 +191,13 @@ const Gallery: React.FC = () => {
                   className="group cursor-pointer overflow-hidden rounded-xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                 >
                   <div className="relative overflow-hidden">
-                    <img 
+                    <LazyImage
                       src={galleryImages[index]}
                       alt={photo.caption}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
+                      className="group-hover:scale-105 transition-transform duration-300"
+                      width={800}
+                      height={600}
+                      quality={85}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <motion.div
@@ -238,11 +239,13 @@ const Gallery: React.FC = () => {
                   className="bg-gray-800 dark:bg-gray-700 rounded-xl p-6 hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-300 group cursor-pointer"
                 >
                   <div className="relative mb-4">
-                    <img 
+                    <LazyImage
                       src={testimonial.videoThumbnail}
                       alt={`Testimonio de ${testimonial.name}`}
-                      className="w-full h-48 object-cover rounded-lg"
-                      loading="lazy"
+                      className="rounded-lg"
+                      width={400}
+                      height={300}
+                      quality={80}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
                       <motion.div 

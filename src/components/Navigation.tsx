@@ -51,14 +51,14 @@ const Navigation: React.FC = () => {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out ultra-smooth-360hz ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out gpu-accelerated ${
         scrolled 
           ? 'bg-white/98 dark:bg-gray-900/98 backdrop-blur-2xl shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
           : 'bg-transparent'
       }`}
       style={{ 
         height: '88px',
-        willChange: 'transform, opacity, background-color',
+        willChange: 'transform',
         zIndex: 40
       }}
     >

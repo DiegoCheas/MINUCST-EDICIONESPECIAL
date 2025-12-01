@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "npx vite",
     "build": "npx vite build",
+    "build:analyze": "npx vite build --mode analyze",
     "lint": "eslint .",
-    "preview": "npx vite preview"
+    "preview": "npx vite preview",
+    "test:performance": "npm run build && npx lighthouse http://localhost:4173 --output=html --output-path=./lighthouse-report.html"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.55.0",

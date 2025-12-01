@@ -3,12 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Users, Globe as Globe2, Award, BookOpen, Handshake } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import AdminImageUpload from './AdminImageUpload';
-import { useSupabaseImages } from '../hooks/useSupabaseImages';
+import LazyImage from './LazyImage';
 
 const WhoWeAre: React.FC = () => {
   const { isDark } = useTheme();
-  const [collegeImage, setCollegeImage] = React.useState('https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop');
+  const collegeImage = 'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop';
   
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -38,7 +37,7 @@ const WhoWeAre: React.FC = () => {
   };
 
   return (
-    <section id="who-we-are" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="who-we-are" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300 performance-critical">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -70,11 +69,13 @@ const WhoWeAre: React.FC = () => {
         >
           <motion.div variants={itemVariants}>
             <div className="relative rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 h-80 overflow-hidden">
-              <img 
+              <LazyImage
                 src={collegeImage}
                 alt="Colegio Santa Teresa - Educación de Excelencia"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                loading="lazy"
+                className="hover:scale-105 transition-transform duration-300"
+                width={800}
+                height={600}
+                quality={85}
               />
             </div>
           </motion.div>

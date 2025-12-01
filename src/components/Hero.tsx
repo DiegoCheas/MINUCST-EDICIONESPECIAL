@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Users, Award, ExternalLink, Star, Sparkles, Globe, Zap, ArrowUpRight } from 'lucide-react';
-import CountdownTimer from './CountdownTimer';
 import { useTheme } from '../contexts/ThemeContext';
+
+// Lazy load CountdownTimer
+const CountdownTimer = React.lazy(() => import('./CountdownTimer'));
 
 const Hero: React.FC = () => {
   const { isDark } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -37,7 +44,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white relative overflow-hidden">
+    <section id="home" className="min-h-screen bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white relative overflow-hidden performance-critical">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <motion.div 
@@ -144,8 +151,9 @@ const Hero: React.FC = () => {
                 <motion.img
                   src="/minucst_logo_resized 1 copy.png"
                   alt="MINUCST Logo"
-                  className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain filter drop-shadow-lg"
+                  className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain filter drop-shadow-lg gpu-accelerated"
                   loading="eager"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
                   }}
@@ -522,7 +530,13 @@ const Hero: React.FC = () => {
               ))}
             </div>
 
-            <CountdownTimer />
+            <React.Suspense fallback={
+              <div className="bg-gradient-to-br from-black/20 via-black/15 to-black/8 backdrop-blur-3xl border border-yellow-400/25 rounded-2xl lg:rounded-3xl p-6 lg:p-10 text-center h-48 flex items-center justify-center">
+                <div className="text-yellow-400">Cargando contador...</div>
+              </div>
+            }>
+              {isLoaded && <CountdownTimer />}
+            </React.Suspense>
 
             <motion.div 
               initial={{ opacity: 0, y: 15 }}

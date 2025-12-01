@@ -2,6 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Critical CSS - Load first */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  
+  body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+  }
+}
+
 /* Sistema de tokens CSS para diseño futurista */
 :root {
   /* Colores institucionales */
@@ -49,36 +81,39 @@
   --shadow-strong: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-  
-  body {
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overscroll-behavior: none;
-    touch-action: manipulation;
-    overflow-x: hidden;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+.performance-critical {
+  contain: layout style paint;
+  content-visibility: auto;
+}
 
-  /* Asegurar que el contenido principal tenga altura completa */
-  #root {
-    min-height: 100vh;
-    width: 100%;
+/* Lazy loading optimization */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+}
 
   /* Bebas Neue font class */
   .bebas-font {

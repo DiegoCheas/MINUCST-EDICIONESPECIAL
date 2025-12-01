@@ -74,8 +74,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             <motion.img
               src="/minucst_logo_resized 1 copy.png"
               alt="MINUCST Logo"
-              className="w-80 h-auto object-contain filter drop-shadow-2xl"
+              className="w-80 h-auto object-contain filter drop-shadow-2xl gpu-accelerated"
               loading="eager"
+              decoding="async"
               onError={(e) => {
                 e.currentTarget.src = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
               }}

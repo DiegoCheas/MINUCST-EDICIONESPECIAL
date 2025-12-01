@@ -7,54 +7,72 @@ export default defineConfig({
   publicDir: 'public',
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
   optimizeDeps: {
-    exclude: ['lucide-react'],
+    include: ['react', 'react-dom', 'framer-motion', 'lucide-react', 'react-intersection-observer'],
+    exclude: [],
   },
   build: {
-    target: 'esnext',
+    target: 'es2020',
     minify: 'esbuild',
     cssMinify: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion'],
-          utils: ['lucide-react', 'react-intersection-observer']
-        },
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
-    },
     cssCodeSplit: true,
     sourcemap: false,
     reportCompressedSize: false,
     chunkSizeWarningLimit: 1000,
-    assetsInlineLimit: 8192
+    assetsInlineLimit: 4096,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'animation-vendor': ['framer-motion'],
+          'ui-vendor': ['lucide-react', 'react-intersection-observer'],
+          'components': [
+            './src/components/Hero',
+            './src/components/Navigation',
+            './src/components/LoadingScreen'
+          ]
+        },
+        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      }
+    }
   },
   server: {
     host: true,
     port: 5173,
     strictPort: false,
     open: false,
-    // Enable HTTP/2 for better performance
-    https: false,
-    // Optimize dev server
+    cors: true,
     hmr: {
-      overlay: false
+      overlay: false,
+      port: 24678
+    },
+    fs: {
+      strict: false
     }
   },
   preview: {
     host: true,
     port: 4173,
     strictPort: false,
-    open: false,
+    open: false
   },
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' },
-    // Optimize for performance
+    target: 'es2020',
+    platform: 'browser',
+    format: 'esm',
+    splitting: true,
+    treeShaking: true,
     minifyIdentifiers: true,
     minifySyntax: true,
-    minifyWhitespace: true,
-    treeShaking: true
+    minifyWhitespace: true
   },
 });
