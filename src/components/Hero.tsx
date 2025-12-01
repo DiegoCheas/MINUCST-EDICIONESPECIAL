@@ -149,13 +149,13 @@ const Hero: React.FC = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <motion.img
-                  src="/minucst_logo_resized 1 copy.png"
+                  src="/image.png"
                   alt="MINUCST Logo"
                   className="h-32 sm:h-40 lg:h-48 xl:h-56 w-auto object-contain filter drop-shadow-lg gpu-accelerated"
                   loading="eager"
                   decoding="async"
                   onError={(e) => {
-                    e.currentTarget.src = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop";
+                    console.warn('Logo failed to load');
                   }}
                 />
               </motion.div>

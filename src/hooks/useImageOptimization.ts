@@ -68,6 +68,11 @@ export const useImagePreloader = (urls: string[]) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    if (!urls || urls.length === 0) {
+      setIsLoading(false);
+      return;
+    }
+
     const preloadImages = async () => {
       const imagePromises = urls.map(url => {
         return new Promise<string>((resolve, reject) => {
@@ -92,9 +97,7 @@ export const useImagePreloader = (urls: string[]) => {
       }
     };
 
-    if (urls.length > 0) {
-      preloadImages();
-    }
+    preloadImages();
   }, [urls]);
 
   return { loadedImages, isLoading };

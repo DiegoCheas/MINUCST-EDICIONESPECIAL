@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Play, Image as ImageIcon, Users, Award } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import LazyImage from './LazyImage';
-import { useImagePreloader } from '../hooks/useImageOptimization';
 
 const Gallery: React.FC = () => {
   const [activeTab, setActiveTab] = useState('photos');
@@ -19,7 +17,6 @@ const Gallery: React.FC = () => {
     'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'
   ];
   
-  const { loadedImages } = useImagePreloader(galleryImages);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -191,13 +188,14 @@ const Gallery: React.FC = () => {
                   className="group cursor-pointer overflow-hidden rounded-xl bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-all duration-300"
                 >
                   <div className="relative overflow-hidden">
-                    <LazyImage
+                    <motion.img
                       src={galleryImages[index]}
                       alt={photo.caption}
-                      className="group-hover:scale-105 transition-transform duration-300"
-                      width={800}
-                      height={600}
-                      quality={85}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <motion.div
@@ -239,13 +237,12 @@ const Gallery: React.FC = () => {
                   className="bg-gray-800 dark:bg-gray-700 rounded-xl p-6 hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-300 group cursor-pointer"
                 >
                   <div className="relative mb-4">
-                    <LazyImage
+                    <motion.img
                       src={testimonial.videoThumbnail}
                       alt={`Testimonio de ${testimonial.name}`}
-                      className="rounded-lg"
-                      width={400}
-                      height={300}
-                      quality={80}
+                      className="w-full h-48 object-cover rounded-lg"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center rounded-lg">
                       <motion.div 

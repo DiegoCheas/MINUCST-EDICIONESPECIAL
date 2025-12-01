@@ -435,7 +435,6 @@ img[loading="lazy"].loaded {
     letter-spacing: 0.02em;
     word-break: keep-all;
     overflow-wrap: normal;
-    white-space: nowrap;
     overflow: visible;
   }
 
@@ -445,7 +444,6 @@ img[loading="lazy"].loaded {
     letter-spacing: 0.08em;
     word-break: keep-all;
     overflow-wrap: normal;
-    white-space: nowrap;
     overflow: visible;
   }
 
@@ -490,6 +488,19 @@ img[loading="lazy"].loaded {
   .mobile-viewport-fix {
     height: 100vh;
     height: 100dvh;
+  }
+
+  /* Mobile image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Mobile performance */
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }
 

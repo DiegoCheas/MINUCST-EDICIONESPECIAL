@@ -78,7 +78,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
       )}
 
       {/* Main image */}
-      {isInView && (
+      {isInView && !hasError && (
         <motion.img
           src={optimizedSrc}
           alt={alt}

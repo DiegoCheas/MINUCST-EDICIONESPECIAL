@@ -53,7 +53,7 @@ const Navigation: React.FC = () => {
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out gpu-accelerated ${
         scrolled 
-          ? 'bg-white/98 dark:bg-gray-900/98 backdrop-blur-2xl shadow-lg border-b border-gray-200/20 dark:border-gray-700/20' 
+          ? 'bg-red-700/95 backdrop-blur-2xl shadow-lg border-b border-red-600/20' 
           : 'bg-transparent'
       }`}
       style={{ 
@@ -77,7 +77,7 @@ const Navigation: React.FC = () => {
             {/* Logo con mejor presentación */}
             <div className="relative flex items-center">
               <motion.img 
-                src="/minucst_logo_resized 1 copy.png"
+                src="/image.png"
                 alt="MINUCST Logo" 
                 className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 object-contain"
                 style={{
@@ -94,7 +94,7 @@ const Navigation: React.FC = () => {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 loading="eager"
                 onError={(e) => {
-                  e.currentTarget.src = "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop";
+                  console.warn('Navigation logo failed to load');
                 }}
               />
             </div>
@@ -118,12 +118,12 @@ const Navigation: React.FC = () => {
                 <motion.span 
                   className={`text-2xl sm:text-3xl md:text-3xl transition-all duration-300 ${
                     scrolled 
-                      ? 'text-red-700 dark:text-red-400' 
+                      ? 'text-white' 
                       : 'text-white'
                   }`}
                   style={{
                     textShadow: scrolled 
-                      ? 'none' 
+                      ? '0 2px 8px rgba(0, 0, 0, 0.3)' 
                       : '0 2px 8px rgba(0, 0, 0, 0.5)',
                     fontWeight: 800
                   }}
@@ -133,7 +133,7 @@ const Navigation: React.FC = () => {
                 <motion.span 
                   className={`text-xs font-medium transition-all duration-300 ${
                     scrolled 
-                      ? 'text-gray-600 dark:text-gray-400' 
+                      ? 'text-white/80' 
                       : 'text-yellow-200'
                   }`}
                   style={{
@@ -166,7 +166,7 @@ const Navigation: React.FC = () => {
                 onClick={() => handleNavClick(item.href)}
                 className={`rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300 ${
                   scrolled 
-                    ? 'text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400' 
+                    ? 'text-white/90 hover:text-white hover:bg-red-600/50' 
                     : 'text-white/90 hover:text-white'
                 }`}
                 style={{
@@ -176,7 +176,7 @@ const Navigation: React.FC = () => {
                   justifyContent: 'center',
                   backdropFilter: 'blur(8px)',
                   border: scrolled 
-                    ? '1px solid transparent' 
+                    ? '1px solid rgba(255, 255, 255, 0.1)' 
                     : '1px solid rgba(255, 255, 255, 0.1)'
                 }}
               >
@@ -194,13 +194,13 @@ const Navigation: React.FC = () => {
               onClick={toggleTheme}
               className={`flex items-center justify-center w-11 h-11 rounded-full transition-all duration-300 ${
                 scrolled 
-                  ? 'text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20' 
+                  ? 'text-white/80 hover:text-white hover:bg-red-600/50' 
                   : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
               style={{
                 backdropFilter: 'blur(8px)',
                 border: scrolled 
-                  ? '1px solid rgba(220, 38, 38, 0.1)' 
+                  ? '1px solid rgba(255, 255, 255, 0.2)' 
                   : '1px solid rgba(255, 255, 255, 0.2)'
               }}
             >
@@ -214,13 +214,13 @@ const Navigation: React.FC = () => {
               onClick={() => setIsOpen(!isOpen)}
               className={`lg:hidden flex items-center justify-center w-11 h-11 rounded-full transition-all duration-300 ${
                 scrolled 
-                  ? 'text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20' 
+                  ? 'text-white/80 hover:text-white hover:bg-red-600/50' 
                   : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
               style={{
                 backdropFilter: 'blur(8px)',
                 border: scrolled 
-                  ? '1px solid rgba(220, 38, 38, 0.1)' 
+                  ? '1px solid rgba(255, 255, 255, 0.2)' 
                   : '1px solid rgba(255, 255, 255, 0.2)'
               }}
             >
@@ -239,6 +239,7 @@ const Navigation: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="lg:hidden bg-white/98 dark:bg-gray-900/98 backdrop-blur-2xl border-t border-gray-200/30 dark:border-gray-700/30 shadow-xl"
+            className="lg:hidden bg-red-700/95 backdrop-blur-2xl border-t border-red-600/30 shadow-xl"
           >
             <div className="px-6 py-6 space-y-2 max-h-80 overflow-y-auto">
               {navItems.map((item, index) => (
@@ -250,7 +251,7 @@ const Navigation: React.FC = () => {
                   whileHover={{ scale: 1.02, x: 5 }}
                   whileTap={{ scale: 0.99 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left px-5 py-4 text-base font-semibold text-gray-700 dark:text-gray-300 hover:text-red-700 dark:hover:text-red-400 hover:bg-red-50/80 dark:hover:bg-red-900/20 rounded-xl transition-all duration-300"
+                  className="block w-full text-left px-5 py-4 text-base font-semibold text-white/90 hover:text-white hover:bg-red-600/50 rounded-xl transition-all duration-300"
                   style={{ 
                     minHeight: '52px',
                     border: '1px solid transparent',

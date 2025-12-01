@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import { Calendar, Tag, ArrowRight, Newspaper } from 'lucide-react';
 import { NEWS_ITEMS } from '../utils/constants';
 import { useTheme } from '../contexts/ThemeContext';
-import LazyImage from './LazyImage';
 
 const News: React.FC = () => {
   const { isDark } = useTheme();
@@ -88,13 +87,14 @@ const News: React.FC = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
                 <div className={`relative ${index === 0 ? 'h-80' : 'h-48'}`}>
-                  <LazyImage
+                  <motion.img
                     src={newsImages[index]}
                     alt={item.title}
-                    className="group-hover:scale-105 transition-transform duration-300"
-                    width={800}
-                    height={index === 0 ? 800 : 400}
-                    quality={85}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   />
                   <div className="absolute top-4 left-4">
                     <motion.span 
