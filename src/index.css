@@ -144,7 +144,6 @@ img[loading="lazy"].loaded {
     object-fit: contain;
     object-position: center;
   }
-}
 
 /* Microinteracciones futuristas */
 @layer components {

@@ -239,7 +239,6 @@ const Navigation: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="lg:hidden bg-white/98 dark:bg-gray-900/98 backdrop-blur-2xl border-t border-gray-200/30 dark:border-gray-700/30 shadow-xl"
-            className="lg:hidden bg-red-700/95 backdrop-blur-2xl border-t border-red-600/30 shadow-xl"
           >
             <div className="px-6 py-6 space-y-2 max-h-80 overflow-y-auto">
               {navItems.map((item, index) => (
