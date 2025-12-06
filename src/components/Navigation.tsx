@@ -47,101 +47,93 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <motion.nav 
-      initial={{ y: -80 }}
+    <motion.nav
+      initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out gpu-accelerated ${
-        scrolled 
-          ? 'bg-red-700/95 backdrop-blur-2xl shadow-lg border-b border-red-600/20' 
+      transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-gradient-to-r from-red-700 via-red-700 to-red-800 shadow-2xl border-b border-red-600/40'
           : 'bg-transparent'
       }`}
-      style={{ 
-        height: '88px',
+      style={{
+        height: '100px',
         willChange: 'transform',
-        zIndex: 40
+        zIndex: 40,
+        backdropFilter: scrolled ? 'blur(10px)' : 'none'
       }}
     >
-      
+
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-full">
-          
-          {/* Logo y título - PROFESIONAL Y TÉCNICO */}
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
+
+          {/* Logo y título */}
+          <motion.div
+            whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="flex items-center cursor-pointer relative z-10"
+            className="flex items-center cursor-pointer gap-3 sm:gap-4"
             onClick={() => handleNavClick('#home')}
-            style={{ gap: '1.25rem' }}
           >
-            {/* Logo con mejor presentación */}
-            <div className="relative flex items-center">
-              <motion.img 
-                src="/image.png"
-                alt="MINUCST Logo" 
-                className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 object-contain"
-                style={{
-                  imageRendering: '-webkit-optimize-contrast',
-                  filter: scrolled 
-                    ? 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1))' 
-                    : 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3))',
-                  transition: 'all 0.3s ease'
-                }}
-                whileHover={{ 
-                  scale: 1.08,
-                  filter: 'drop-shadow(0 6px 16px rgba(220, 38, 38, 0.4))'
-                }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                loading="eager"
-                onError={(e) => {
-                  console.warn('Navigation logo failed to load');
-                }}
-              />
-            </div>
-            
-            {/* Título MINUCST XV - Más elegante y formal */}
+            <motion.div
+              className="relative flex-shrink-0"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className={`rounded-lg p-2 transition-all duration-300 ${
+                scrolled
+                  ? 'bg-white/15'
+                  : 'bg-white/10'
+              }`}>
+                <motion.img
+                  src="/image.png"
+                  alt="MINUCST Logo"
+                  className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+                  style={{
+                    imageRendering: '-webkit-optimize-contrast',
+                    filter: scrolled
+                      ? 'drop-shadow(0 2px 6px rgba(255, 255, 255, 0.2))'
+                      : 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2))',
+                  }}
+                  loading="eager"
+                />
+              </div>
+            </motion.div>
+
+            {/* Título MINUCST XV */}
             <div className="hidden sm:block">
-              <motion.div 
-                className="font-bold flex flex-col"
+              <motion.div
+                className="flex flex-col"
                 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 700,
-                  letterSpacing: '0.02em',
-                  lineHeight: 1,
-                  transition: 'all 0.3s ease'
+                  fontFamily: '"Bebas Neue", sans-serif',
+                  lineHeight: 0.95
                 }}
-                whileHover={{ 
-                  scale: 1.02
-                }}
-                transition={{ duration: 0.3 }}
               >
-                <motion.span 
-                  className={`text-2xl sm:text-3xl md:text-3xl transition-all duration-300 ${
-                    scrolled 
-                      ? 'text-white' 
+                <motion.span
+                  className={`text-3xl md:text-4xl font-bold transition-all duration-300 ${
+                    scrolled
+                      ? 'text-white'
                       : 'text-white'
                   }`}
                   style={{
-                    textShadow: scrolled 
-                      ? '0 2px 8px rgba(0, 0, 0, 0.3)' 
-                      : '0 2px 8px rgba(0, 0, 0, 0.5)',
-                    fontWeight: 800
+                    textShadow: scrolled
+                      ? '0 2px 4px rgba(0, 0, 0, 0.2)'
+                      : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                    letterSpacing: '0.05em'
                   }}
                 >
                   MINUCST XV
                 </motion.span>
-                <motion.span 
-                  className={`text-xs font-medium transition-all duration-300 ${
-                    scrolled 
-                      ? 'text-white/80' 
-                      : 'text-yellow-200'
+                <motion.span
+                  className={`text-xs font-bold transition-all duration-300 tracking-widest ${
+                    scrolled
+                      ? 'text-yellow-200/90'
+                      : 'text-yellow-100'
                   }`}
                   style={{
-                    letterSpacing: '0.1em',
-                    marginTop: '-2px'
+                    marginTop: '-4px'
                   }}
                 >
-                  EDICIÓN ESPECIAL 2026
+                  2026
                 </motion.span>
               </motion.div>
             </div>
